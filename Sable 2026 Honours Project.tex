@@ -1,0 +1,275 @@
+\documentclass[english]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage[a4paper]{geometry}
+\geometry{verbose,tmargin=3cm,bmargin=2.5cm,lmargin=2.5cm,rmargin=2.5cm}
+\usepackage{color}
+\definecolor{note_fontcolor}{rgb}{0.800781, 0.800781, 0.800781}
+\usepackage{array}
+\usepackage{verbatim}
+\usepackage{rotfloat}
+\usepackage{url}
+\usepackage{amstext}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{setspace}
+\doublespacing
+
+\makeatletter
+
+
+
+\providecommand{\tabularnewline}{\\}
+
+\newenvironment{lyxgreyedout}
+  {\textcolor{note_fontcolor}\bgroup\ignorespaces}
+  {\ignorespacesafterend\egroup}
+
+
+\theoremstyle{plain}
+\newtheorem{thm}{\protect\theoremname}
+\ifx\proof\undefined
+\newenvironment{proof}[1][\protect\proofname]{\par
+\normalfont\topsep6\p@\@plus6\p@\relax
+\trivlist
+\itemindent\parindent
+\item[\hskip\labelsep\scshape #1]\ignorespaces
+}{%
+\endtrivlist\@endpefalse
+}
+\providecommand{\proofname}{Proof}
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage{amsmath,epsfig,natbib,pstricks,pst-text,pst-node,pst-plot,amssymb,wrapfig,threeparttable,rotating}
+
+\makeatother
+
+\usepackage{babel}
+\providecommand{\theoremname}{Theorem}
+
+\begin{document}
+
+\title{Non-linear association joint models for clinical studies}
+
+\author{Sable Walters-Somers 21693073\vspace{0.5cm}\\
+WST795 Research Report\vspace{2cm}\\
+Submitted in partial fulfillment of the degree BSc(Hons) Mathematical
+Statistics \\
+\vspace{0.5cm}\\
+Supervisor(s): J. van Niekerk\vspace{2cm}\\
+Department of Statistics, University of Pretoria\vspace{0.5cm}\\
+\includegraphics[width=5cm]{UPlogohighres.jpg}\vspace{0.5cm}\\
+}
+
+%\date{}
+
+\maketitle
+\newpage{}
+\begin{abstract}
+Short summary of the research proposed. This should be a two to three
+paragraphs long and should fully describe the content and contributions
+of the research report.
+\\
+
+Joint models in a clinical context aim to simultaneously model a patients longitudinal biomarker data and their Time-To-Event (TTE) survival data. For the sake of statistical, mathematical, theoretical, and practical simplicity, a linear linkage function between the two processes is assumed. However, this may easily fail to capture the complex and often non-linear processes and mechanisms that characterize pharmacokinetics and pharmacodynamics.
+\\
+
+This study aims to investigate the the effects of using a non-linear association function in a joint model within a clinical context; advantages, disadvantages, and general efficacy will be investigated and discussed.
+
+\newpage{}
+\end{abstract}
+
+\section*{Declaration}
+
+I, \emph{Sable Walters-Somers}, declare that this research report, submitted in
+partial fulfillment of the degree \emph{BSc(Hons) Mathematical Statistics}, at
+the University of Pretoria, is my own work and has not been previously
+submitted at this or any other tertiary institution. 
+
+\vspace{1cm}
+
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+\emph{Sable Walters-Somers}
+
+\vspace{1cm}
+
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+\emph{Janet van Niekerk}
+
+\vspace{1cm}
+
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+Date
+
+\begin{comment}
+Edit all italics with your details and sign on the solid lines once
+the final document is printed and submitted. 
+\end{comment}
+
+
+
+\newpage{}
+
+\tableofcontents{}
+
+\listoffigures
+
+\listoftables
+
+\newpage{}
+
+\section{Introduction}
+
+YOUR 10 PAGE COUNT STARTS HERE
+
+The introduction should provide a detailed description of the topic
+and the aim of the research report. In addition the literature review
+should intertwine with this. It is important to always reference where
+needed. All work from somewhere else requires a reference \cite{Anguelov2010}.
+
+
+QUESTIONS/POINTS TO COVER:
+
+-
+
+-
+
+-
+
+-
+
+-
+
+Inline equation: $x=y$
+
+Display equation: \[x=y\]
+
+Numbered display equation: 
+\begin{equation}
+x=y\label{eq:afe,fjgd}
+\end{equation}
+
+Numbered equation: 
+\begin{equation}
+x=y+1
+\end{equation}
+
+Equation array: 
+
+\begin{eqnarray*}
+x & = & y+2+3\\
+ & = & y+5.
+\end{eqnarray*}
+
+
+\section{Background Theory}
+
+In Figure \ref{fig:UPlogo} and in Figure \ref{fig:Caption} we see
+the UP logo. %
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=6cm]{UPlogohighres.jpg}
+\caption{A graphic of the UP logo\label{fig:UPlogo}}
+\end{figure}
+
+- What should be in a caption? 
+
+- How should I get my graphics?
+
+\begin{figure}
+\includegraphics[width=6cm]{UPlogohighres.jpg}
+\caption{Caption \label{fig:Caption}}
+\end{figure}
+
+
+ The theory of the topic should be thoroughly discussed in this section.
+The student must show their proficiency on the topic as well as additional
+insight. This section may be separated into a few sections as \textit{necessary}.
+Note that the theory of the topic is the main contribution and the
+report should illustrate this. In Theorem \ref{thm:first} we discuss.....
+$f(x)=\left\{ \begin{array}{cc}
+1 & \textrm{\textrm{if }}x<2\\
+2 & \textrm{if }x\ge2
+\end{array}\right.$
+\begin{thm}
+\label{thm:fbkndfblksnfbkn}fbkndfblksnfbkn 
+
+jbj fbfjk b bfjf $f(x)=\left\{ \begin{array}{cc}
+1 & \textrm{\textrm{if }}x<2\\
+2 & \textrm{if }x\ge2
+\end{array}\right.$
+
+\end{thm}
+\begin{proof}
+blksnfblkdfsnb
+\end{proof}
+m,fgkrjtbnel
+\begin{thm}
+\label{thm:first} aurbyveurybverybyruwei 
+\end{thm}
+\begin{proof}
+vnitunrivuptnriuwvtnoiutnreuvnt
+\end{proof}
+
+
+
+\section{Application}
+
+\begin{sidewaystable}
+\begin{centering}
+\begin{tabular}{|>{\centering}p{3cm}|c|c|c|>{\centering}p{3cm}|}
+\multicolumn{1}{>{\centering}p{3cm}|}{} &  &  &  & \tabularnewline
+klvunl ruvynryrinfsfgng hdfhfgjf gjfhjghjhk jhkghjkh dfhdj ghkjfgj
+djdj dghjhhjghj & aevirue$x=y$n oiurlevniq & ermwovmi;q & aevpimqw & ovmi;\tabularnewline
+ &  &  &  & \tabularnewline
+ &  &  &  & \tabularnewline
+ &  &  &  & \tabularnewline
+\end{tabular}
+\par\end{centering}
+\caption{rvybruvybrv \label{tab:test}}
+
+\end{sidewaystable}
+
+\begin{table}
+\begin{centering}
+\begin{tabular}{|>{\centering}p{4cm}|>{\centering}p{4cm}|>{\centering}p{4cm}|}
+\hline 
+\multicolumn{1}{|>{\centering}p{4cm}||}{} & \multicolumn{1}{>{\centering}p{4cm}||}{Column 1} & Column 2\tabularnewline
+\hline 
+\hline 
+Row 1 &  & \tabularnewline
+\hline 
+Row 2 &  & \tabularnewline
+\hline 
+\end{tabular}
+\par\end{centering}
+\caption{Example \label{tab:Example}}
+\end{table}
+ The application should be presented in this section. Code should
+be included in an appendix as well as additional output if needed. 
+
+\section{Conclusion}
+
+The conclusion should summarise what was done in the research report.
+It should also provide shortfalls of the research and recommendations
+on what could be investigated in future. This section should be an
+honest summary of the research.
+
+YOUR 10 PAGE COUNT ENDS HERE
+
+\newpage
+
+\bibliographystyle{plain}
+\bibliography{BibliographyDatabase}
+
+\newpage
+
+\section*{Appendix\addcontentsline{toc}{section}{Appendix}}
+
+Include any additional code, output or data here. 
+\end{document}
