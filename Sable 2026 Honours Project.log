@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.3.2)  15 APR 2026 12:32
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.3.2)  7 MAY 2026 11:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -636,24 +636,24 @@ Package babel Info: Hyphen rules for 'newzealand' set to \l@ukenglish
 tex.def
 File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count351
-)
-No file "Sable 2026 Honours Project".aux.
+) (Sable 2026 Honours Project.aux)
 \openout1 = `"Sable 2026 Honours Project.aux"'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 
@@ -718,12 +718,12 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 fg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-LaTeX Font Info:    Trying to load font information for U+msa on input line 67.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 70.
 
  (C:\Users\twink\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 67.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 70.
 
 
 (C:\Users\twink\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
@@ -732,7 +732,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 <UPlogohighres.jpg, id=1, 1280.3835pt x 426.8748pt>
 File: UPlogohighres.jpg Graphic file (type jpg)
 <use UPlogohighres.jpg>
-Package pdftex.def Info: UPlogohighres.jpg  used on input line 67.
+Package pdftex.def Info: UPlogohighres.jpg  used on input line 70.
 (pdftex.def)             Requested size: 142.26378pt x 47.42534pt.
 
 [1
@@ -765,94 +765,124 @@ Non-PDF special ignored!
 <special> ps:tx@Dict begin  gsave STV CP T /ps@rot 0 def grestore  end
 {C:/Users/twink/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <./UPlogohigh
 res.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 70--74
+Underfull \hbox (badness 10000) in paragraph at lines 73--77
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 75--77
+Underfull \hbox (badness 10000) in paragraph at lines 78--80
 
  []
 
-[2] [3]
-No file "Sable 2026 Honours Project".toc.
+[2] [3] (Sable 2026 Honours Project.toc)
 \tf@toc=\write3
 \openout3 = `"Sable 2026 Honours Project.toc"'.
 
-No file "Sable 2026 Honours Project".lof.
+ (Sable 2026 Honours Project.lof)
 \tf@lof=\write4
 \openout4 = `"Sable 2026 Honours Project.lof"'.
 
-No file "Sable 2026 Honours Project".lot.
+
+(Sable 2026 Honours Project.lot)
 \tf@lot=\write5
 \openout5 = `"Sable 2026 Honours Project.lot"'.
 
-[4]
+ [4]
 
 Package natbib Warning: Citation `Anguelov2010' on page 5 undefined on input li
-ne 132.
+ne 135.
 
 
-LaTeX Warning: Reference `fig:UPlogo' on page 5 undefined on input line 171.
+Underfull \hbox (badness 10000) in paragraph at lines 132--137
+
+ []
 
 
-LaTeX Warning: Reference `fig:Caption' on page 5 undefined on input line 171.
+Underfull \hbox (badness 10000) in paragraph at lines 138--140
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 150--152
+
+ []
+
+[5] [6]
+Underfull \hbox (badness 10000) in paragraph at lines 222--224
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 243--245
+
+ []
+
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 281--283
+
+ []
+
+[8]
+Underfull \hbox (badness 10000) in paragraph at lines 288--290
+
+ []
 
 File: UPlogohighres.jpg Graphic file (type jpg)
 <use UPlogohighres.jpg>
-Package pdftex.def Info: UPlogohighres.jpg  used on input line 176.
+Package pdftex.def Info: UPlogohighres.jpg  used on input line 323.
 (pdftex.def)             Requested size: 170.71652pt x 56.91562pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 File: UPlogohighres.jpg Graphic file (type jpg)
 <use UPlogohighres.jpg>
-Package pdftex.def Info: UPlogohighres.jpg  used on input line 185.
+Package pdftex.def Info: UPlogohighres.jpg  used on input line 332.
 (pdftex.def)             Requested size: 170.71652pt x 56.91562pt.
-[5]
-
-LaTeX Warning: Reference `thm:first' on page 6 undefined on input line 194.
-
-[6] [7]
+[9] [10] [11]
 No file "Sable 2026 Honours Project".bbl.
 
 Package natbib Warning: There were undefined citations.
 
-[8] (Sable 2026 Honours Project.aux)
+[12] (Sable 2026 Honours Project.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
-
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
  ) 
 Here is how much of TeX's memory you used:
- 15332 strings out of 467866
- 272966 string characters out of 5418314
- 747519 words of memory out of 5000000
- 43914 multiletter control sequences out of 15000+600000
- 643814 words of font info for 79 fonts, out of 8000000 for 9000
+ 15358 strings out of 467866
+ 273837 string characters out of 5418314
+ 751601 words of memory out of 5000000
+ 43930 multiletter control sequences out of 15000+600000
+ 644925 words of font info for 81 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 87i,12n,93p,565b,368s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\twink\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx
-1000.pk> <C:\Users\twink\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi60
-0\ecti1000.pk> <C:\Users\twink\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec
-/dpi600\ecbx1440.pk> <C:\Users\twink\AppData\Local\MiKTeX\fonts/pk/ljfour/jknap
-pen/ec/dpi600\ecrm0900.pk> <C:\Users\twink\AppData\Local\MiKTeX\fonts/pk/ljfour
-/jknappen/ec/dpi600\ecbx0900.pk> <C:\Users\twink\AppData\Local\MiKTeX\fonts/pk/
-ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\twink\AppData\Local\MiKTeX\fon
-ts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\twink\AppData\Local\MiKT
-eX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1728.pk><C:/Users/twink/AppData/Local
-/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/twink/AppD
-ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/t
-wink/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:
-/Users/twink/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy1
-0.pfb>
-Output written on "Sable 2026 Honours Project.pdf" (8 pages, 1702148 bytes).
+ 87i,17n,93p,948b,368s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\twink\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm
+0700.pk> <C:\Users\twink\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi60
+0\ecbx1200.pk> <C:\Users\twink\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec
+/dpi600\tcrm1000.pk> <C:\Users\twink\AppData\Local\MiKTeX\fonts/pk/ljfour/jknap
+pen/ec/dpi600\ecbx1000.pk> <C:\Users\twink\AppData\Local\MiKTeX\fonts/pk/ljfour
+/jknappen/ec/dpi600\ecti1000.pk> <C:\Users\twink\AppData\Local\MiKTeX\fonts/pk/
+ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\twink\AppData\Local\MiKTeX\fon
+ts/pk/ljfour/jknappen/ec/dpi600\ecrm0900.pk> <C:\Users\twink\AppData\Local\MiKT
+eX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx0900.pk> <C:\Users\twink\AppData\Loca
+l\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\twink\AppDat
+a\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\twink\
+AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1728.pk><C:/Users/t
+wink/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C
+:/Users/twink/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cmextra
+/cmex7.pfb><C:/Users/twink/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
+fonts/cm/cmmi10.pfb><C:/Users/twink/AppData/Local/Programs/MiKTeX/fonts/type1/p
+ublic/amsfonts/cm/cmmi5.pfb><C:/Users/twink/AppData/Local/Programs/MiKTeX/fonts
+/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/twink/AppData/Local/Programs/MiKT
+eX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/twink/AppData/Local/Progr
+ams/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/twink/AppData/Loca
+l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/twink/AppDa
+ta/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/tw
+ink/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
+Output written on "Sable 2026 Honours Project.pdf" (12 pages, 1807565 bytes).
 PDF statistics:
- 333 PDF objects out of 1000 (max. 8388607)
+ 447 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

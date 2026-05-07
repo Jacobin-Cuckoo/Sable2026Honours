@@ -13,6 +13,9 @@
 \usepackage{amsthm}
 \usepackage{graphicx}
 \usepackage{setspace}
+
+\newcommand{\ubar}[1]{\text{\b{$#1$}}}
+
 \doublespacing
 
 \makeatletter
@@ -75,7 +78,7 @@ of the research report.
 Joint models in a clinical context aim to simultaneously model a patients longitudinal biomarker data and their Time-To-Event (TTE) survival data. For the sake of statistical, mathematical, theoretical, and practical simplicity, a linear linkage function between the two processes is assumed. However, this may easily fail to capture the complex and often non-linear processes and mechanisms that characterize pharmacokinetics and pharmacodynamics.
 \\
 
-This study aims to investigate the the effects of using a non-linear association function in a joint model within a clinical context; advantages, disadvantages, and general efficacy will be investigated and discussed.
+
 
 \newpage{}
 \end{abstract}
@@ -130,7 +133,26 @@ The introduction should provide a detailed description of the topic
 and the aim of the research report. In addition the literature review
 should intertwine with this. It is important to always reference where
 needed. All work from somewhere else requires a reference \cite{Anguelov2010}.
+\\
 
+Consider the case where data on one or more patients with a certain condition is available. Two processes are of interest in this example. The longitudinal (time-dependant) biomarker evolution and when a specific event will or will no occur or Time-To-Event (TTE) survivability. Biomarker examples include insulin levels, tumor sizes, and cholesterol levels. Corresponding events may be a diabetes diagnosis, death, or a heart attack. These two processes are not independent. If the patients biomarkers improve then their survivability is expected to be better than that of a patient whose biomarkers are degrading. Furthermore, if the event is censoring (as in the case for death), then the remaining patient biomarker data is expected to bias itself to values that correspond to the event not occurring. To capture the interaction and codependency of these processes, a joint model is used.
+\\
+
+A joint model makes use of a linkage function (denoted $f(t, \ubar{\Psi}_i)$ where $t$ is the time at which patient $i$ is being considered and $\ubar{\Psi}_i$ are the individual parameters of patient $i$) to model the interaction between the longitudinal and TTE processes. For the sake of interpretability and simplicity, linear linkage functions are often used. Common examples include:
+\begin{itemize}
+	\item $f(t, \ubar{\Psi}_i) = (a + b \cdot m(t, \ubar{\Psi}_i)) \cdot e_i(t)$ (shared random effect)
+	\item $f(t, \ubar{\Psi}_i) = m(t, \ubar{\Psi}_i)$ (current biomarker value)
+	\item $f(t, \ubar{\Psi}_i) = \frac{\partial}{\partial t} (m(t, \ubar{\Psi}_i))$ (instantaneous biomarker slope)
+	\item $f(t, \ubar{\Psi}_i) = \int_0^t\ m(u, \ubar{\Psi}_i)\ du$ (cumulative exposure)
+\end{itemize}
+
+
+Use of non-linear joint models is limited and generally uncommon. Notable examples of non-linear models do exist. Namely (Desmee) where the Prostate-Specific Antigens (PSA), a biomarker often associated with prostate cancer, were modelled jointly with the risk of death. The link function $f(t, \ubar{\Psi}_i) = \mathrm{log}(\mathrm{PSA}(t, \ubar{\Psi}_i) + 1)$ was used where one is added to the biomarker value to ensure the log function argument is greater than or equal to one. Additionally, splines make for highly flexible if unpredictable non-linear links functions.
+\\
+
+Currently, multiple R packages are capable of fitting joint models. Examples include joineR, JM, JMbayes, rstanarm, and INLAjoint. However, these packages do not have options for non-linear link functions and do not allow custom link functions, limiting them to linear linkage cases. This creates a challenge in the testing and investigation of non-linear models as such models must be created by the researcher themself.
+
+This study aims to investigate the the effects of using a non-linear association function in a joint model within a clinical context; advantages, disadvantages, and general efficacy will be investigated and discussed.
 
 QUESTIONS/POINTS TO COVER:
 
@@ -166,7 +188,132 @@ x & = & y+2+3\\
 \end{eqnarray*}
 
 
-\section{Background Theory}
+\section{Methodology}
+
+\subsection{Longitudinal mixed-effect model}
+
+For some patient $i$, let their measured biomarker value at time $t$ be
+$$
+y_i(t) = m(t, \ubar{\Psi}_i) + (a + b \cdot m(t, \ubar{\Psi}_i)) \cdot e_i(t)
+$$
+where:
+\begin{itemize}
+	\item $m(t, \ubar{\Psi}_i)$ is the constructed biomarker model.
+	\item $\ubar{\Psi}_i$ is the individual parameter vector for patient $i$. Dependant of fixed-effect vector $\ubar{\mu}$ and individual random effect vector $\ubar{\eta}_i$. It is typically assumed that $\ubar{\eta}_i \sim \textrm{N}(0, \Omega)$ with $\Omega$ usually assumed to be diagonal.
+	\item $e_i(t)$ is the error term for patient $i$ at time $t$. Typically assumed to be Gaussian.
+	\item $a$ is the additive component of the error term.
+	\item $b$ is the multiplicative component of the error term.
+\end{itemize}
+
+Let $\theta_m = \{ \ubar{\mu}, \Omega, a, b \}$ be the set of population parameters for the mixed-effect model.
+
+\subsection{Survival model}
+
+Let $X_i$ be the time at which patient $i$ experiences the event. Assume that censoring is present. i.e. the event may not occur during the period of time a patient is monitored. In this case, $X_i$ cannot be measured.
+
+Let $\delta_i$ be the event indicator variable for patient $i$. i.e.
+
+$$
+\delta_i = 
+\begin{cases}
+	1 & \mathrm{if\ the\ event\ occurs\ to\ patient}\  i \\
+	0 & \mathrm{if\ the\ event\ does\ not\ occur\ to\ patient}\  i
+\end{cases}
+$$
+\\
+
+Thus, every patient has the TTE data $(T_i, \delta_i)$. Where:
+\begin{itemize}
+	\item $T_i = \mathrm{min}(X_i, C_i)$
+	\item $C_i$ is the censoring. i.e. the time at which the event is no longer measurable and has not yet occurred.
+\end{itemize}
+
+Let $h_i(t)$ be the instantaneous risk of the event occurring to patient $i$ at time $t$. Then $h_i(t)$ is defined as
+
+$$
+h_i(t) = \lim_{\Delta t \to 0} \frac{\mathrm{P}(t < T_i \le t + \Delta t \mid T_i > t)}{\Delta t}
+$$
+
+Generally, a Cox or proportional model is used to account for the effect of specific covariate(s), say $x_i$. In this case,
+
+$$
+h_i(t) = h_0(t) \cdot e^{\rho x_i}
+$$
+
+Where $h_0(t)$ is the baseline hazard function shared across patients and $\rho$ characterizes to strength of association be tween $x_i$ and the risk of event.
+\\
+
+Of more interest is the probability that the event has not occurred to patient $i$ at time $t$. This survival function is defined as
+
+$$
+S_i(t) = \mathrm{P}(T_i > t) = e^{ - \int_{0}^{t} h_i(u)\ du}
+$$
+
+Let $\theta_s = \{\theta_0, \rho\}$ be the set of population parameters for the survival model where $\theta_0$ is the set of parameters for $h_0$.
+
+\subsection{Joint model}
+
+From this, a joint model can be easily defined as 
+
+$$
+h_i(t, \ubar{\Psi}_i) = h_0(t) \cdot e^{\beta f(t, \ubar{\Psi}_i)}
+$$
+
+Where $f$ is the link function and $\beta$ is the link parameter.
+
+Thus, once a link function is chosen, the population parameters $\ubar{\theta} = \{\theta_m, \theta_i, \beta \}$ can be estimated.
+
+\subsection{Inference}
+
+In this study, a Bayesian approach to inference will be taken. This allows for the simultaneous estimation of random effects and population parameters. Whereas in the frequentist approach, population parameters are estimated by conditioning the data in the random effects then the random effects are estimated from the resulting posterior conditional on the estimated population parameters, making estimation and investigation of these random effects more challenging. Furthermore, as is characteristic of Bayesian statistics, prior knowledge sourced either from previous studies or field experts can be made of use.
+
+By direct application of Bayes theorem, we obtain
+
+\begin{align*}
+\mathrm{P}(\ubar{\theta}, \ubar{\eta}_i \mid \ubar{Y}_i, T_i, \delta_i) &\propto
+\mathrm{p}(\ubar{\theta}, \ubar{\eta}_i) \cdot
+\mathrm{L}(\ubar{Y}_i, T_i, \delta_i \mid \ubar{\theta}, \ubar{\eta}_i)\\  &\propto
+\prod_{j = 1}^{n_i} \mathrm{P}(Y_{ij} \mid \ubar{\theta}, \ubar{\eta}_i) \cdot
+\mathrm{P}(T_i, \delta_i \mid \ubar{\theta}, \ubar{\eta}_i) \cdot
+\mathrm{P}(\ubar{\eta}_i \mid \ubar{\theta}) \cdot \mathrm{P}(\ubar{\theta})
+\end{align*}
+
+Where $\ubar{Y}_i$ is the vector of all biomarker measurements for patient $i$, $Y_{ij}$ is the biomarker value for patient $i$ at their $j$'th measurement, and $n_i$ is the number of biomarker measurements for patient $i$.
+\\
+
+Hence, to estimate the population parameters and the random effects, we need only to sample them from the obtained posterior distribution. However, in the case of a non-linear joint model, this process becomes more challenging than that of a linear model. One solution is the No-U-Turn Sampler variation of the Hamiltonian-Monte Carlo algorithm as implemented in Stan. Alternatively, a combination of the standard MCMC Gibbs sampling and Metropolis-Hastings as implemented in WimBUGS may be used.
+
+\subsection{Individual prediction}
+
+Of great use to the medical field is the ability to make predictions regarding an individual patient thus make better informed decisions regarding treatment of that individual patient.
+\\
+
+Assume that the biomarker is measured up until some landmark time $s$ at which the event has not occurred to the patient. Suppose that at this landmark time, we wish predict the probability that the event will occur before some horizon time $s + t$. i.e.
+
+$$
+\pi_i(s + t \mid s) = \mathrm{P}(T_i < s + t \mid \ubar{\theta}, T_i > s, Y_i(s))
+$$
+
+Where $Y_i(s) = \{y_i(t) : 0 \le t \le s\}$. 
+
+This can be estimated in three steps:
+\begin{enumerate}
+	\item $L$ random effect vectors are sampled from their posterior distribution via an MCMC algorithm. For $l \in 1, 2, \ldots, L$ with $L$ large:
+$$
+\ubar{\eta}_i^l \sim \{\ubar{\eta}_i, \ubar{\theta} \mid T_i > s, Y_i(s)\}
+$$
+	\item $L$ posterior samples of $\pi_i$ are determined:
+$$
+\pi_i^l(s + t \mid s) = 
+\frac{S_i(s \mid \ubar{\eta}_i^l, \ubar{\theta}) - S_i(s + t \mid \ubar{\eta}_i^l, \ubar{\theta})}
+{S_i(s \mid \ubar{\eta}_i^l, \ubar{\theta})}
+$$
+	\item $\pi_i(s + t \mid s)$ and its prediction interval can be estimated with
+$$
+\hat{\pi}_i(s + t \mid s) = \mathrm{median}_{l \in 1, 2, \ldots, L} \{\pi_i^l(s + t \mid s) \}
+$$
+and the empirical Monte-Carlo percentiles.
+\end{enumerate}
 
 In Figure \ref{fig:UPlogo} and in Figure \ref{fig:Caption} we see
 the UP logo. %
