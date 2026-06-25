@@ -199,13 +199,15 @@ $$
 where:
 \begin{itemize}
 	\item $m(t, \ubar{\Psi}_i)$ is the constructed biomarker model.
-	\item $\ubar{\Psi}_i$ is the individual parameter vector for patient $i$. Dependant of fixed-effect vector $\ubar{\mu}$ and individual random effect vector $\ubar{\eta}_i$. It is typically assumed that $\ubar{\eta}_i \sim \textrm{N}(0, \Omega)$ with $\Omega$ usually assumed to be diagonal.
+	\item $\ubar{\Psi}_i$ is the individual parameter vector for patient $i$. Dependant of fixed-effect vector $\ubar{\mu}$ and individual random effect vector $\ubar{\eta}_i$. It is typically assumed that $\ubar{\eta}_i \sim \textrm{N}(\ubar{0}, \mathbf{\Omega})$ with $\mathbf{\Omega}$ usually assumed to be diagonal.
 	\item $e_i(t)$ is the error term for patient $i$ at time $t$. Typically assumed to be Gaussian.
 	\item $a$ is the additive component of the error term.
 	\item $b$ is the multiplicative component of the error term.
 \end{itemize}
 
-Let $\theta_m = \{ \ubar{\mu}, \Omega, a, b \}$ be the set of population parameters for the mixed-effect model.
+Let $\theta_m = \{ \ubar{\mu}, \mathbf{\Omega}, a, b \}$ be the set of population parameters for the mixed-effect model.
+
+
 
 \subsection{Survival model}
 
@@ -228,13 +230,13 @@ Thus, every patient has the TTE data $(T_i, \delta_i)$. Where:
 	\item $C_i$ is the censoring. i.e. the time at which the event is no longer measurable and has not yet occurred.
 \end{itemize}
 
-Let $h_i(t)$ be the instantaneous risk of the event occurring to patient $i$ at time $t$. Then $h_i(t)$ is defined as
+Let the hazard function $h_i(t)$ be the instantaneous risk of the event occurring to patient $i$ at time $t$. Then $h_i(t)$ is defined as
 
 $$
 h_i(t) = \lim_{\Delta t \to 0} \frac{\mathrm{P}(t < T_i \le t + \Delta t \mid T_i > t)}{\Delta t}
 $$
 
-Generally, a Cox or proportional model is used to account for the effect of specific covariate(s), say $x_i$. In this case,
+Generally, a proportional model is used to account for the effect of specific covariate(s), say $x_i$. In this case,
 
 $$
 h_i(t) = h_0(t) \cdot e^{\rho x_i}
@@ -256,12 +258,12 @@ Let $\theta_s = \{\theta_0, \rho\}$ be the set of population parameters for the 
 From this, a joint model can be easily defined as 
 
 $$
-h_i(t, \ubar{\Psi}_i) = h_0(t) \cdot e^{\beta f(t, \ubar{\Psi}_i)}
+h_i(t, \ubar{\Psi}_i) = h_0(t) \cdot e^{\ \beta \cdot  f(t, \ubar{\Psi}_i)}
 $$
 
 Where $f$ is the link function and $\beta$ is the link parameter.
 
-Thus, once a link function is chosen, the population parameters $\ubar{\theta} = \{\theta_m, \theta_i, \beta \}$ can be estimated.
+Thus, once a link function is chosen, the population parameters $\theta = \{\theta_m, \theta_i, \beta \}$ can be estimated.
 
 \subsection{Inference}
 
@@ -281,7 +283,7 @@ By direct application of Bayes theorem, we obtain
 Where $\ubar{Y}_i$ is the vector of all biomarker measurements for patient $i$, $Y_{ij}$ is the biomarker value for patient $i$ at their $j$'th measurement, and $n_i$ is the number of biomarker measurements for patient $i$.
 \\
 
-Hence, to estimate the population parameters and the random effects, we need only to sample them from the obtained posterior distribution. However, in the case of a non-linear joint model, this process becomes more challenging than that of a linear model. One solution is the No-U-Turn Sampler variation of the Hamiltonian-Monte Carlo algorithm as implemented in Stan. Alternatively, a combination of the standard MCMC Gibbs sampling and Metropolis-Hastings as implemented in WimBUGS may be used.
+Hence, to estimate the population parameters and the random effects, we need only to sample them from the obtained posterior distribution. However, in the case of a non-linear joint model, this process becomes more challenging than that of a linear model. One solution is the No-U-Turn Sampler variation of the Hamiltonian-Monte Carlo algorithm as implemented in Stan.% Alternatively, a combination of the standard MCMC Gibbs sampling and Metropolis-Hastings as implemented in WimBUGS may be used.
 
 \subsection{Individual prediction}
 
