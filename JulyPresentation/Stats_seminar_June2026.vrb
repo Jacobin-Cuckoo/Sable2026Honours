@@ -1,0 +1,13 @@
+\frametitle{References}
+	\vspace{-1cm}
+	\small
+	\begin{itemize}
+		\item {\color{red}  Denis Rustand, Janet van Niekerk, Elias T. Krainski, H\aa vard Rue, Cécile Proust-Lima {\color{black} \textit{Fast and flexible inference for joint models of multivariate longitudinal and survival data using integrated nested Laplace approximations}}, Biostatistics, 2024; 25(2), pp.429-448, 10.1093/biostatistics/kxad019.}
+		
+		\item {\color{red} Danilo  Alvares, Janet van Niekerk, Elias T. Krainski, Håvard Rue, and Denis Rustand. {\color{black} \textit{Bayesian survival analysis with INLA.}}
+			Statistics in Medicine, 2024; 1-36, 10.1002/sim.10160.}
+		
+		\item {\color{red} Denis Rustand, Janet van Niekerk, Elias T. Krainski, and Håvard Rue. {\color{black} \textit{Joint Modeling of Multivariate Longitudinal and Survival Outcomes with the R package INLAjoint.}} arXiv preprint arXiv:2402.08335 (2024).}
+		
+		\item {\color{red}  Denis Rustand, Janet van Niekerk, Elias T. Krainski, and Håvard Rue. {\color{black} \textit{Bayesian survival, longitudinal and joint models with INLA.}} CRC Press. 2026 (In Production).}
+	\end{itemize}
