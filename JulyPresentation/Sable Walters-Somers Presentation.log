@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.7.18)  18 JUL 2026 14:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.7.18)  18 JUL 2026 14:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**./Stats_seminar_June2026.tex
-(Stats_seminar_June2026.tex
+**"./Sable Walters-Somers Presentation.tex"
+(Sable Walters-Somers Presentation.tex
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
 (C:\Users\twink\AppData\Local\Programs\MiKTeX\tex/latex/beamer\beamer.cls
@@ -1267,8 +1267,8 @@ File: lstmisc.sty 2025/11/14 1.11b (Carsten Heinz)
 tex.def
 File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count409
-) (Stats_seminar_June2026.aux)
-\openout1 = `Stats_seminar_June2026.aux'.
+) (Sable Walters-Somers Presentation.aux)
+\openout1 = `"Sable Walters-Somers Presentation.aux"'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 171.
 LaTeX Font Info:    ... okay on input line 171.
@@ -1350,9 +1350,10 @@ fg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
 Package hyperref Info: Link coloring OFF on input line 171.
- (Stats_seminar_June2026.out) (Stats_seminar_June2026.out)
+ (Sable Walters-Somers Presentation.out)
+(Sable Walters-Somers Presentation.out)
 \@outlinefile=\write6
-\openout6 = `Stats_seminar_June2026.out'.
+\openout6 = `"Sable Walters-Somers Presentation.out"'.
 
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 171.
@@ -1439,46 +1440,39 @@ Package caption Info: listings package is loaded.
 Package caption Info: rotating package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \c@lstlisting=\count416
- (Stats_seminar_June2026.nav)
-<./up_building3.png, id=54, 466.74374pt x 330.73563pt>
+ (Sable Walters-Somers Presentation.nav)
+<./up_building3.png, id=34, 466.74374pt x 330.73563pt>
 File: ./up_building3.png Graphic file (type png)
 <use ./up_building3.png>
 Package pdftex.def Info: ./up_building3.png  used on input line 177.
 (pdftex.def)             Requested size: 382.40623pt x 270.9829pt.
- [1
+
+[1
 
 {C:/Users/twink/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <./up_buildin
 g3.png>]
-(Stats_seminar_June2026.toc)
-<./up_logo.png, id=105, 173.14688pt x 176.15813pt>
+<./up_logo.png, id=71, 173.14688pt x 176.15813pt>
 File: ./up_logo.png Graphic file (type png)
 <use ./up_logo.png>
-Package pdftex.def Info: ./up_logo.png  used on input line 183.
+Package pdftex.def Info: ./up_logo.png  used on input line 190.
 (pdftex.def)             Requested size: 20.97487pt x 21.33955pt.
  [2
 
  <./up_logo.png>]
-File: ./up_logo.png Graphic file (type png)
-<use ./up_logo.png>
-Package pdftex.def Info: ./up_logo.png  used on input line 194.
-(pdftex.def)             Requested size: 20.97487pt x 21.33955pt.
- [3
-
-]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 207
+LaTeX Font Info:    Trying to load font information for U+msa on input line 203
 .
 
 (C:\Users\twink\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 207
+LaTeX Font Info:    Trying to load font information for U+msb on input line 203
 .
 
 (C:\Users\twink\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Trying to load font information for OT1+mathkerncmss on inp
-ut line 207.
+ut line 203.
 
 (C:\Users\twink\AppData\Local\Programs\MiKTeX\tex/latex/sansmathaccent\ot1mathk
 erncmss.fd
@@ -1487,559 +1481,88 @@ thkerncmss.
 )
 File: ./up_logo.png Graphic file (type png)
 <use ./up_logo.png>
-Package pdftex.def Info: ./up_logo.png  used on input line 207.
+Package pdftex.def Info: ./up_logo.png  used on input line 203.
+(pdftex.def)             Requested size: 20.97487pt x 21.33955pt.
+ [3
+
+]
+File: ./up_logo.png Graphic file (type png)
+<use ./up_logo.png>
+Package pdftex.def Info: ./up_logo.png  used on input line 219.
 (pdftex.def)             Requested size: 20.97487pt x 21.33955pt.
  [4
 
 ]
 File: ./up_logo.png Graphic file (type png)
 <use ./up_logo.png>
-Package pdftex.def Info: ./up_logo.png  used on input line 221.
+Package pdftex.def Info: ./up_logo.png  used on input line 232.
 (pdftex.def)             Requested size: 20.97487pt x 21.33955pt.
  [5
 
 ]
 File: ./up_logo.png Graphic file (type png)
 <use ./up_logo.png>
-Package pdftex.def Info: ./up_logo.png  used on input line 233.
+Package pdftex.def Info: ./up_logo.png  used on input line 249.
 (pdftex.def)             Requested size: 20.97487pt x 21.33955pt.
  [6
 
 ]
-File: ./up_logo.png Graphic file (type png)
-<use ./up_logo.png>
-Package pdftex.def Info: ./up_logo.png  used on input line 249.
-(pdftex.def)             Requested size: 20.97487pt x 21.33955pt.
- [7
-
-]
-<simexample.png, id=297, 376.40625pt x 376.40625pt>
+<simexample.png, id=225, 376.40625pt x 376.40625pt>
 File: simexample.png Graphic file (type png)
 <use simexample.png>
-Package pdftex.def Info: simexample.png  used on input line 262.
+Package pdftex.def Info: simexample.png  used on input line 264.
 (pdftex.def)             Requested size: 171.14764pt x 171.15024pt.
 File: ./up_logo.png Graphic file (type png)
 <use ./up_logo.png>
-Package pdftex.def Info: ./up_logo.png  used on input line 262.
+Package pdftex.def Info: ./up_logo.png  used on input line 264.
 (pdftex.def)             Requested size: 20.97487pt x 21.33955pt.
- [8
+ [7
 
- <./simexample.png>] [9
-
-]
-\openout4 = `Stats_seminar_June2026.vrb'.
-
-
-(Stats_seminar_June2026.vrb)
-File: ./up_logo.png Graphic file (type png)
-<use ./up_logo.png>
-Package pdftex.def Info: ./up_logo.png  used on input line 281.
-(pdftex.def)             Requested size: 20.97487pt x 21.33955pt.
- [10
-
-]
-\openout4 = `Stats_seminar_June2026.vrb'.
-
- (Stats_seminar_June2026.vrb)
-File: ./up_logo.png Graphic file (type png)
-<use ./up_logo.png>
-Package pdftex.def Info: ./up_logo.png  used on input line 308.
-(pdftex.def)             Requested size: 20.97487pt x 21.33955pt.
- [11
-
-]
-(Stats_seminar_June2026.vrb)
-File: ./up_logo.png Graphic file (type png)
-<use ./up_logo.png>
-Package pdftex.def Info: ./up_logo.png  used on input line 308.
-(pdftex.def)             Requested size: 20.97487pt x 21.33955pt.
- [12
-
-]
-\openout4 = `Stats_seminar_June2026.vrb'.
-
- (Stats_seminar_June2026.vrb)
-File: ./up_logo.png Graphic file (type png)
-<use ./up_logo.png>
-Package pdftex.def Info: ./up_logo.png  used on input line 326.
-(pdftex.def)             Requested size: 20.97487pt x 21.33955pt.
- [13
-
-]
-\openout4 = `Stats_seminar_June2026.vrb'.
-
-
-(Stats_seminar_June2026.vrb
-LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <10.95> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 3.
-LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <8> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 3.
-LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <6> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 3.
-)
-File: ./up_logo.png Graphic file (type png)
-<use ./up_logo.png>
-Package pdftex.def Info: ./up_logo.png  used on input line 339.
-(pdftex.def)             Requested size: 20.97487pt x 21.33955pt.
- [14
-
-]
-\openout4 = `Stats_seminar_June2026.vrb'.
-
- (Stats_seminar_June2026.vrb)
-File: ./up_logo.png Graphic file (type png)
-<use ./up_logo.png>
-Package pdftex.def Info: ./up_logo.png  used on input line 360.
-(pdftex.def)             Requested size: 20.97487pt x 21.33955pt.
- [15
-
-] [16
-
-]
-\openout4 = `Stats_seminar_June2026.vrb'.
-
-
-(Stats_seminar_June2026.vrb)
-File: ./up_logo.png Graphic file (type png)
-<use ./up_logo.png>
-Package pdftex.def Info: ./up_logo.png  used on input line 380.
-(pdftex.def)             Requested size: 20.97487pt x 21.33955pt.
- [17
-
-]
-\openout4 = `Stats_seminar_June2026.vrb'.
-
- (Stats_seminar_June2026.vrb)
-File: ./up_logo.png Graphic file (type png)
-<use ./up_logo.png>
-Package pdftex.def Info: ./up_logo.png  used on input line 394.
-(pdftex.def)             Requested size: 20.97487pt x 21.33955pt.
- [18
-
-]
-\openout4 = `Stats_seminar_June2026.vrb'.
-
-
-(Stats_seminar_June2026.vrb)
-File: ./up_logo.png Graphic file (type png)
-<use ./up_logo.png>
-Package pdftex.def Info: ./up_logo.png  used on input line 406.
-(pdftex.def)             Requested size: 20.97487pt x 21.33955pt.
- [19
-
-] [20
-
-]
-\openout4 = `Stats_seminar_June2026.vrb'.
-
- (Stats_seminar_June2026.vrb)
-File: ./up_logo.png Graphic file (type png)
-<use ./up_logo.png>
-Package pdftex.def Info: ./up_logo.png  used on input line 424.
-(pdftex.def)             Requested size: 20.97487pt x 21.33955pt.
- [21
-
-]
-\openout4 = `Stats_seminar_June2026.vrb'.
-
-
-(Stats_seminar_June2026.vrb)
-File: ./up_logo.png Graphic file (type png)
-<use ./up_logo.png>
-Package pdftex.def Info: ./up_logo.png  used on input line 439.
-(pdftex.def)             Requested size: 20.97487pt x 21.33955pt.
- [22
-
-]
-\openout4 = `Stats_seminar_June2026.vrb'.
-
- (Stats_seminar_June2026.vrb)
-File: ./up_logo.png Graphic file (type png)
-<use ./up_logo.png>
-Package pdftex.def Info: ./up_logo.png  used on input line 455.
-(pdftex.def)             Requested size: 20.97487pt x 21.33955pt.
- [23
-
-]
-(Stats_seminar_June2026.vrb)
-File: ./up_logo.png Graphic file (type png)
-<use ./up_logo.png>
-Package pdftex.def Info: ./up_logo.png  used on input line 455.
-(pdftex.def)             Requested size: 20.97487pt x 21.33955pt.
- [24
-
-] (Stats_seminar_June2026.vrb)
-File: ./up_logo.png Graphic file (type png)
-<use ./up_logo.png>
-Package pdftex.def Info: ./up_logo.png  used on input line 455.
-(pdftex.def)             Requested size: 20.97487pt x 21.33955pt.
- [25
-
-]
-(Stats_seminar_June2026.vrb)
-File: ./up_logo.png Graphic file (type png)
-<use ./up_logo.png>
-Package pdftex.def Info: ./up_logo.png  used on input line 455.
-(pdftex.def)             Requested size: 20.97487pt x 21.33955pt.
- [26
-
-]
-\openout4 = `Stats_seminar_June2026.vrb'.
-
- (Stats_seminar_June2026.vrb)
-File: ./up_logo.png Graphic file (type png)
-<use ./up_logo.png>
-Package pdftex.def Info: ./up_logo.png  used on input line 475.
-(pdftex.def)             Requested size: 20.97487pt x 21.33955pt.
- [27
-
-]
-File: ./up_logo.png Graphic file (type png)
-<use ./up_logo.png>
-Package pdftex.def Info: ./up_logo.png  used on input line 483.
-(pdftex.def)             Requested size: 20.97487pt x 21.33955pt.
- [28
-
-]
-\openout4 = `Stats_seminar_June2026.vrb'.
-
-
-(Stats_seminar_June2026.vrb)
-File: ./up_logo.png Graphic file (type png)
-<use ./up_logo.png>
-Package pdftex.def Info: ./up_logo.png  used on input line 496.
-(pdftex.def)             Requested size: 20.97487pt x 21.33955pt.
- [29
-
-] (Stats_seminar_June2026.vrb)
-File: ./up_logo.png Graphic file (type png)
-<use ./up_logo.png>
-Package pdftex.def Info: ./up_logo.png  used on input line 496.
-(pdftex.def)             Requested size: 20.97487pt x 21.33955pt.
- [30
-
-] [31
-
-]
-File: ./up_logo.png Graphic file (type png)
-<use ./up_logo.png>
-Package pdftex.def Info: ./up_logo.png  used on input line 527.
-(pdftex.def)             Requested size: 20.97487pt x 21.33955pt.
-
-[32
-
-]
-File: ./up_logo.png Graphic file (type png)
-<use ./up_logo.png>
-Package pdftex.def Info: ./up_logo.png  used on input line 527.
-(pdftex.def)             Requested size: 20.97487pt x 21.33955pt.
- [33
-
-]
-File: ./up_logo.png Graphic file (type png)
-<use ./up_logo.png>
-Package pdftex.def Info: ./up_logo.png  used on input line 527.
-(pdftex.def)             Requested size: 20.97487pt x 21.33955pt.
- [34
-
-]
-File: ./up_logo.png Graphic file (type png)
-<use ./up_logo.png>
-Package pdftex.def Info: ./up_logo.png  used on input line 527.
-(pdftex.def)             Requested size: 20.97487pt x 21.33955pt.
- [35
-
-]
-File: ./up_logo.png Graphic file (type png)
-<use ./up_logo.png>
-Package pdftex.def Info: ./up_logo.png  used on input line 546.
-(pdftex.def)             Requested size: 20.97487pt x 21.33955pt.
- [36
-
-]
-File: ./up_logo.png Graphic file (type png)
-<use ./up_logo.png>
-Package pdftex.def Info: ./up_logo.png  used on input line 546.
-(pdftex.def)             Requested size: 20.97487pt x 21.33955pt.
- [37
-
-]
-File: ./up_logo.png Graphic file (type png)
-<use ./up_logo.png>
-Package pdftex.def Info: ./up_logo.png  used on input line 546.
-(pdftex.def)             Requested size: 20.97487pt x 21.33955pt.
- [38
-
-]
-File: ./up_logo.png Graphic file (type png)
-<use ./up_logo.png>
-Package pdftex.def Info: ./up_logo.png  used on input line 546.
-(pdftex.def)             Requested size: 20.97487pt x 21.33955pt.
- [39
-
-]
-File: ./up_logo.png Graphic file (type png)
-<use ./up_logo.png>
-Package pdftex.def Info: ./up_logo.png  used on input line 546.
-(pdftex.def)             Requested size: 20.97487pt x 21.33955pt.
- [40
-
-]
-File: ./up_logo.png Graphic file (type png)
-<use ./up_logo.png>
-Package pdftex.def Info: ./up_logo.png  used on input line 546.
-(pdftex.def)             Requested size: 20.97487pt x 21.33955pt.
- [41
-
-]
-File: ./up_logo.png Graphic file (type png)
-<use ./up_logo.png>
-Package pdftex.def Info: ./up_logo.png  used on input line 546.
-(pdftex.def)             Requested size: 20.97487pt x 21.33955pt.
- [42
-
-]
-File: ./up_logo.png Graphic file (type png)
-<use ./up_logo.png>
-Package pdftex.def Info: ./up_logo.png  used on input line 563.
-(pdftex.def)             Requested size: 20.97487pt x 21.33955pt.
- [43
-
-]
-\openout4 = `Stats_seminar_June2026.vrb'.
-
-
-(Stats_seminar_June2026.vrb)
-File: ./up_logo.png Graphic file (type png)
-<use ./up_logo.png>
-Package pdftex.def Info: ./up_logo.png  used on input line 575.
-(pdftex.def)             Requested size: 20.97487pt x 21.33955pt.
- [44
-
-]
-\openout4 = `Stats_seminar_June2026.vrb'.
-
- (Stats_seminar_June2026.vrb
-Underfull \hbox (badness 10000) in paragraph at lines 19--19
-[]|\OT1/cmss/bx/n/10.95 MCMC
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 19--19
-[]|\OT1/cmss/bx/n/10.95 HMC
- []
-
-)
-File: ./up_logo.png Graphic file (type png)
-<use ./up_logo.png>
-Package pdftex.def Info: ./up_logo.png  used on input line 602.
-(pdftex.def)             Requested size: 20.97487pt x 21.33955pt.
- [45
-
-]
-\openout4 = `Stats_seminar_June2026.vrb'.
-
- (Stats_seminar_June2026.vrb)
-File: ./up_logo.png Graphic file (type png)
-<use ./up_logo.png>
-Package pdftex.def Info: ./up_logo.png  used on input line 611.
-(pdftex.def)             Requested size: 20.97487pt x 21.33955pt.
- [46
-
-]
-\openout4 = `Stats_seminar_June2026.vrb'.
-
- (Stats_seminar_June2026.vrb
-
-LaTeX Font Warning: Font shape `OT1/cmss/bx/it' undefined
-(Font)              using `OT1/cmss/bx/n' instead on input line 3.
-
-)
-File: ./up_logo.png Graphic file (type png)
-<use ./up_logo.png>
-Package pdftex.def Info: ./up_logo.png  used on input line 627.
-(pdftex.def)             Requested size: 20.97487pt x 21.33955pt.
- [47
-
-] [48
-
-]
-File: ./up_logo.png Graphic file (type png)
-<use ./up_logo.png>
-Package pdftex.def Info: ./up_logo.png  used on input line 646.
-(pdftex.def)             Requested size: 20.97487pt x 21.33955pt.
- [49
-
-]
-File: ./up_logo.png Graphic file (type png)
-<use ./up_logo.png>
-Package pdftex.def Info: ./up_logo.png  used on input line 656.
-(pdftex.def)             Requested size: 20.97487pt x 21.33955pt.
- [50
-
-]
-File: ./up_logo.png Graphic file (type png)
-<use ./up_logo.png>
-Package pdftex.def Info: ./up_logo.png  used on input line 663.
-(pdftex.def)             Requested size: 20.97487pt x 21.33955pt.
- [51
-
-] [52
-
-]
-File: ./up_logo.png Graphic file (type png)
-<use ./up_logo.png>
-Package pdftex.def Info: ./up_logo.png  used on input line 686.
-(pdftex.def)             Requested size: 20.97487pt x 21.33955pt.
- [53
-
-] [54
-
-]
-File: ./up_logo.png Graphic file (type png)
-<use ./up_logo.png>
-Package pdftex.def Info: ./up_logo.png  used on input line 715.
-(pdftex.def)             Requested size: 20.97487pt x 21.33955pt.
- [55
-
-]
-File: ./up_logo.png Graphic file (type png)
-<use ./up_logo.png>
-Package pdftex.def Info: ./up_logo.png  used on input line 725.
-(pdftex.def)             Requested size: 20.97487pt x 21.33955pt.
- [56
-
-] [57
-
-]
-File: ./up_logo.png Graphic file (type png)
-<use ./up_logo.png>
-Package pdftex.def Info: ./up_logo.png  used on input line 742.
-(pdftex.def)             Requested size: 20.97487pt x 21.33955pt.
- [58
-
-]
-\openout4 = `Stats_seminar_June2026.vrb'.
-
-
-(Stats_seminar_June2026.vrb)
-File: ./up_logo.png Graphic file (type png)
-<use ./up_logo.png>
-Package pdftex.def Info: ./up_logo.png  used on input line 746.
-(pdftex.def)             Requested size: 20.97487pt x 21.33955pt.
- [59
-
-]
-\openout4 = `Stats_seminar_June2026.vrb'.
-
- (Stats_seminar_June2026.vrb) [60
-
-]
-\openout4 = `Stats_seminar_June2026.vrb'.
-
-
-(Stats_seminar_June2026.vrb) [61
-
-]
-\openout4 = `Stats_seminar_June2026.vrb'.
-
- (Stats_seminar_June2026.vrb)
-File: ./up_logo.png Graphic file (type png)
-<use ./up_logo.png>
-Package pdftex.def Info: ./up_logo.png  used on input line 774.
-(pdftex.def)             Requested size: 20.97487pt x 21.33955pt.
- [62
-
-]
-\openout4 = `Stats_seminar_June2026.vrb'.
-
-
-(Stats_seminar_June2026.vrb
-Underfull \hbox (badness 10000) in paragraph at lines 17--19
-
- []
-
-)
-File: ./up_logo.png Graphic file (type png)
-<use ./up_logo.png>
-Package pdftex.def Info: ./up_logo.png  used on input line 798.
-(pdftex.def)             Requested size: 20.97487pt x 21.33955pt.
- [63
-
-]
-File: ./up_logo.png Graphic file (type png)
-<use ./up_logo.png>
-Package pdftex.def Info: ./up_logo.png  used on input line 806.
-(pdftex.def)             Requested size: 20.97487pt x 21.33955pt.
- [64
-
-]
-\openout4 = `Stats_seminar_June2026.vrb'.
-
- (Stats_seminar_June2026.vrb)
-File: ./up_logo.png Graphic file (type png)
-<use ./up_logo.png>
-Package pdftex.def Info: ./up_logo.png  used on input line 823.
-(pdftex.def)             Requested size: 20.97487pt x 21.33955pt.
- [65
-
-]
+ <./simexample.png>]
 \tf@nav=\write7
-\openout7 = `Stats_seminar_June2026.nav'.
+\openout7 = `"Sable Walters-Somers Presentation.nav"'.
 
 \tf@toc=\write8
-\openout8 = `Stats_seminar_June2026.toc'.
+\openout8 = `"Sable Walters-Somers Presentation.toc"'.
 
 \tf@snm=\write9
-\openout9 = `Stats_seminar_June2026.snm'.
+\openout9 = `"Sable Walters-Somers Presentation.snm"'.
 
- (Stats_seminar_June2026.aux)
+
+(Sable Walters-Somers Presentation.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
-
-
-LaTeX Font Warning: Some font shapes were not available, defaults substituted.
-
-Package rerunfilecheck Info: File `Stats_seminar_June2026.out' has not changed.
-
-(rerunfilecheck)             Checksum: 10C1B6474421C32BB10992E99A389AFA;1590.
+Package rerunfilecheck Info: File `"Sable Walters-Somers Presentation".out' has
+ not changed.
+(rerunfilecheck)             Checksum: 1722EA7BC2512E478A49D067EB26817E;666.
  ) 
 Here is how much of TeX's memory you used:
- 31703 strings out of 467866
- 622676 string characters out of 5418313
- 1170581 words of memory out of 5000000
- 59720 multiletter control sequences out of 15000+600000
- 652908 words of font info for 116 fonts, out of 8000000 for 9000
+ 31115 strings out of 467866
+ 610535 string characters out of 5418313
+ 1167744 words of memory out of 5000000
+ 59324 multiletter control sequences out of 15000+600000
+ 643280 words of font info for 88 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 128i,16n,123p,465b,761s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\twink\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi657\ecso
-1000.pk><C:/Users/twink/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
-ts/cm/cmex10.pfb><C:/Users/twink/AppData/Local/Programs/MiKTeX/fonts/type1/publ
-ic/amsfonts/cm/cmmi10.pfb><C:/Users/twink/AppData/Local/Programs/MiKTeX/fonts/t
-ype1/public/amsfonts/cm/cmmi7.pfb><C:/Users/twink/AppData/Local/Programs/MiKTeX
-/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/twink/AppData/Local/Program
-s/MiKTeX/fonts/type1/public/amsfonts/cm/cmmib10.pfb><C:/Users/twink/AppData/Loc
-al/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/twink/App
-Data/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmss10.pfb><C:/Users/
-twink/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmss12.pfb><
-C:/Users/twink/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cms
-s17.pfb><C:/Users/twink/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
-ts/cm/cmss8.pfb><C:/Users/twink/AppData/Local/Programs/MiKTeX/fonts/type1/publi
-c/amsfonts/cm/cmss9.pfb><C:/Users/twink/AppData/Local/Programs/MiKTeX/fonts/typ
-e1/public/amsfonts/cm/cmssbx10.pfb><C:/Users/twink/AppData/Local/Programs/MiKTe
-X/fonts/type1/public/amsfonts/cm/cmssi10.pfb><C:/Users/twink/AppData/Local/Prog
-rams/MiKTeX/fonts/type1/public/amsfonts/cm/cmssi8.pfb><C:/Users/twink/AppData/L
-ocal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmssi9.pfb><C:/Users/twink/
-AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Use
-rs/twink/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb
-><C:/Users/twink/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/c
-mtt10.pfb><C:/Users/twink/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsf
-onts/symbols/msam10.pfb>
-Output written on Stats_seminar_June2026.pdf (65 pages, 1957677 bytes).
+ 128i,16n,123p,500b,762s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/twink/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
+cmmi10.pfb><C:/Users/twink/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
+fonts/cm/cmmi8.pfb><C:/Users/twink/AppData/Local/Programs/MiKTeX/fonts/type1/pu
+blic/amsfonts/cm/cmr10.pfb><C:/Users/twink/AppData/Local/Programs/MiKTeX/fonts/
+type1/public/amsfonts/cm/cmss10.pfb><C:/Users/twink/AppData/Local/Programs/MiKT
+eX/fonts/type1/public/amsfonts/cm/cmss12.pfb><C:/Users/twink/AppData/Local/Prog
+rams/MiKTeX/fonts/type1/public/amsfonts/cm/cmss8.pfb><C:/Users/twink/AppData/Lo
+cal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><C:/Users/twink
+/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmssi10.pfb><C:/U
+sers/twink/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmssi8.
+pfb><C:/Users/twink/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/c
+m/cmsy10.pfb><C:/Users/twink/AppData/Local/Programs/MiKTeX/fonts/type1/public/a
+msfonts/cm/cmsy8.pfb>
+Output written on "Sable Walters-Somers Presentation.pdf" (7 pages, 1453416 byt
+es).
 PDF statistics:
- 2141 PDF objects out of 2487 (max. 8388607)
- 143 named destinations out of 1000 (max. 500000)
- 162 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 307 PDF objects out of 1000 (max. 8388607)
+ 20 named destinations out of 1000 (max. 500000)
+ 98 words of extra memory for PDF output out of 10000 (max. 10000000)
 

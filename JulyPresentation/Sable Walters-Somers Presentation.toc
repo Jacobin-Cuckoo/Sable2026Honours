@@ -1,0 +1,6 @@
+\babel@toc {english}{}\relax 
+\beamer@sectionintoc {1}{Joint Models}{2}{0}{1}
+\beamer@sectionintoc {2}{Longitudinal Models}{3}{0}{2}
+\beamer@sectionintoc {3}{Survival Model}{4}{0}{3}
+\beamer@sectionintoc {4}{Why a Joint Model?}{5}{0}{4}
+\beamer@sectionintoc {5}{Non-Linear Joint-Models}{6}{0}{5}
