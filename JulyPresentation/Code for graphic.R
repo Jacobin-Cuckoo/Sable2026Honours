@@ -18,6 +18,8 @@ fit <- function(x, coeffs){
 	return(y)
 }
 
+summary(mod)
+
 {
 plot(xval, yval, xlab = TeX("$exp(f(t, \\Psi_i))$"),
 		 ylab = TeX("$h(t, \\Psi_i)$"), pch = 16)
@@ -35,5 +37,3 @@ text(5, 17,
 		 labels = TeX("$h(t, \\Psi_i) = e^{\\beta \\times f(t, \\Psi_i)\\ +\\ \\gamma}$"),
 		 col = "red", cex = 1.5)
 }
-
-summary(mod)
