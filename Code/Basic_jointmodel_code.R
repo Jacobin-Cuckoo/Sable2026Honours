@@ -44,10 +44,7 @@ transformed parameters {
   
   matrix[Q,Q] D;
   
-  D =
-    diag_pre_multiply(tau,L)
-  *
-    diag_pre_multiply(tau,L)';
+  D = diag_pre_multiply(tau,L) * diag_pre_multiply(tau,L);
 
 }
 
@@ -85,14 +82,9 @@ model {
 
       real mu;
 
-      mu =
-      X[n]*beta
-      +
-      Z[n]*b[id[n]];
+      mu = X[n]*beta + Z[n]*b[id[n]];
 
-      y[n]
-      ~
-      normal(mu,sigma);
+      y[n] ~ normal(mu,sigma);
 
   }
 
@@ -104,15 +96,7 @@ model {
 
       real eta;
 
-      eta =
-      W[i]*gamma
-      +
-      alpha*
-      (
-      W[i]*beta
-      +
-      W[i]*b[i]
-      );
+      eta = W[i]*gamma + alpha*(W[i]*beta + W[i]*b[i]);
 
       if(event[i]==1){
 
