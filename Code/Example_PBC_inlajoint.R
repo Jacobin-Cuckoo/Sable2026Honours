@@ -3,6 +3,7 @@
 library(JMbayes2)
 library(INLA)
 library(INLAjoint)
+library(ggplot2)
 
 # Setup
 
@@ -46,11 +47,39 @@ M2 <- joint(formSurv = inla.surv(years, death) ~ drug,
             control=list(int.strategy="eb"))
 summary(M2)		
 
-library(ggplot2)
+
 #Plot the association 
-plot(M2$summary.random$uv1$mean, M2$summary.random$NL_CV_L1_S1$mean) + 
-  geom_hline(yintercept = M1$summary.hyperpar$mean[6], linetype = "dashed", color = "blue") +
-  geom_ribbon(aes(ymin = M1$summary.hyperpar$`0.025quant`[6], ymax = M1$summary.hyperpar$`0.975quant`[6]), fill = "blue", alpha = 0.25)
+plot(M2$summary.random$uv1$mean, M2$summary.random$NL_CV_L1_S1$mean, main = "Serum bilirubin association: \n death event",
+     xlab = "Linear predictor value", ylab = "Effect", type = "p", pch = 20)
+
+
+pol <- matrix(0, nrow = length(M2$summary.random$uv1$mean), ncol = 3)
+pol[,1] <- M2$summary.random$uv1$mean
+pol[,2] <- M2$summary.random$NL_CV_L1_S1$`0.975quant`
+pol[,3] <- M2$summary.random$NL_CV_L1_S1$`0.025quant`
+colnames(pol) <- c("x", "top", "bottom")
+
+pol <- pol[order(pol[,1]),]
+
+polygon(x = c(pol[,1], rev(pol[,1])),
+        y = c(pol[,2], rev(pol[,3])),
+        col = adjustcolor("gray", 0.3), border = adjustcolor("black", 0.3))
+
+
+abline(h = 0)
+abline(h = M1$summary.hyperpar$mean[6], col = "blue", lty = 4, lwd = 2) 
+
+polygon(x = c(min(M2$summary.random$uv1$mean)-10, max(M2$summary.random$uv1$mean)+10,
+              max(M2$summary.random$uv1$mean)+10, min(M2$summary.random$uv1$mean)-10),
+        y = c(M1$summary.hyperpar$`0.975quant`[6], M1$summary.hyperpar$`0.975quant`[6],
+              M1$summary.hyperpar$`0.025quant`[6], M1$summary.hyperpar$`0.025quant`[6]),
+        col = adjustcolor("blue", 0.25), border = adjustcolor("blue", 0.25))
+
+
+  # library(ggplot)
+  plot(M2, NLeffectonly=FALSE)$NL_Association +
+    geom_hline(yintercept = M1$summary.hyperpar$mean[6], linetype = "dashed", color = "blue") +
+    geom_ribbon(aes(ymin = M1$summary.hyperpar$`0.025quant`[6], ymax = M1$summary.hyperpar$`0.975quant`[6]), fill = "blue", alpha = 0.25)
 }
 
 ##Serum bilirubin transplant event
@@ -72,11 +101,31 @@ plot(M2$summary.random$uv1$mean, M2$summary.random$NL_CV_L1_S1$mean) +
               control=list(int.strategy="eb"))
   summary(M2)		
   
-  library(ggplot2)
+
   #Plot the association 
-  plot(M2, NLeffectonly=TRUE)$NL_Association + 
-    geom_hline(yintercept = M1$summary.hyperpar$mean[6], linetype = "dashed", color = "blue") +
-    geom_ribbon(aes(ymin = M1$summary.hyperpar$`0.025quant`[6], ymax = M1$summary.hyperpar$`0.975quant`[6]), fill = "blue", alpha = 0.25)
+  plot(M2$summary.random$uv1$mean, M2$summary.random$NL_CV_L1_S1$mean, main = "Serum bilirubin association: \n transplant event",
+       xlab = "Linear predictor value", ylab = "Multiplication factor", type = "p", pch = 20)
+  
+  pol <- matrix(0, nrow = length(M2$summary.random$uv1$mean), ncol = 3)
+  pol[,1] <- M2$summary.random$uv1$mean
+  pol[,2] <- M2$summary.random$uv1$`0.975quant`
+  pol[,3] <- M2$summary.random$uv1$`0.025quant`
+  colnames(pol) <- c("x", "top", "bottom")
+  
+  pol <- pol[order(pol[,1]),]
+  
+  polygon(x = c(pol[,1], rev(pol[,1])),
+          y = c(pol[,2], rev(pol[,3])),
+          col = "gray", density = 20)
+  
+  abline(h = 0)
+  abline(h = M1$summary.hyperpar$mean[6], col = "blue", lty = 4, lwd = 2) 
+  
+  polygon(x = c(min(M2$summary.random$uv1$mean)-10, max(M2$summary.random$uv1$mean)+10,
+                max(M2$summary.random$uv1$mean)+10, min(M2$summary.random$uv1$mean)-10),
+          y = c(M1$summary.hyperpar$`0.975quant`[6], M1$summary.hyperpar$`0.975quant`[6],
+                M1$summary.hyperpar$`0.025quant`[6], M1$summary.hyperpar$`0.025quant`[6]),
+          col = "blue", density = 20)
 }
 
 
@@ -100,11 +149,19 @@ plot(M2$summary.random$uv1$mean, M2$summary.random$NL_CV_L1_S1$mean) +
               control=list(int.strategy="eb"))
   summary(M2)		
   
-  library(ggplot2)
+
   #Plot the association 
-  plot(M2, NLeffectonly=TRUE)$NL_Association + 
-    geom_hline(yintercept = M1$summary.hyperpar$mean[6], linetype = "dashed", color = "blue") +
-    geom_ribbon(aes(ymin = M1$summary.hyperpar$`0.025quant`[6], ymax = M1$summary.hyperpar$`0.975quant`[6]), fill = "blue", alpha = 0.25)
+  plot(M2$summary.random$uv1$mean, M2$summary.random$NL_CV_L1_S1$mean, main = "SGOT association: \n death event",
+       xlab = "Linear predictor value", ylab = "multiplication factor", type = "p", pch = 20)
+  
+  abline(h = 0)
+  abline(h = M1$summary.hyperpar$mean[6], col = "blue", lty = 4, lwd = 2) 
+  
+  polygon(x = c(min(M2$summary.random$uv1$mean)-10, max(M2$summary.random$uv1$mean)+10,
+                max(M2$summary.random$uv1$mean)+10, min(M2$summary.random$uv1$mean)-10),
+          y = c(M1$summary.hyperpar$`0.975quant`[6], M1$summary.hyperpar$`0.975quant`[6],
+                M1$summary.hyperpar$`0.025quant`[6], M1$summary.hyperpar$`0.025quant`[6]),
+          col = "blue", density = 20)
 }
 
 ## SGOT transplant event
@@ -126,11 +183,19 @@ plot(M2$summary.random$uv1$mean, M2$summary.random$NL_CV_L1_S1$mean) +
               control=list(int.strategy="eb"))
   summary(M2)		
   
-  library(ggplot2)
+
   #Plot the association 
-  plot(M2, NLeffectonly=TRUE)$NL_Association + 
-    geom_hline(yintercept = M1$summary.hyperpar$mean[6], linetype = "dashed", color = "blue") +
-    geom_ribbon(aes(ymin = M1$summary.hyperpar$`0.025quant`[6], ymax = M1$summary.hyperpar$`0.975quant`[6]), fill = "blue", alpha = 0.25)
+  plot(M2$summary.random$uv1$mean, M2$summary.random$NL_CV_L1_S1$mean, main = "SGOT association: \n transplant event",
+       xlab = "Linear predictor value", ylab = "multiplication factor", type = "p", pch = 20)
+  
+  abline(h = 0)
+  abline(h = M1$summary.hyperpar$mean[6], col = "blue", lty = 4, lwd = 2) 
+  
+  polygon(x = c(min(M2$summary.random$uv1$mean)-10, max(M2$summary.random$uv1$mean)+10,
+                max(M2$summary.random$uv1$mean)+10, min(M2$summary.random$uv1$mean)-10),
+          y = c(M1$summary.hyperpar$`0.975quant`[6], M1$summary.hyperpar$`0.975quant`[6],
+                M1$summary.hyperpar$`0.025quant`[6], M1$summary.hyperpar$`0.025quant`[6]),
+          col = "blue", density = 20)
 }
 
 
@@ -154,11 +219,19 @@ plot(M2$summary.random$uv1$mean, M2$summary.random$NL_CV_L1_S1$mean) +
               control=list(int.strategy="eb"))
   summary(M2)		
   
-  library(ggplot2)
+
   #Plot the association 
-  plot(M2, NLeffectonly=TRUE)$NL_Association + 
-    geom_hline(yintercept = M1$summary.hyperpar$mean[6], linetype = "dashed", color = "blue") +
-    geom_ribbon(aes(ymin = M1$summary.hyperpar$`0.025quant`[6], ymax = M1$summary.hyperpar$`0.975quant`[6]), fill = "blue", alpha = 0.25)
+  plot(M2$summary.random$uv1$mean, M2$summary.random$NL_CV_L1_S1$mean, main = "Albumin association: \n death event",
+       xlab = "Linear predictor value", ylab = "multiplication factor", type = "p", pch = 20)
+  
+  abline(h = 0)
+  abline(h = M1$summary.hyperpar$mean[6], col = "blue", lty = 4, lwd = 2) 
+  
+  polygon(x = c(min(M2$summary.random$uv1$mean)-10, max(M2$summary.random$uv1$mean)+10,
+                max(M2$summary.random$uv1$mean)+10, min(M2$summary.random$uv1$mean)-10),
+          y = c(M1$summary.hyperpar$`0.975quant`[6], M1$summary.hyperpar$`0.975quant`[6],
+                M1$summary.hyperpar$`0.025quant`[6], M1$summary.hyperpar$`0.025quant`[6]),
+          col = "blue", density = 20)
 }
 
 ## albumin transplant event
@@ -180,11 +253,19 @@ plot(M2$summary.random$uv1$mean, M2$summary.random$NL_CV_L1_S1$mean) +
               control=list(int.strategy="eb"))
   summary(M2)		
   
-  library(ggplot2)
+
   #Plot the association 
-  plot(M2, NLeffectonly=TRUE)$NL_Association + 
-    geom_hline(yintercept = M1$summary.hyperpar$mean[6], linetype = "dashed", color = "blue") +
-    geom_ribbon(aes(ymin = M1$summary.hyperpar$`0.025quant`[6], ymax = M1$summary.hyperpar$`0.975quant`[6]), fill = "blue", alpha = 0.25)
+  plot(M2$summary.random$uv1$mean, M2$summary.random$NL_CV_L1_S1$mean, main = "Albumin association: \n transplant event",
+       xlab = "Linear predictor value", ylab = "multiplication factor", type = "p", pch = 20)
+  
+  abline(h = 0)
+  abline(h = M1$summary.hyperpar$mean[6], col = "blue", lty = 4, lwd = 2) 
+  
+  polygon(x = c(min(M2$summary.random$uv1$mean)-10, max(M2$summary.random$uv1$mean)+10,
+                max(M2$summary.random$uv1$mean)+10, min(M2$summary.random$uv1$mean)-10),
+          y = c(M1$summary.hyperpar$`0.975quant`[6], M1$summary.hyperpar$`0.975quant`[6],
+                M1$summary.hyperpar$`0.025quant`[6], M1$summary.hyperpar$`0.025quant`[6]),
+          col = "blue", density = 20)
 }
 
 
@@ -209,11 +290,24 @@ plot(M2$summary.random$uv1$mean, M2$summary.random$NL_CV_L1_S1$mean) +
               control=list(int.strategy="eb"))
   summary(M2)
 
-  library(ggplot2)
+
   #Plot the association
-  plot(M2, NLeffectonly=TRUE)$NL_Association + 
-  	geom_hline(yintercept = M1$summary.hyperpar$mean[4], linetype = "dashed", color = "blue") +
-  	geom_ribbon(aes(ymin = M1$summary.hyperpar$`0.025quant`[4], ymax = M1$summary.hyperpar$`0.975quant`[4]), fill = "blue", alpha = 0.25)
+  
+  plot(M2$summary.random$uv1$mean, M2$summary.random$NL_CV_L1_S1$mean, main = "Edema association: \n death event",
+       xlab = "Linear predictor value", ylab = "multiplication factor", type = "p", pch = 20)
+  
+  abline(h = 0)
+  abline(h = M1$summary.hyperpar$mean[4], col = "blue", lty = 4, lwd = 2) 
+  
+  polygon(x = c(min(M2$summary.random$uv1$mean)-10, max(M2$summary.random$uv1$mean)+10,
+                max(M2$summary.random$uv1$mean)+10, min(M2$summary.random$uv1$mean)-10),
+          y = c(M1$summary.hyperpar$`0.975quant`[4], M1$summary.hyperpar$`0.975quant`[4],
+                M1$summary.hyperpar$`0.025quant`[4], M1$summary.hyperpar$`0.025quant`[4]),
+          col = "blue", density = 20)
+  
+  # plot(M2, NLeffectonly=TRUE)$NL_Association + 
+  # 	geom_hline(yintercept = M1$summary.hyperpar$mean[4], linetype = "dashed", color = "blue") +
+  # 	geom_ribbon(aes(ymin = M1$summary.hyperpar$`0.025quant`[4], ymax = M1$summary.hyperpar$`0.975quant`[4]), fill = "blue", alpha = 0.25)
   
 }
 
@@ -237,11 +331,19 @@ plot(M2$summary.random$uv1$mean, M2$summary.random$NL_CV_L1_S1$mean) +
               control=list(int.strategy="eb"))
   summary(M2)
 
-  library(ggplot2)
+
   #Plot the association
-  plot(M2, NLeffectonly=TRUE)$NL_Association + 
-  	geom_hline(yintercept = M1$summary.hyperpar$mean[4], linetype = "dashed", color = "blue") +
-  	geom_ribbon(aes(ymin = M1$summary.hyperpar$`0.025quant`[4], ymax = M1$summary.hyperpar$`0.975quant`[4]), fill = "blue", alpha = 0.25)
+  plot(M2$summary.random$uv1$mean, M2$summary.random$NL_CV_L1_S1$mean, main = "Edema association: \n transplant event",
+       xlab = "Linear predictor value", ylab = "multiplication factor", type = "p", pch = 20)
+  
+  abline(h = 0)
+  abline(h = M1$summary.hyperpar$mean[4], col = "blue", lty = 4, lwd = 2) 
+  
+  polygon(x = c(min(M2$summary.random$uv1$mean)-10, max(M2$summary.random$uv1$mean)+10,
+                max(M2$summary.random$uv1$mean)+10, min(M2$summary.random$uv1$mean)-10),
+          y = c(M1$summary.hyperpar$`0.975quant`[4], M1$summary.hyperpar$`0.975quant`[4],
+                M1$summary.hyperpar$`0.025quant`[4], M1$summary.hyperpar$`0.025quant`[4]),
+          col = "blue", density = 20)
   }
 
 
@@ -265,12 +367,20 @@ plot(M2$summary.random$uv1$mean, M2$summary.random$NL_CV_L1_S1$mean) +
               assoc = "NL_CV", basRisk = "rw2", NbasRisk=25, 
               control=list(int.strategy="eb"))
   summary(M2)		
+
   
-  library(ggplot2)
   #Plot the association 
-  plot(M2, NLeffectonly=TRUE)$NL_Association + 
-    geom_hline(yintercept = M1$summary.hyperpar$mean[6], linetype = "dashed", color = "blue") +
-    geom_ribbon(aes(ymin = M1$summary.hyperpar$`0.025quant`[6], ymax = M1$summary.hyperpar$`0.975quant`[6]), fill = "blue", alpha = 0.25)
+  plot(M2$summary.random$uv1$mean, M2$summary.random$NL_CV_L1_S1$mean, main = "Platelets association: \n death event",
+       xlab = "Linear predictor value", ylab = "multiplication factor", type = "p", pch = 20)
+  
+  abline(h = 0)
+  abline(h = M1$summary.hyperpar$mean[6], col = "blue", lty = 4, lwd = 2) 
+  
+  polygon(x = c(min(M2$summary.random$uv1$mean)-10, max(M2$summary.random$uv1$mean)+10,
+                max(M2$summary.random$uv1$mean)+10, min(M2$summary.random$uv1$mean)-10),
+          y = c(M1$summary.hyperpar$`0.975quant`[6], M1$summary.hyperpar$`0.975quant`[6],
+                M1$summary.hyperpar$`0.025quant`[6], M1$summary.hyperpar$`0.025quant`[6]),
+          col = "blue", density = 20)
 }
 
 ## platelets transplant event
@@ -292,11 +402,19 @@ plot(M2$summary.random$uv1$mean, M2$summary.random$NL_CV_L1_S1$mean) +
               control=list(int.strategy="eb"))
   summary(M2)		
   
-  library(ggplot2)
+
   #Plot the association 
-  plot(M2, NLeffectonly=TRUE)$NL_Association + 
-    geom_hline(yintercept = M1$summary.hyperpar$mean[6], linetype = "dashed", color = "blue") +
-    geom_ribbon(aes(ymin = M1$summary.hyperpar$`0.025quant`[6], ymax = M1$summary.hyperpar$`0.975quant`[6]), fill = "blue", alpha = 0.25)
+  plot(M2$summary.random$uv1$mean, M2$summary.random$NL_CV_L1_S1$mean, main = "Platelets association: \n transplant event",
+       xlab = "Linear predictor value", ylab = "multiplication factor", type = "p", pch = 20)
+  
+  abline(h = 0)
+  abline(h = M1$summary.hyperpar$mean[6], col = "blue", lty = 4, lwd = 2) 
+  
+  polygon(x = c(min(M2$summary.random$uv1$mean)-10, max(M2$summary.random$uv1$mean)+10,
+                max(M2$summary.random$uv1$mean)+10, min(M2$summary.random$uv1$mean)-10),
+          y = c(M1$summary.hyperpar$`0.975quant`[6], M1$summary.hyperpar$`0.975quant`[6],
+                M1$summary.hyperpar$`0.025quant`[6], M1$summary.hyperpar$`0.025quant`[6]),
+          col = "blue", density = 20)
 }
 
 
@@ -320,11 +438,18 @@ plot(M2$summary.random$uv1$mean, M2$summary.random$NL_CV_L1_S1$mean) +
               control=list(int.strategy="eb"))
   summary(M2)		
   
-  library(ggplot2)
   #Plot the association 
-  plot(M2, NLeffectonly=TRUE)$NL_Association + 
-    geom_hline(yintercept = M1$summary.hyperpar$mean[6], linetype = "dashed", color = "blue") +
-    geom_ribbon(aes(ymin = M1$summary.hyperpar$`0.025quant`[6], ymax = M1$summary.hyperpar$`0.975quant`[6]), fill = "blue", alpha = 0.25)
+  plot(M2$summary.random$uv1$mean, M2$summary.random$NL_CV_L1_S1$mean, main = "alkaline association: \n death event",
+       xlab = "Linear predictor value", ylab = "multiplication factor", type = "p", pch = 20)
+  
+  abline(h = 0)
+  abline(h = M1$summary.hyperpar$mean[6], col = "blue", lty = 4, lwd = 2) 
+  
+  polygon(x = c(min(M2$summary.random$uv1$mean)-10, max(M2$summary.random$uv1$mean)+10,
+                max(M2$summary.random$uv1$mean)+10, min(M2$summary.random$uv1$mean)-10),
+          y = c(M1$summary.hyperpar$`0.975quant`[6], M1$summary.hyperpar$`0.975quant`[6],
+                M1$summary.hyperpar$`0.025quant`[6], M1$summary.hyperpar$`0.025quant`[6]),
+          col = "blue", density = 20)
 }
 
 ## alkaline transplant event
@@ -346,11 +471,18 @@ plot(M2$summary.random$uv1$mean, M2$summary.random$NL_CV_L1_S1$mean) +
               control=list(int.strategy="eb"))
   summary(M2)		
   
-  library(ggplot2)
   #Plot the association 
-  plot(M2, NLeffectonly=TRUE)$NL_Association + 
-    geom_hline(yintercept = M1$summary.hyperpar$mean[6], linetype = "dashed", color = "blue") +
-    geom_ribbon(aes(ymin = M1$summary.hyperpar$`0.025quant`[6], ymax = M1$summary.hyperpar$`0.975quant`[6]), fill = "blue", alpha = 0.25)
+  plot(M2$summary.random$uv1$mean, M2$summary.random$NL_CV_L1_S1$mean, main = "Alkaline association: \n transplant event",
+       xlab = "Linear predictor value", ylab = "multiplication factor", type = "p", pch = 20)
+  
+  abline(h = 0)
+  abline(h = M1$summary.hyperpar$mean[6], col = "blue", lty = 4, lwd = 2) 
+  
+  polygon(x = c(min(M2$summary.random$uv1$mean)-10, max(M2$summary.random$uv1$mean)+10,
+                max(M2$summary.random$uv1$mean)+10, min(M2$summary.random$uv1$mean)-10),
+          y = c(M1$summary.hyperpar$`0.975quant`[6], M1$summary.hyperpar$`0.975quant`[6],
+                M1$summary.hyperpar$`0.025quant`[6], M1$summary.hyperpar$`0.025quant`[6]),
+          col = "blue", density = 20)
 }
 
 
@@ -374,11 +506,18 @@ plot(M2$summary.random$uv1$mean, M2$summary.random$NL_CV_L1_S1$mean) +
               control=list(int.strategy="eb"))
   summary(M2)		
   
-  library(ggplot2)
   #Plot the association 
-  plot(M2, NLeffectonly=TRUE)$NL_Association + 
-    geom_hline(yintercept = M1$summary.hyperpar$mean[4], linetype = "dashed", color = "blue") +
-    geom_ribbon(aes(ymin = M1$summary.hyperpar$`0.025quant`[4], ymax = M1$summary.hyperpar$`0.975quant`[4]), fill = "blue", alpha = 0.25)
+  plot(M2$summary.random$uv1$mean, M2$summary.random$NL_CV_L1_S1$mean, main = "Ascites association: \n death event",
+       xlab = "Linear predictor value", ylab = "multiplication factor", type = "p", pch = 20)
+  
+  abline(h = 0)
+  abline(h = M1$summary.hyperpar$mean[4], col = "blue", lty = 4, lwd = 2) 
+  
+  polygon(x = c(min(M2$summary.random$uv1$mean)-10, max(M2$summary.random$uv1$mean)+10,
+                max(M2$summary.random$uv1$mean)+10, min(M2$summary.random$uv1$mean)-10),
+          y = c(M1$summary.hyperpar$`0.975quant`[4], M1$summary.hyperpar$`0.975quant`[4],
+                M1$summary.hyperpar$`0.025quant`[4], M1$summary.hyperpar$`0.025quant`[4]),
+          col = "blue", density = 20)
 }
 
 ## ascites transplant event # very interesting  # 4
@@ -402,11 +541,18 @@ plot(M2$summary.random$uv1$mean, M2$summary.random$NL_CV_L1_S1$mean) +
               control=list(int.strategy="eb"))
   summary(M2)		
   
-  library(ggplot2)
   #Plot the association 
-  plot(M2, NLeffectonly=TRUE)$NL_Association + 
-    geom_hline(yintercept = M1$summary.hyperpar$mean[4], linetype = "dashed", color = "blue") +
-    geom_ribbon(aes(ymin = M1$summary.hyperpar$`0.025quant`[4], ymax = M1$summary.hyperpar$`0.975quant`[4]), fill = "blue", alpha = 0.25)
+  plot(M2$summary.random$uv1$mean, M2$summary.random$NL_CV_L1_S1$mean, main = "Ascites association: \n transplant event",
+       xlab = "Linear predictor value", ylab = "multiplication factor", type = "p", pch = 20)
+  
+  abline(h = 0)
+  abline(h = M1$summary.hyperpar$mean[4], col = "blue", lty = 4, lwd = 2) 
+  
+  polygon(x = c(min(M2$summary.random$uv1$mean)-10, max(M2$summary.random$uv1$mean)+10,
+                max(M2$summary.random$uv1$mean)+10, min(M2$summary.random$uv1$mean)-10),
+          y = c(M1$summary.hyperpar$`0.975quant`[4], M1$summary.hyperpar$`0.975quant`[4],
+                M1$summary.hyperpar$`0.025quant`[4], M1$summary.hyperpar$`0.025quant`[4]),
+          col = "blue", density = 20)
 }
 
 
@@ -432,9 +578,17 @@ summary(M2)
 
 #Spiders plot
 
-plot(M2, NLeffectonly=TRUE)$NL_Association + 
-  geom_hline(yintercept = M1$summary.hyperpar$mean[4], linetype = "dashed", color = "blue") +
-  geom_ribbon(aes(ymin = M1$summary.hyperpar$`0.025quant`[4], ymax = M1$summary.hyperpar$`0.975quant`[4]), fill = "blue", alpha = 0.25)
+plot(M2$summary.random$uv1$mean, M2$summary.random$NL_CV_L1_S1$mean, main = "Spiders association: \n death event",
+     xlab = "Linear predictor value", ylab = "multiplication factor", type = "p", pch = 20)
+
+abline(h = 0)
+abline(h = M1$summary.hyperpar$mean[4], col = "blue", lty = 4, lwd = 2) 
+
+polygon(x = c(min(M2$summary.random$uv1$mean)-10, max(M2$summary.random$uv1$mean)+10,
+              max(M2$summary.random$uv1$mean)+10, min(M2$summary.random$uv1$mean)-10),
+        y = c(M1$summary.hyperpar$`0.975quant`[4], M1$summary.hyperpar$`0.975quant`[4],
+              M1$summary.hyperpar$`0.025quant`[4], M1$summary.hyperpar$`0.025quant`[4]),
+        col = "blue", density = 20)
 }
 
 ##Spiders transplant event #  pretty interesting # 6
@@ -460,9 +614,17 @@ plot(M2, NLeffectonly=TRUE)$NL_Association +
   
   #Spiders plot
   
-  plot(M2, NLeffectonly=TRUE)$NL_Association + 
-    geom_hline(yintercept = M1$summary.hyperpar$mean[4], linetype = "dashed", color = "blue") +
-    geom_ribbon(aes(ymin = M1$summary.hyperpar$`0.025quant`[4], ymax = M1$summary.hyperpar$`0.975quant`[4]), fill = "blue", alpha = 0.25)
+  plot(M2$summary.random$uv1$mean, M2$summary.random$NL_CV_L1_S1$mean, main = "Spiders association: \n transplant event",
+       xlab = "Linear predictor value", ylab = "multiplication factor", type = "p", pch = 20)
+  
+  abline(h = 0)
+  abline(h = M1$summary.hyperpar$mean[4], col = "blue", lty = 4, lwd = 2) 
+  
+  polygon(x = c(min(M2$summary.random$uv1$mean)-10, max(M2$summary.random$uv1$mean)+10,
+                max(M2$summary.random$uv1$mean)+10, min(M2$summary.random$uv1$mean)-10),
+          y = c(M1$summary.hyperpar$`0.975quant`[4], M1$summary.hyperpar$`0.975quant`[4],
+                M1$summary.hyperpar$`0.025quant`[4], M1$summary.hyperpar$`0.025quant`[4]),
+          col = "blue", density = 20)
 }
 
 
