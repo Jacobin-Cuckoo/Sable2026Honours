@@ -4,11 +4,14 @@ library(JMbayes2)
 library(INLA)
 library(INLAjoint)
 
+# Setup
 
+{
 
 data(pbc2) # dataset
 names(pbc2)
 # extract some variable of interest without missing values
+pbc2$edema <- ifelse(pbc2$edema == "No edema", "No", "Yes")
 Longi <- na.omit(pbc2[, c("id", "years", "status","drug","age", 
                           "sex","year","serBilir","SGOT", "albumin", "edema",
                           "platelets", "alkaline","spiders", "ascites")])
@@ -21,6 +24,8 @@ Surv <- Longi[c(which(diff(as.numeric(Longi[,which(colnames(Longi)=="id")]))==1)
 Surv$death <- ifelse(Surv$status=="dead",1,0) # competing event 1
 Surv$trans <- ifelse(Surv$status=="transplanted",1,0) # competing event 2
 
+
+}
 
 ##Serum bilirubin death event
 {#Usual joint model with current value association
@@ -43,7 +48,7 @@ summary(M2)
 
 library(ggplot2)
 #Plot the association 
-plot(M2, NLeffectonly=TRUE)$NL_Association + 
+plot(M2$summary.random$uv1$mean, M2$summary.random$NL_CV_L1_S1$mean) + 
   geom_hline(yintercept = M1$summary.hyperpar$mean[6], linetype = "dashed", color = "blue") +
   geom_ribbon(aes(ymin = M1$summary.hyperpar$`0.025quant`[6], ymax = M1$summary.hyperpar$`0.975quant`[6]), fill = "blue", alpha = 0.25)
 }
@@ -76,7 +81,7 @@ plot(M2, NLeffectonly=TRUE)$NL_Association +
 
 
 
-## SGOT Death event # interesting
+## SGOT Death event # kind of interesting #1
 {#Usual joint model with current value association
   M1 <- joint(formSurv = inla.surv(years, death) ~ drug,
               formLong = SGOT ~ (1 + year)*drug +
@@ -130,7 +135,7 @@ plot(M2, NLeffectonly=TRUE)$NL_Association +
 
 
 
-## albumin Death event # interesting
+## albumin Death event 
 {#Usual joint model with current value association
   M1 <- joint(formSurv = inla.surv(years, death) ~ drug,
               formLong = albumin ~ (1 + year)*drug +
@@ -184,12 +189,12 @@ plot(M2, NLeffectonly=TRUE)$NL_Association +
 
 
 
-## edema
+## edema Death event # Interesting !!!!
 {
 #Usual joint model with current value association
   M1 <- joint(formSurv = inla.surv(years, death) ~ drug,
               formLong = edema ~ (1 + year)*drug +
-                (1 + year|id), family = "lognormal",
+                (1 + year|id), family = "binomial",
               dataLong = Longi, dataSurv=Surv, id = "id", timeVar = "year",
               assoc = "CV", basRisk = "rw2", NbasRisk=25,
               control=list(int.strategy="eb"))
@@ -198,7 +203,7 @@ plot(M2, NLeffectonly=TRUE)$NL_Association +
   #Joint model with nonlinear current value association
   M2 <- joint(formSurv = inla.surv(years, death) ~ drug,
               formLong = edema ~ (1 + year)*drug +
-                (1 + year|id), family = "lognormal",
+                (1 + year|id), family = "binomial",
               dataLong = Longi, dataSurv=Surv, id = "id", timeVar = "year",
               assoc = "NL_CV", basRisk = "rw2", NbasRisk=25,
               control=list(int.strategy="eb"))
@@ -206,16 +211,18 @@ plot(M2, NLeffectonly=TRUE)$NL_Association +
 
   library(ggplot2)
   #Plot the association
-  plot(M2, NLeffectonly=TRUE)$NL_Association +
-    geom_hline(yintercept = M1$summary.hyperpar$mean[6], linetype = "dashed", color = "blue") +
-    geom_ribbon(aes(ymin = M1$summary.hyperpar$`0.025quant`[6], ymax = M1$summary.hyperpar$`0.975quant`[6]), fill = "blue", alpha = 0.25)
-
+  plot(M2, NLeffectonly=TRUE)$NL_Association + 
+  	geom_hline(yintercept = M1$summary.hyperpar$mean[4], linetype = "dashed", color = "blue") +
+  	geom_ribbon(aes(ymin = M1$summary.hyperpar$`0.025quant`[4], ymax = M1$summary.hyperpar$`0.975quant`[4]), fill = "blue", alpha = 0.25)
+  
+}
 
 ## edema transplant event
+{
 #Usual joint model with current value association
   M1 <- joint(formSurv = inla.surv(years, trans) ~ drug,
               formLong = edema ~ (1 + year)*drug +
-                (1 + year|id), family = "dgp",
+                (1 + year|id), family = "binomial",
               dataLong = Longi, dataSurv=Surv, id = "id", timeVar = "year",
               assoc = "CV", basRisk = "rw2", NbasRisk=25,
               control=list(int.strategy="eb"))
@@ -224,7 +231,7 @@ plot(M2, NLeffectonly=TRUE)$NL_Association +
   #Joint model with nonlinear current value association
   M2 <- joint(formSurv = inla.surv(years, trans) ~ drug,
               formLong = edema ~ (1 + year)*drug +
-                (1 + year|id), family = "nmixnb",
+                (1 + year|id), family = "binomial",
               dataLong = Longi, dataSurv=Surv, id = "id", timeVar = "year",
               assoc = "NL_CV", basRisk = "rw2", NbasRisk=25,
               control=list(int.strategy="eb"))
@@ -232,14 +239,15 @@ plot(M2, NLeffectonly=TRUE)$NL_Association +
 
   library(ggplot2)
   #Plot the association
-  plot(M2, NLeffectonly=TRUE)$NL_Association +
-    geom_hline(yintercept = M1$summary.hyperpar$mean[6], linetype = "dashed", color = "blue") +
-    geom_ribbon(aes(ymin = M1$summary.hyperpar$`0.025quant`[6], ymax = M1$summary.hyperpar$`0.975quant`[6]), fill = "blue", alpha = 0.25)
-}
+  plot(M2, NLeffectonly=TRUE)$NL_Association + 
+  	geom_hline(yintercept = M1$summary.hyperpar$mean[4], linetype = "dashed", color = "blue") +
+  	geom_ribbon(aes(ymin = M1$summary.hyperpar$`0.025quant`[4], ymax = M1$summary.hyperpar$`0.975quant`[4]), fill = "blue", alpha = 0.25)
+  }
 
 
 
-## platelets Death event # interesting
+## platelets Death event # VERY interesting # 2
+
 {#Usual joint model with current value association
   M1 <- joint(formSurv = inla.surv(years, death) ~ drug,
               formLong = platelets ~ (1 + year)*drug +
@@ -293,7 +301,7 @@ plot(M2, NLeffectonly=TRUE)$NL_Association +
 
 
 
-## alkaline Death event # kind of not really
+## alkaline Death event # kind of not really # 3
 {#Usual joint model with current value association
   M1 <- joint(formSurv = inla.surv(years, death) ~ drug,
               formLong = alkaline ~ (1 + year)*drug +
@@ -373,7 +381,9 @@ plot(M2, NLeffectonly=TRUE)$NL_Association +
     geom_ribbon(aes(ymin = M1$summary.hyperpar$`0.025quant`[4], ymax = M1$summary.hyperpar$`0.975quant`[4]), fill = "blue", alpha = 0.25)
 }
 
-## ascites transplant event # interesting
+## ascites transplant event # very interesting  # 4
+														# Stupid warning ????
+														# ?????
 {#Usual joint model with current value association
   M1 <- joint(formSurv = inla.surv(years, trans) ~ drug,
               formLong = ascites ~ (1 + year)*drug +
@@ -400,7 +410,8 @@ plot(M2, NLeffectonly=TRUE)$NL_Association +
 }
 
 
-##Spiders Death event # interesting
+##Spiders Death event # interesting # 5
+											#????
 {
 M1 <- joint(formSurv = inla.surv(years, death) ~ drug,
             formLong = spiders ~ (1 + year)*drug +
@@ -426,7 +437,9 @@ plot(M2, NLeffectonly=TRUE)$NL_Association +
   geom_ribbon(aes(ymin = M1$summary.hyperpar$`0.025quant`[4], ymax = M1$summary.hyperpar$`0.975quant`[4]), fill = "blue", alpha = 0.25)
 }
 
-##Spiders transplant event # interesting
+##Spiders transplant event #  pretty interesting # 6
+													 # STUPID WARNING ?????
+													# ?????????
 {
   M1 <- joint(formSurv = inla.surv(years, trans) ~ drug,
               formLong = spiders ~ (1 + year)*drug +
