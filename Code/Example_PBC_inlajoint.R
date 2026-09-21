@@ -48,11 +48,11 @@ M2 <- joint(formSurv = inla.surv(years, death) ~ drug,
 summary(M2)		
 
 
-#Plot the association 
+#Plot the non-linear association 
 plot(M2$summary.random$uv1$mean, M2$summary.random$NL_CV_L1_S1$mean, main = "Serum bilirubin association: \n death event",
      xlab = "Linear predictor value", ylab = "Effect", type = "p", pch = 20)
 
-
+# plot non-linear confidence intervals
 pol <- matrix(0, nrow = length(M2$summary.random$uv1$mean), ncol = 3)
 pol[,1] <- M2$summary.random$uv1$mean
 pol[,2] <- M2$summary.random$NL_CV_L1_S1$`0.975quant`
@@ -65,10 +65,13 @@ polygon(x = c(pol[,1], rev(pol[,1])),
         y = c(pol[,2], rev(pol[,3])),
         col = adjustcolor("gray", 0.3), border = adjustcolor("black", 0.3))
 
-
+# Reference line
 abline(h = 0)
+
+# plot linear association
 abline(h = M1$summary.hyperpar$mean[6], col = "blue", lty = 4, lwd = 2) 
 
+# linear confidence intervals
 polygon(x = c(min(M2$summary.random$uv1$mean)-10, max(M2$summary.random$uv1$mean)+10,
               max(M2$summary.random$uv1$mean)+10, min(M2$summary.random$uv1$mean)-10),
         y = c(M1$summary.hyperpar$`0.975quant`[6], M1$summary.hyperpar$`0.975quant`[6],
@@ -76,10 +79,16 @@ polygon(x = c(min(M2$summary.random$uv1$mean)-10, max(M2$summary.random$uv1$mean
         col = adjustcolor("blue", 0.25), border = adjustcolor("blue", 0.25))
 
 
-  # library(ggplot)
-  plot(M2, NLeffectonly=FALSE)$NL_Association +
+ # Plot with ggplot (nl effect only true)
+  plot(M2, NLeffectonly=T)$NL_Association +
     geom_hline(yintercept = M1$summary.hyperpar$mean[6], linetype = "dashed", color = "blue") +
     geom_ribbon(aes(ymin = M1$summary.hyperpar$`0.025quant`[6], ymax = M1$summary.hyperpar$`0.975quant`[6]), fill = "blue", alpha = 0.25)
+  
+  # Plot with ggplot (nl effect only false)
+  plot(M2, NLeffectonly=F)$NL_Association +
+  	geom_hline(yintercept = M1$summary.hyperpar$mean[6], linetype = "dashed", color = "blue") +
+  	geom_ribbon(aes(ymin = M1$summary.hyperpar$`0.025quant`[6], ymax = M1$summary.hyperpar$`0.975quant`[6]), fill = "blue", alpha = 0.25)
+  
 }
 
 ##Serum bilirubin transplant event
@@ -102,9 +111,11 @@ polygon(x = c(min(M2$summary.random$uv1$mean)-10, max(M2$summary.random$uv1$mean
   summary(M2)		
   
 
-  #Plot the association 
+  #Plot the non-linear association 
   plot(M2$summary.random$uv1$mean, M2$summary.random$NL_CV_L1_S1$mean, main = "Serum bilirubin association: \n transplant event",
        xlab = "Linear predictor value", ylab = "Multiplication factor", type = "p", pch = 20)
+  
+  # plot the confidence intervals
   
   pol <- matrix(0, nrow = length(M2$summary.random$uv1$mean), ncol = 3)
   pol[,1] <- M2$summary.random$uv1$mean
@@ -118,9 +129,13 @@ polygon(x = c(min(M2$summary.random$uv1$mean)-10, max(M2$summary.random$uv1$mean
           y = c(pol[,2], rev(pol[,3])),
           col = "gray", density = 20)
   
+  # reference line
   abline(h = 0)
+  
+  # plot linear association
   abline(h = M1$summary.hyperpar$mean[6], col = "blue", lty = 4, lwd = 2) 
   
+  # linear confidence interval
   polygon(x = c(min(M2$summary.random$uv1$mean)-10, max(M2$summary.random$uv1$mean)+10,
                 max(M2$summary.random$uv1$mean)+10, min(M2$summary.random$uv1$mean)-10),
           y = c(M1$summary.hyperpar$`0.975quant`[6], M1$summary.hyperpar$`0.975quant`[6],
