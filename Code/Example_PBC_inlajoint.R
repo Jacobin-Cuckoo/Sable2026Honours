@@ -36,7 +36,6 @@ M1 <- joint(formSurv = inla.surv(years, death) ~ drug,
             dataLong = Longi, dataSurv=Surv, id = "id", timeVar = "year", 
             assoc = "CV", basRisk = "rw2", NbasRisk=25, 
             control=list(int.strategy="eb"))
-summary(M1)		
 
 #Joint model with nonlinear current value association
 M2 <- joint(formSurv = inla.surv(years, death) ~ drug,
@@ -45,7 +44,6 @@ M2 <- joint(formSurv = inla.surv(years, death) ~ drug,
             dataLong = Longi, dataSurv=Surv, id = "id", timeVar = "year", 
             assoc = "NL_CV", basRisk = "rw2", NbasRisk=25, 
             control=list(int.strategy="eb"))
-summary(M2)		
 
 
 #Plot the non-linear association 
@@ -77,6 +75,35 @@ polygon(x = c(min(M2$summary.random$uv1$mean)-10, max(M2$summary.random$uv1$mean
         y = c(M1$summary.hyperpar$`0.975quant`[6], M1$summary.hyperpar$`0.975quant`[6],
               M1$summary.hyperpar$`0.025quant`[6], M1$summary.hyperpar$`0.025quant`[6]),
         col = adjustcolor("blue", 0.25), border = adjustcolor("blue", 0.25))
+
+
+
+
+
+# plot survival curves
+
+n1 <- length(Longi$id)
+n2 <- length(Surv$id)
+maxMeas <- 16
+
+predl <- M2$summary.fitted.values$mean[1:n1] # Longitudinal preds for all measurements
+preds <- M2$summary.fitted.values$mean[(1+n1):(n2+n1)] # Survival preds for all patient
+
+
+
+
+
+# Plot IWRES against time (????) (time??)
+plot(Longi$years, M2$residuals$deviance.residuals[1:n1])
+
+
+# PLot IWRES against biomarker prediction (????)
+plot(predl, M2$residuals$deviance.residuals[1:n1])
+
+# Get Cox-Snell residuals
+
+M2$basRisk
+
 
 
  # Plot with ggplot (nl effect only true)
