@@ -45,7 +45,7 @@ M2 <- joint(formSurv = inla.surv(years, death) ~ drug,
             assoc = "NL_CV", basRisk = "rw2", NbasRisk=25, 
             control=list(int.strategy="eb"))
 
-
+{
 #Plot the non-linear association 
 plot(M2$summary.random$uv1$mean, M2$summary.random$NL_CV_L1_S1$mean, main = "Serum bilirubin association: \n death event",
      xlab = "Linear predictor value", ylab = "Effect", type = "p", pch = 20)
@@ -88,33 +88,51 @@ maxMeas <- 16
 
 predl <- M2$summary.fitted.values$mean[1:n1] # Longitudinal preds for all measurements
 preds <- M2$summary.fitted.values$mean[(1+n1):(n2+n1)] # Survival preds for all patient
+predL <- matrix(NA, n2, maxMeas)
+# Populate the prediction matrix based on patient IDs
+r <- 0
+for (k in unique(Longi$id)) {
+	r <- r + 1
+	predL[r, 1:length(Longi$serBilir[Longi$id == k])] <- predl[Longi$id == k]
+}
+
+{
+pat <- sample(1:max(as.numeric(Longi$id)),1)
+patl <- Longi[Longi$id == pat,]
+
+
+# Observed biomarker trajectory
+plot(patl$year, patl$serBilir,
+		 xlim = c(0, 15), ylim = c(0, 5))
+
+# model prediction
+lines(patl$year, predL[pat, 1:nrow(patl)])
+}
 
 
 
+# Plot IWRES against time
+plot(Longi$year, M2$residuals$deviance.residuals[1:n1],
+		 ylab = "Weighted Residuals", xlab = "Time (years)")
+abline(h = 0)
 
-
-# Plot IWRES against time (????) (time??)
-plot(Longi$years, M2$residuals$deviance.residuals[1:n1])
-
-
-# PLot IWRES against biomarker prediction (????)
-plot(predl, M2$residuals$deviance.residuals[1:n1])
-
-# Get Cox-Snell residuals
-
-M2$basRisk
-
+# PLot IWRES against biomarker prediction 
+plot(predl, M2$residuals$deviance.residuals[1:n1],
+		 ylab = "Weighted Residuals", xlab = "Predicted longitudinal values")
+abline(h = 0)
+}
 
 
  # Plot with ggplot (nl effect only true)
-  plot(M2, NLeffectonly=T)$NL_Association +
+plot(M2, NLeffectonly=T)$NL_Association +
     geom_hline(yintercept = M1$summary.hyperpar$mean[6], linetype = "dashed", color = "blue") +
-    geom_ribbon(aes(ymin = M1$summary.hyperpar$`0.025quant`[6], ymax = M1$summary.hyperpar$`0.975quant`[6]), fill = "blue", alpha = 0.25)
+    geom_ribbon(aes(ymin = M1$summary.hyperpar$`0.025quant`[6],
+    								ymax = M1$summary.hyperpar$`0.975quant`[6]),
+    						fill = "blue", alpha = 0.25) + 
+  	labs(title = "Serum bilirubin association: \n death event",
+  			 x = "Linear predictor value", tag = "") + 
+  	theme(plot.title = element_text(hjust = 0.5))
   
-  # Plot with ggplot (nl effect only false)
-  plot(M2, NLeffectonly=F)$NL_Association +
-  	geom_hline(yintercept = M1$summary.hyperpar$mean[6], linetype = "dashed", color = "blue") +
-  	geom_ribbon(aes(ymin = M1$summary.hyperpar$`0.025quant`[6], ymax = M1$summary.hyperpar$`0.975quant`[6]), fill = "blue", alpha = 0.25)
   
 }
 
@@ -126,8 +144,7 @@ M2$basRisk
               dataLong = Longi, dataSurv=Surv, id = "id", timeVar = "year", 
               assoc = "CV", basRisk = "rw2", NbasRisk=25, 
               control=list(int.strategy="eb"))
-  summary(M1)		
-  
+
   #Joint model with nonlinear current value association
   M2 <- joint(formSurv = inla.surv(years, trans) ~ drug,
               formLong = serBilir ~ (1 + year)*drug +
@@ -135,39 +152,16 @@ M2$basRisk
               dataLong = Longi, dataSurv=Surv, id = "id", timeVar = "year", 
               assoc = "NL_CV", basRisk = "rw2", NbasRisk=25, 
               control=list(int.strategy="eb"))
-  summary(M2)		
-  
 
-  #Plot the non-linear association 
-  plot(M2$summary.random$uv1$mean, M2$summary.random$NL_CV_L1_S1$mean, main = "Serum bilirubin association: \n transplant event",
-       xlab = "Linear predictor value", ylab = "Multiplication factor", type = "p", pch = 20)
-  
-  # plot the confidence intervals
-  
-  pol <- matrix(0, nrow = length(M2$summary.random$uv1$mean), ncol = 3)
-  pol[,1] <- M2$summary.random$uv1$mean
-  pol[,2] <- M2$summary.random$uv1$`0.975quant`
-  pol[,3] <- M2$summary.random$uv1$`0.025quant`
-  colnames(pol) <- c("x", "top", "bottom")
-  
-  pol <- pol[order(pol[,1]),]
-  
-  polygon(x = c(pol[,1], rev(pol[,1])),
-          y = c(pol[,2], rev(pol[,3])),
-          col = "gray", density = 20)
-  
-  # reference line
-  abline(h = 0)
-  
-  # plot linear association
-  abline(h = M1$summary.hyperpar$mean[6], col = "blue", lty = 4, lwd = 2) 
-  
-  # linear confidence interval
-  polygon(x = c(min(M2$summary.random$uv1$mean)-10, max(M2$summary.random$uv1$mean)+10,
-                max(M2$summary.random$uv1$mean)+10, min(M2$summary.random$uv1$mean)-10),
-          y = c(M1$summary.hyperpar$`0.975quant`[6], M1$summary.hyperpar$`0.975quant`[6],
-                M1$summary.hyperpar$`0.025quant`[6], M1$summary.hyperpar$`0.025quant`[6]),
-          col = "blue", density = 20)
+
+  plot(M2, NLeffectonly=T)$NL_Association +
+  	geom_hline(yintercept = M1$summary.hyperpar$mean[6], linetype = "dashed", color = "blue") +
+  	geom_ribbon(aes(ymin = M1$summary.hyperpar$`0.025quant`[6],
+  									ymax = M1$summary.hyperpar$`0.975quant`[6]),
+  							fill = "blue", alpha = 0.25) + 
+  	labs(title = "Serum bilirubin association: \n transplant event",
+  			 x = "Linear predictor value", tag = "") + 
+  	theme(plot.title = element_text(hjust = 0.5))
 }
 
 
