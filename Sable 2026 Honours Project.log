@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.3.2)  25 JUN 2026 14:45
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.7.18)  29 SEP 2026 15:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -165,28 +165,35 @@ Package: amsthm 2020/05/29 v2.20.6
 (C:\Users\twink\AppData\Local\Programs\MiKTeX\tex/latex/setspace\setspace.sty
 Package: setspace 2022/12/04 v6.7b set line spacing
 )
-\c@thm=\count288
+(C:\Users\twink\AppData\Local\Programs\MiKTeX\tex/latex/multirow\multirow.sty
+Package: multirow 2024/11/12 v2.9 Span multiple rows of a table
+\multirow@colwidth=\skip58
+\multirow@cntb=\count288
+\multirow@dima=\skip59
+\bigstrutjot=\dimen162
+)
+\c@thm=\count289
 
 (C:\Users\twink\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsmath.sty
 Package: amsmath 2025/07/09 v2.17z AMS math features
-\@mathmargin=\skip58
+\@mathmargin=\skip60
 
 For additional information on amsmath, use the `?' option.
 (C:\Users\twink\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen162
+\pmbraise@=\dimen163
 )
 (C:\Users\twink\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsopn.sty
 Package: amsopn 2022/04/08 v2.04 operator names
 )
-\inf@bad=\count289
+\inf@bad=\count290
 LaTeX Info: Redefining \frac on input line 233.
-\uproot@=\count290
-\leftroot@=\count291
+\uproot@=\count291
+\leftroot@=\count292
 LaTeX Info: Redefining \overline on input line 398.
 LaTeX Info: Redefining \colon on input line 409.
-\classnum@=\count292
-\DOTSCASE@=\count293
+\classnum@=\count293
+\DOTSCASE@=\count294
 LaTeX Info: Redefining \ldots on input line 495.
 LaTeX Info: Redefining \dots on input line 498.
 LaTeX Info: Redefining \cdots on input line 619.
@@ -196,48 +203,48 @@ LaTeX Info: Redefining \big on input line 721.
 LaTeX Info: Redefining \Big on input line 722.
 LaTeX Info: Redefining \bigg on input line 723.
 LaTeX Info: Redefining \Bigg on input line 724.
-\big@size=\dimen163
+\big@size=\dimen164
 LaTeX Font Info:    Redeclaring font encoding OML on input line 742.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 743.
-\macc@depth=\count294
+\macc@depth=\count295
 LaTeX Info: Redefining \bmod on input line 904.
 LaTeX Info: Redefining \pmod on input line 909.
 LaTeX Info: Redefining \smash on input line 939.
 LaTeX Info: Redefining \relbar on input line 969.
 LaTeX Info: Redefining \Relbar on input line 970.
-\c@MaxMatrixCols=\count295
+\c@MaxMatrixCols=\count296
 \dotsspace@=\muskip18
-\c@parentequation=\count296
-\dspbrk@lvl=\count297
+\c@parentequation=\count297
+\dspbrk@lvl=\count298
 \tag@help=\toks34
-\row@=\count298
-\column@=\count299
-\maxfields@=\count300
+\row@=\count299
+\column@=\count300
+\maxfields@=\count301
 \andhelp@=\toks35
-\eqnshift@=\dimen164
-\alignsep@=\dimen165
-\tagshift@=\dimen166
-\tagwidth@=\dimen167
-\totwidth@=\dimen168
-\lineht@=\dimen169
+\eqnshift@=\dimen165
+\alignsep@=\dimen166
+\tagshift@=\dimen167
+\tagwidth@=\dimen168
+\totwidth@=\dimen169
+\lineht@=\dimen170
 \@envbody=\toks36
-\multlinegap=\skip59
-\multlinetaggap=\skip60
+\multlinegap=\skip61
+\multlinetaggap=\skip62
 \mathdisplay@stack=\toks37
 LaTeX Info: Redefining \[ on input line 2950.
 LaTeX Info: Redefining \] on input line 2951.
 )
 (C:\Users\twink\AppData\Local\Programs\MiKTeX\tex/latex/graphics\epsfig.sty
 Package: epsfig 2024/01/14 v1.7b (e)psfig emulation (SPQR)
-\epsfxsize=\dimen170
-\epsfysize=\dimen171
+\epsfxsize=\dimen171
+\epsfysize=\dimen172
 )
 (C:\Users\twink\AppData\Local\Programs\MiKTeX\tex/latex/natbib\natbib.sty
 Package: natbib 2010/09/13 8.31b (PWD, AO)
-\bibhang=\skip61
-\bibsep=\skip62
+\bibhang=\skip63
+\bibsep=\skip64
 LaTeX Info: Redefining \cite on input line 694.
-\c@NAT@ctr=\count301
+\c@NAT@ctr=\count302
 )
 (C:\Users\twink\AppData\Local\Programs\MiKTeX\tex/latex/pstricks\pstricks.sty
 Package: pstricks 2024/02/02 v0.75 LaTeX wrapper for `PSTricks' (RN,HV)
@@ -272,21 +279,21 @@ Package: xkeyval 2022/06/16 v2.9 package option processing (HA)
 \XKV@toks=\toks38
 \XKV@tempa@toks=\toks39
 )
-\XKV@depth=\count302
+\XKV@depth=\count303
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 )))
 (C:\Users\twink\AppData\Local\Programs\MiKTeX\tex/generic/pstricks\pstricks.tex
 (C:\Users\twink\AppData\Local\Programs\MiKTeX\tex/generic/pstricks\pst-fp.tex
 `pst-fp' v0.06, 2020/11/20 (hv)
-\pstFP@xs=\count303
-\pstFP@xia=\count304
-\pstFP@xib=\count305
-\pstFP@xfa=\count306
-\pstFP@xfb=\count307
-\pstFP@rega=\count308
-\pstFP@regb=\count309
-\pstFP@regs=\count310
-\pstFP@times=\count311
+\pstFP@xs=\count304
+\pstFP@xia=\count305
+\pstFP@xib=\count306
+\pstFP@xfa=\count307
+\pstFP@xfb=\count308
+\pstFP@rega=\count309
+\pstFP@regb=\count310
+\pstFP@regs=\count311
+\pstFP@times=\count312
 )
 (C:\Users\twink\AppData\Local\Programs\MiKTeX\tex/latex/pgf/utilities\pgffor.st
 y
@@ -295,8 +302,8 @@ y
 (C:\Users\twink\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfutil
 -common.tex
 \pgfutil@everybye=\toks40
-\pgfutil@tempdima=\dimen172
-\pgfutil@tempdimb=\dimen173
+\pgfutil@tempdima=\dimen173
+\pgfutil@tempdimb=\dimen174
 )
 (C:\Users\twink\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfutil
 -latex.def
@@ -323,23 +330,23 @@ libraryfiltered.code.tex
 .tex
 (C:\Users\twink\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathutil.
 code.tex
-\pgf@x=\dimen174
-\pgf@xa=\dimen175
-\pgf@xb=\dimen176
-\pgf@xc=\dimen177
-\pgf@y=\dimen178
-\pgf@ya=\dimen179
-\pgf@yb=\dimen180
-\pgf@yc=\dimen181
-\c@pgf@counta=\count312
-\c@pgf@countb=\count313
-\c@pgf@countc=\count314
-\c@pgf@countd=\count315
+\pgf@x=\dimen175
+\pgf@xa=\dimen176
+\pgf@xb=\dimen177
+\pgf@xc=\dimen178
+\pgf@y=\dimen179
+\pgf@ya=\dimen180
+\pgf@yb=\dimen181
+\pgf@yc=\dimen182
+\c@pgf@counta=\count313
+\c@pgf@countb=\count314
+\c@pgf@countc=\count315
+\c@pgf@countd=\count316
 )
 (C:\Users\twink\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathparse
 r.code.tex
-\pgfmath@dimen=\dimen182
-\pgfmath@count=\count316
+\pgfmath@dimen=\dimen183
+\pgfmath@count=\count317
 \pgfmath@box=\box61
 \pgfmath@toks=\toks44
 \pgfmath@stack@operand=\toks45
@@ -367,43 +374,43 @@ ions.integerarithmetics.code.tex)
 code.tex)
 (C:\Users\twink\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfloat
 .code.tex
-\c@pgfmathroundto@lastzeros=\count317
+\c@pgfmathroundto@lastzeros=\count318
 )))
 (C:\Users\twink\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgffor.
 code.tex
 Package: pgffor 2025-08-29 v3.1.11a (3.1.11a)
-\pgffor@iter=\dimen183
-\pgffor@skip=\dimen184
+\pgffor@iter=\dimen184
+\pgffor@skip=\dimen185
 \pgffor@stack=\toks47
 \pgffor@toks=\toks48
 ))
-\psLoopIndex=\count318
+\psLoopIndex=\count319
 
 `PSTricks' v3.22A  <2025/12/13> (tvz,hv)
-\pst@dima=\dimen185
-\pst@dimb=\dimen186
-\pst@dimc=\dimen187
-\pst@dimd=\dimen188
-\pst@dimg=\dimen189
-\pst@dimh=\dimen190
-\pst@dimm=\dimen191
-\pst@dimn=\dimen192
-\pst@dimo=\dimen193
-\pst@dimp=\dimen194
+\pst@dima=\dimen186
+\pst@dimb=\dimen187
+\pst@dimc=\dimen188
+\pst@dimd=\dimen189
+\pst@dimg=\dimen190
+\pst@dimh=\dimen191
+\pst@dimm=\dimen192
+\pst@dimn=\dimen193
+\pst@dimo=\dimen194
+\pst@dimp=\dimen195
 \pst@hbox=\box62
 \pst@ibox=\box63
 \pst@boxg=\box64
-\pst@cnta=\count319
-\pst@cntb=\count320
-\pst@cntc=\count321
-\pst@cntd=\count322
-\pst@cntg=\count323
-\pst@cnth=\count324
-\pst@cntm=\count325
-\pst@cntn=\count326
-\pst@cnto=\count327
-\pst@cntp=\count328
-\@zero=\count329
+\pst@cnta=\count320
+\pst@cntb=\count321
+\pst@cntc=\count322
+\pst@cntd=\count323
+\pst@cntg=\count324
+\pst@cnth=\count325
+\pst@cntm=\count326
+\pst@cntn=\count327
+\pst@cnto=\count328
+\pst@cntp=\count329
+\@zero=\count330
 \pst@toks=\toks49
 --- We are running latex or xelatex ---
 
@@ -411,34 +418,34 @@ Package: pgffor 2025-08-29 v3.1.11a (3.1.11a)
 )
 (C:\Users\twink\AppData\Local\Programs\MiKTeX\tex/generic/pstricks\pstricks-col
 or.tex)
-\psunit=\dimen195
-\psxunit=\dimen196
-\psyunit=\dimen197
-\pst@C@@rType=\count330
-\pslinewidth=\dimen198
-\psk@startLW=\dimen199
-\psk@endLW=\dimen256
+\psunit=\dimen196
+\psxunit=\dimen197
+\psyunit=\dimen198
+\pst@C@@rType=\count331
+\pslinewidth=\dimen199
+\psk@startLW=\dimen256
+\psk@endLW=\dimen257
 
 (C:\Users\twink\AppData\Local\Programs\MiKTeX\tex/generic/pstricks\pstricks-arr
 ows.tex
-\pshooklength=\dimen257
-\pshookwidth=\dimen258
+\pshooklength=\dimen258
+\pshookwidth=\dimen259
 )
 \pst@customdefs=\toks50
 
 (C:\Users\twink\AppData\Local\Programs\MiKTeX\tex/generic/pstricks\pstricks-dot
 s.tex)
-\pslinearc=\dimen259
-\pst@symbolStep=\dimen260
-\pst@symbolWidth=\dimen261
-\pst@symbolLinewidth=\dimen262
+\pslinearc=\dimen260
+\pst@symbolStep=\dimen261
+\pst@symbolWidth=\dimen262
+\pst@symbolLinewidth=\dimen263
 
 (C:\Users\twink\AppData\Local\Programs\MiKTeX\tex/generic/pstricks\pst-code-gri
 d.tex)
 (C:\Users\twink\AppData\Local\Programs\MiKTeX\tex/generic/pstricks\pst-code-box
 .tex
 \everypsbox=\toks51
-\psframesep=\dimen263
+\psframesep=\dimen264
 )
 (C:\Users\twink\AppData\Local\Programs\MiKTeX\tex/generic/pstricks\pst-code-arc
 .tex)
@@ -448,14 +455,14 @@ cle_ellipse.tex)
 _rot.tex)
 (C:\Users\twink\AppData\Local\Programs\MiKTeX\tex/generic/pstricks\pst-code-put
 .tex
-\pslabelsep=\dimen264
+\pslabelsep=\dimen265
 )
 (C:\Users\twink\AppData\Local\Programs\MiKTeX\tex/generic/pstricks\pst-code-psp
 icture.tex
-\sh@wgridXunit=\dimen265
-\sh@wgridYunit=\dimen266
-\pst@shift=\dimen267
-\ps@imagectr=\count331
+\sh@wgridXunit=\dimen266
+\sh@wgridYunit=\dimen267
+\pst@shift=\dimen268
+\ps@imagectr=\count332
 )
 (C:\Users\twink\AppData\Local\Programs\MiKTeX\tex/generic/pstricks\pstricks.con
 ))
@@ -478,14 +485,14 @@ Package: pst-node 2010/04/22 package wrapper for pst-node.tex
 
 (C:\Users\twink\AppData\Local\Programs\MiKTeX\tex/generic/pst-node\pst-node.tex
  v1.44, 2024/07/04
-\psrow=\count332
-\pscol=\count333
-\psmatrixcnt=\count334
-\psrowsep=\skip63
-\pscolsep=\skip64
-\pst@args=\count335
-\num@pts=\count336
-\pst@argcnt=\count337
+\psrow=\count333
+\pscol=\count334
+\psmatrixcnt=\count335
+\psrowsep=\skip65
+\pscolsep=\skip66
+\pst@args=\count336
+\num@pts=\count337
+\pst@argcnt=\count338
 )
 File: pst-node.tex 2024/07/04 1.44 `pst-node' (tvz,hv)
 )
@@ -501,8 +508,8 @@ Package: multido 2004/05/17 package wrapper for PSTricks `multido.tex', (HV/RN)
 
 (C:\Users\twink\AppData\Local\Programs\MiKTeX\tex/generic/multido\multido.tex
  v1.42, 2010/05/14 <tvz>
-\multido@count=\count338
-\multidocount=\count339
+\multido@count=\count339
+\multidocount=\count340
 \multido@stuff=\toks52
 )
 File: multido.tex 2010/05/14 v1.42 `multido' (tvz,hv)
@@ -513,8 +520,8 @@ Package: pst-plot 2021/09/23 package wrapper for pst-plot.tex (hv)
 
 (C:\Users\twink\AppData\Local\Programs\MiKTeX\tex/generic/pst-tools\pst-tools.t
 ex `PST-tools' v0.12, 2021/09/23 (hv)
-\randomi=\count340
-\ranval=\count341
+\randomi=\count341
+\ranval=\count342
 )
 (C:\Users\twink\AppData\Local\Programs\MiKTeX\tex/generic/pstricks-add\pstricks
 -add.tex
@@ -524,38 +531,38 @@ ex `pst-arrow' v0.05, 2021/11/16 (dr,hv))
 `PST-3d' v1.11, 2010/02/14 (tvz))
 (C:\Users\twink\AppData\Local\Programs\MiKTeX\tex/generic/pst-math\pst-math.tex
 `pst-math' v0.67 , (CJ,hv)) `pstricks-add' v3.94, 2023/04/17 (dr,hv)
-\psparallelogramsep=\dimen268
-\pst@cntC=\count342
-\pst@stepcount=\count343
-\chart@ColorIndex=\dimen269
-\chart@ColorStep=\dimen270
-\pst@chartHeight=\dimen271
-\pst@chartStackDepth=\dimen272
-\pst@chartStackWidth=\dimen273
-\chart@Toggle=\count344
-\psVectorCtr=\count345
+\psparallelogramsep=\dimen269
+\pst@cntC=\count343
+\pst@stepcount=\count344
+\chart@ColorIndex=\dimen270
+\chart@ColorStep=\dimen271
+\pst@chartHeight=\dimen272
+\pst@chartStackDepth=\dimen273
+\pst@chartStackWidth=\dimen274
+\chart@Toggle=\count345
+\psVectorCtr=\count346
 )
  v1.94, 2022/11/21 (tvz,hv)
-\pstRadUnit=\dimen274
-\pstRadUnitInv=\dimen275
-\pst@linecnt=\count346
+\pstRadUnit=\dimen275
+\pstRadUnitInv=\dimen276
+\pst@linecnt=\count347
 \RCD@file=\read3
-\psxlabelsep=\dimen276
-\psylabelsep=\dimen277
-\psk@subticksize=\dimen278
-\pst@xticksizeA=\dimen279
-\pst@xticksizeB=\dimen280
-\pst@xticksizeC=\dimen281
-\pst@yticksizeA=\dimen282
-\pst@yticksizeB=\dimen283
-\pst@yticksizeC=\dimen284
-\@digitcounter=\count347
-\psk@llx=\dimen285
-\psk@lly=\dimen286
-\psk@urx=\dimen287
-\psk@ury=\dimen288
-\pst@xunit=\dimen289
-\pst@yunit=\dimen290
+\psxlabelsep=\dimen277
+\psylabelsep=\dimen278
+\psk@subticksize=\dimen279
+\pst@xticksizeA=\dimen280
+\pst@xticksizeB=\dimen281
+\pst@xticksizeC=\dimen282
+\pst@yticksizeA=\dimen283
+\pst@yticksizeB=\dimen284
+\pst@yticksizeC=\dimen285
+\@digitcounter=\count348
+\psk@llx=\dimen286
+\psk@lly=\dimen287
+\psk@urx=\dimen288
+\psk@ury=\dimen289
+\pst@xunit=\dimen290
+\pst@yunit=\dimen291
 )
 File: pst-plot.tex 2022/11/21 1.94 `pst-plot' (tvz,hv)
 )
@@ -570,9 +577,9 @@ LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 )) (C:\Users\twink\AppData\Local\Programs\MiKTeX\tex/latex/wrapfig\wrapfig.sty
-\wrapoverhang=\dimen291
-\WF@size=\dimen292
-\c@WF@wrappedlines=\count348
+\wrapoverhang=\dimen292
+\WF@size=\dimen293
+\c@WF@wrappedlines=\count349
 \WF@box=\box65
 \WF@everypar=\toks53
 Package: wrapfig 2003/01/31  v 3.6
@@ -585,7 +592,7 @@ Package: threeparttable 2003/06/13  v 3.0
 (C:\Users\twink\AppData\Local\Programs\MiKTeX\tex/generic/babel\babel.sty
 Package: babel 2026/02/14 v26.3 The multilingual framework for LuaLaTeX, pdfLaT
 eX and XeLaTeX
-\babel@savecnt=\count349
+\babel@savecnt=\count350
 LaTeX Encoding Info:    Redeclaring text command \ij (encoding OT1) on input li
 ne 2078.
 LaTeX Encoding Info:    Redeclaring text command \IJ (encoding OT1) on input li
@@ -600,12 +607,12 @@ LaTeX Encoding Info:    Ignoring declaration for text command \IJ (encoding ?)
 on input line 2086.
 LaTeX Encoding Info:    Ignoring declaration for text command \SS (encoding ?) 
 on input line 2111.
-\U@D=\dimen293
+\U@D=\dimen294
 \l@unhyphenated=\language79
 
 (C:\Users\twink\AppData\Local\Programs\MiKTeX\tex/generic/babel\txtbabel.def)
 \bbl@readstream=\read4
-\bbl@dirlevel=\count350
+\bbl@dirlevel=\count351
 Package babel Info: Configuration files are deprecated, as
 (babel)             they can break document portability.
 (babel)             Reported on input line 4206.
@@ -635,24 +642,24 @@ Package babel Info: Hyphen rules for 'newzealand' set to \l@ukenglish
 (C:\Users\twink\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdf
 tex.def
 File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count351
+\l__color_backend_stack_int=\count352
 ) (Sable 2026 Honours Project.aux)
 \openout1 = `"Sable 2026 Honours Project.aux"'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 54.
-LaTeX Font Info:    ... okay on input line 54.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 54.
-LaTeX Font Info:    ... okay on input line 54.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 54.
-LaTeX Font Info:    ... okay on input line 54.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 54.
-LaTeX Font Info:    ... okay on input line 54.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 54.
-LaTeX Font Info:    ... okay on input line 54.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 54.
-LaTeX Font Info:    ... okay on input line 54.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 54.
-LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -696,16 +703,16 @@ Package geometry Warning: The marginal notes overrun the paper.
 (C:\Users\twink\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
 ii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count352
-\scratchdimen=\dimen294
+\scratchcounter=\count353
+\scratchdimen=\dimen295
 \scratchbox=\box67
-\nofMPsegments=\count353
-\nofMParguments=\count354
+\nofMPsegments=\count354
+\nofMParguments=\count355
 \everyMPshowfont=\toks54
-\MPscratchCnt=\count355
-\MPscratchDim=\dimen295
-\MPnumerator=\count356
-\makeMPintoPDFobject=\count357
+\MPscratchCnt=\count356
+\MPscratchDim=\dimen296
+\MPnumerator=\count357
+\makeMPintoPDFobject=\count358
 \everyMPtoPDFconversion=\toks55
 )
 (C:\Users\twink\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-b
@@ -718,12 +725,12 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 fg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-LaTeX Font Info:    Trying to load font information for U+msa on input line 70.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 71.
 
  (C:\Users\twink\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 70.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 71.
 
 
 (C:\Users\twink\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
@@ -732,7 +739,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 <UPlogohighres.jpg, id=1, 1280.3835pt x 426.8748pt>
 File: UPlogohighres.jpg Graphic file (type jpg)
 <use UPlogohighres.jpg>
-Package pdftex.def Info: UPlogohighres.jpg  used on input line 70.
+Package pdftex.def Info: UPlogohighres.jpg  used on input line 71.
 (pdftex.def)             Requested size: 142.26378pt x 47.42534pt.
 
 [1
@@ -765,12 +772,12 @@ Non-PDF special ignored!
 <special> ps:tx@Dict begin  gsave STV CP T /ps@rot 0 def grestore  end
 {C:/Users/twink/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <./UPlogohigh
 res.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 73--77
+Underfull \hbox (badness 10000) in paragraph at lines 74--78
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 78--80
+Underfull \hbox (badness 10000) in paragraph at lines 79--81
 
  []
 
@@ -788,16 +795,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 78--80
 \openout5 = `"Sable 2026 Honours Project.lot"'.
 
  [4]
-
-Package natbib Warning: Citation `Anguelov2010' on page 5 undefined on input li
-ne 135.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 132--137
-
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 138--140
 
  []
@@ -807,56 +804,52 @@ Underfull \hbox (badness 10000) in paragraph at lines 150--152
 
  []
 
-[5] [6]
-Underfull \hbox (badness 10000) in paragraph at lines 224--226
+[5]
+Underfull \hbox (badness 10000) in paragraph at lines 211--213
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 245--247
+[6]
+Underfull \hbox (badness 10000) in paragraph at lines 232--234
 
  []
 
 [7]
-Underfull \hbox (badness 10000) in paragraph at lines 283--285
+Underfull \hbox (badness 10000) in paragraph at lines 273--275
 
  []
 
-[8]
-Underfull \hbox (badness 10000) in paragraph at lines 290--292
+
+Underfull \hbox (badness 10000) in paragraph at lines 365--368
 
  []
 
-File: UPlogohighres.jpg Graphic file (type jpg)
-<use UPlogohighres.jpg>
-Package pdftex.def Info: UPlogohighres.jpg  used on input line 325.
-(pdftex.def)             Requested size: 170.71652pt x 56.91562pt.
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+Underfull \hbox (badness 10000) in paragraph at lines 369--371
 
-File: UPlogohighres.jpg Graphic file (type jpg)
-<use UPlogohighres.jpg>
-Package pdftex.def Info: UPlogohighres.jpg  used on input line 334.
-(pdftex.def)             Requested size: 170.71652pt x 56.91562pt.
-[9] [10] [11]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 372--374
+
+ []
+
+[8] [9] [10]
 No file "Sable 2026 Honours Project".bbl.
-
-Package natbib Warning: There were undefined citations.
-
-[12] (Sable 2026 Honours Project.aux)
+[11] (Sable 2026 Honours Project.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 15364 strings out of 467866
- 273896 string characters out of 5418314
- 750601 words of memory out of 5000000
- 43933 multiletter control sequences out of 15000+600000
- 645852 words of font info for 84 fonts, out of 8000000 for 9000
+ 15408 strings out of 467866
+ 274602 string characters out of 5418313
+ 760117 words of memory out of 5000000
+ 43975 multiletter control sequences out of 15000+600000
+ 644478 words of font info for 82 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 87i,17n,93p,948b,368s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 87i,17n,93p,1023b,368s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\twink\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm
 0700.pk> <C:\Users\twink\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi60
 0\ecbx1200.pk> <C:\Users\twink\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec
@@ -882,9 +875,9 @@ Data/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/tw
 ink/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:
 /Users/twink/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7
 .pfb>
-Output written on "Sable 2026 Honours Project.pdf" (12 pages, 1815803 bytes).
+Output written on "Sable 2026 Honours Project.pdf" (11 pages, 1810086 bytes).
 PDF statistics:
- 452 PDF objects out of 1000 (max. 8388607)
+ 437 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

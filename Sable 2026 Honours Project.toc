@@ -2,10 +2,10 @@
 \contentsline {section}{\numberline {1}Introduction}{5}{}%
 \contentsline {section}{\numberline {2}Methodology}{6}{}%
 \contentsline {subsection}{\numberline {2.1}Longitudinal mixed-effect model}{6}{}%
-\contentsline {subsection}{\numberline {2.2}Survival model}{7}{}%
-\contentsline {subsection}{\numberline {2.3}Joint model}{8}{}%
+\contentsline {subsection}{\numberline {2.2}Survival model}{6}{}%
+\contentsline {subsection}{\numberline {2.3}Joint model}{7}{}%
 \contentsline {subsection}{\numberline {2.4}Inference}{8}{}%
-\contentsline {subsection}{\numberline {2.5}Individual prediction}{9}{}%
-\contentsline {section}{\numberline {3}Application}{10}{}%
-\contentsline {section}{\numberline {4}Conclusion}{10}{}%
-\contentsline {section}{Appendix}{12}{}%
+\contentsline {section}{\numberline {3}Application}{8}{}%
+\contentsline {section}{\numberline {4}Results}{9}{}%
+\contentsline {section}{\numberline {5}Conclusion}{9}{}%
+\contentsline {section}{Appendix}{11}{}%

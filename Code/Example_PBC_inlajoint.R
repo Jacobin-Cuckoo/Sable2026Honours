@@ -28,7 +28,7 @@ Surv$trans <- ifelse(Surv$status=="transplanted",1,0) # competing event 2
 
 }
 
-##Serum bilirubin death event
+##Serum bilirubin death event  (done)
 {#Usual joint model with current value association
 M1 <- joint(formSurv = inla.surv(years, death) ~ drug,
             formLong = serBilir ~ (1 + year)*drug +
@@ -136,7 +136,7 @@ plot(M2, NLeffectonly=T)$NL_Association +
   
 }
 
-##Serum bilirubin transplant event
+##Serum bilirubin transplant event (done)
 {#Usual joint model with current value association
   M1 <- joint(formSurv = inla.surv(years, trans) ~ drug,
               formLong = serBilir ~ (1 + year)*drug +
@@ -166,16 +166,15 @@ plot(M2, NLeffectonly=T)$NL_Association +
 
 
 
-## SGOT Death event # kind of interesting #1
-{#Usual joint model with current value association
+## SGOT Death event # kind of interesting #1 (done)
+{
   M1 <- joint(formSurv = inla.surv(years, death) ~ drug,
               formLong = SGOT ~ (1 + year)*drug +
                 (1 + year|id), family = "lognormal",
               dataLong = Longi, dataSurv=Surv, id = "id", timeVar = "year", 
               assoc = "CV", basRisk = "rw2", NbasRisk=25, 
               control=list(int.strategy="eb"))
-  summary(M1)		
-  
+
   #Joint model with nonlinear current value association
   M2 <- joint(formSurv = inla.surv(years, death) ~ drug,
               formLong = SGOT ~ (1 + year)*drug +
@@ -183,24 +182,19 @@ plot(M2, NLeffectonly=T)$NL_Association +
               dataLong = Longi, dataSurv=Surv, id = "id", timeVar = "year", 
               assoc = "NL_CV", basRisk = "rw2", NbasRisk=25, 
               control=list(int.strategy="eb"))
-  summary(M2)		
-  
 
-  #Plot the association 
-  plot(M2$summary.random$uv1$mean, M2$summary.random$NL_CV_L1_S1$mean, main = "SGOT association: \n death event",
-       xlab = "Linear predictor value", ylab = "multiplication factor", type = "p", pch = 20)
-  
-  abline(h = 0)
-  abline(h = M1$summary.hyperpar$mean[6], col = "blue", lty = 4, lwd = 2) 
-  
-  polygon(x = c(min(M2$summary.random$uv1$mean)-10, max(M2$summary.random$uv1$mean)+10,
-                max(M2$summary.random$uv1$mean)+10, min(M2$summary.random$uv1$mean)-10),
-          y = c(M1$summary.hyperpar$`0.975quant`[6], M1$summary.hyperpar$`0.975quant`[6],
-                M1$summary.hyperpar$`0.025quant`[6], M1$summary.hyperpar$`0.025quant`[6]),
-          col = "blue", density = 20)
+
+  plot(M2, NLeffectonly=T)$NL_Association +
+  	geom_hline(yintercept = M1$summary.hyperpar$mean[6], linetype = "dashed", color = "blue") +
+  	geom_ribbon(aes(ymin = M1$summary.hyperpar$`0.025quant`[6],
+  									ymax = M1$summary.hyperpar$`0.975quant`[6]),
+  							fill = "blue", alpha = 0.25) + 
+  	labs(title = "SGOT association: \n death event",
+  			 x = "Linear predictor value", tag = "") + 
+  	theme(plot.title = element_text(hjust = 0.5))
 }
 
-## SGOT transplant event
+## SGOT transplant event (done)
 {#Usual joint model with current value association
   M1 <- joint(formSurv = inla.surv(years, trans) ~ drug,
               formLong = SGOT ~ (1 + year)*drug +
@@ -208,8 +202,7 @@ plot(M2, NLeffectonly=T)$NL_Association +
               dataLong = Longi, dataSurv=Surv, id = "id", timeVar = "year", 
               assoc = "CV", basRisk = "rw2", NbasRisk=25, 
               control=list(int.strategy="eb"))
-  summary(M1)		
-  
+
   #Joint model with nonlinear current value association
   M2 <- joint(formSurv = inla.surv(years, trans) ~ drug,
               formLong = SGOT ~ (1 + year)*drug +
@@ -217,26 +210,22 @@ plot(M2, NLeffectonly=T)$NL_Association +
               dataLong = Longi, dataSurv=Surv, id = "id", timeVar = "year", 
               assoc = "NL_CV", basRisk = "rw2", NbasRisk=25, 
               control=list(int.strategy="eb"))
-  summary(M2)		
-  
+
 
   #Plot the association 
-  plot(M2$summary.random$uv1$mean, M2$summary.random$NL_CV_L1_S1$mean, main = "SGOT association: \n transplant event",
-       xlab = "Linear predictor value", ylab = "multiplication factor", type = "p", pch = 20)
-  
-  abline(h = 0)
-  abline(h = M1$summary.hyperpar$mean[6], col = "blue", lty = 4, lwd = 2) 
-  
-  polygon(x = c(min(M2$summary.random$uv1$mean)-10, max(M2$summary.random$uv1$mean)+10,
-                max(M2$summary.random$uv1$mean)+10, min(M2$summary.random$uv1$mean)-10),
-          y = c(M1$summary.hyperpar$`0.975quant`[6], M1$summary.hyperpar$`0.975quant`[6],
-                M1$summary.hyperpar$`0.025quant`[6], M1$summary.hyperpar$`0.025quant`[6]),
-          col = "blue", density = 20)
+  plot(M2, NLeffectonly=T)$NL_Association +
+  	geom_hline(yintercept = M1$summary.hyperpar$mean[6], linetype = "dashed", color = "blue") +
+  	geom_ribbon(aes(ymin = M1$summary.hyperpar$`0.025quant`[6],
+  									ymax = M1$summary.hyperpar$`0.975quant`[6]),
+  							fill = "blue", alpha = 0.25) + 
+  	labs(title = "SGOT association: \n transplant event",
+  			 x = "Linear predictor value", tag = "") + 
+  	theme(plot.title = element_text(hjust = 0.5))
 }
 
 
 
-## albumin Death event 
+## albumin Death event (done)
 {#Usual joint model with current value association
   M1 <- joint(formSurv = inla.surv(years, death) ~ drug,
               formLong = albumin ~ (1 + year)*drug +
@@ -244,8 +233,7 @@ plot(M2, NLeffectonly=T)$NL_Association +
               dataLong = Longi, dataSurv=Surv, id = "id", timeVar = "year", 
               assoc = "CV", basRisk = "rw2", NbasRisk=25, 
               control=list(int.strategy="eb"))
-  summary(M1)		
-  
+
   #Joint model with nonlinear current value association
   M2 <- joint(formSurv = inla.surv(years, death) ~ drug,
               formLong = albumin ~ (1 + year)*drug +
@@ -253,24 +241,20 @@ plot(M2, NLeffectonly=T)$NL_Association +
               dataLong = Longi, dataSurv=Surv, id = "id", timeVar = "year", 
               assoc = "NL_CV", basRisk = "rw2", NbasRisk=25, 
               control=list(int.strategy="eb"))
-  summary(M2)		
-  
+
 
   #Plot the association 
-  plot(M2$summary.random$uv1$mean, M2$summary.random$NL_CV_L1_S1$mean, main = "Albumin association: \n death event",
-       xlab = "Linear predictor value", ylab = "multiplication factor", type = "p", pch = 20)
-  
-  abline(h = 0)
-  abline(h = M1$summary.hyperpar$mean[6], col = "blue", lty = 4, lwd = 2) 
-  
-  polygon(x = c(min(M2$summary.random$uv1$mean)-10, max(M2$summary.random$uv1$mean)+10,
-                max(M2$summary.random$uv1$mean)+10, min(M2$summary.random$uv1$mean)-10),
-          y = c(M1$summary.hyperpar$`0.975quant`[6], M1$summary.hyperpar$`0.975quant`[6],
-                M1$summary.hyperpar$`0.025quant`[6], M1$summary.hyperpar$`0.025quant`[6]),
-          col = "blue", density = 20)
+  plot(M2, NLeffectonly=T)$NL_Association +
+  	geom_hline(yintercept = M1$summary.hyperpar$mean[6], linetype = "dashed", color = "blue") +
+  	geom_ribbon(aes(ymin = M1$summary.hyperpar$`0.025quant`[6],
+  									ymax = M1$summary.hyperpar$`0.975quant`[6]),
+  							fill = "blue", alpha = 0.25) + 
+  	labs(title = "Albumin association: \n death event",
+  			 x = "Linear predictor value", tag = "") + 
+  	theme(plot.title = element_text(hjust = 0.5))
 }
 
-## albumin transplant event
+## albumin transplant event (done)
 {#Usual joint model with current value association
   M1 <- joint(formSurv = inla.surv(years, trans) ~ drug,
               formLong = albumin ~ (1 + year)*drug +
@@ -278,8 +262,7 @@ plot(M2, NLeffectonly=T)$NL_Association +
               dataLong = Longi, dataSurv=Surv, id = "id", timeVar = "year", 
               assoc = "CV", basRisk = "rw2", NbasRisk=25, 
               control=list(int.strategy="eb"))
-  summary(M1)		
-  
+
   #Joint model with nonlinear current value association
   M2 <- joint(formSurv = inla.surv(years, trans) ~ drug,
               formLong = albumin ~ (1 + year)*drug +
@@ -287,26 +270,22 @@ plot(M2, NLeffectonly=T)$NL_Association +
               dataLong = Longi, dataSurv=Surv, id = "id", timeVar = "year", 
               assoc = "NL_CV", basRisk = "rw2", NbasRisk=25, 
               control=list(int.strategy="eb"))
-  summary(M2)		
-  
+
 
   #Plot the association 
-  plot(M2$summary.random$uv1$mean, M2$summary.random$NL_CV_L1_S1$mean, main = "Albumin association: \n transplant event",
-       xlab = "Linear predictor value", ylab = "multiplication factor", type = "p", pch = 20)
-  
-  abline(h = 0)
-  abline(h = M1$summary.hyperpar$mean[6], col = "blue", lty = 4, lwd = 2) 
-  
-  polygon(x = c(min(M2$summary.random$uv1$mean)-10, max(M2$summary.random$uv1$mean)+10,
-                max(M2$summary.random$uv1$mean)+10, min(M2$summary.random$uv1$mean)-10),
-          y = c(M1$summary.hyperpar$`0.975quant`[6], M1$summary.hyperpar$`0.975quant`[6],
-                M1$summary.hyperpar$`0.025quant`[6], M1$summary.hyperpar$`0.025quant`[6]),
-          col = "blue", density = 20)
+  plot(M2, NLeffectonly=T)$NL_Association +
+  	geom_hline(yintercept = M1$summary.hyperpar$mean[6], linetype = "dashed", color = "blue") +
+  	geom_ribbon(aes(ymin = M1$summary.hyperpar$`0.025quant`[6],
+  									ymax = M1$summary.hyperpar$`0.975quant`[6]),
+  							fill = "blue", alpha = 0.25) + 
+  	labs(title = "Albumin association: \n transplant event",
+  			 x = "Linear predictor value", tag = "") + 
+  	theme(plot.title = element_text(hjust = 0.5))
 }
 
 
 
-## edema Death event # Interesting !!!!
+## edema Death event # Interesting !!!! (done)
 {
 #Usual joint model with current value association
   M1 <- joint(formSurv = inla.surv(years, death) ~ drug,
@@ -315,7 +294,6 @@ plot(M2, NLeffectonly=T)$NL_Association +
               dataLong = Longi, dataSurv=Surv, id = "id", timeVar = "year",
               assoc = "CV", basRisk = "rw2", NbasRisk=25,
               control=list(int.strategy="eb"))
-  summary(M1)
 
   #Joint model with nonlinear current value association
   M2 <- joint(formSurv = inla.surv(years, death) ~ drug,
@@ -324,22 +302,18 @@ plot(M2, NLeffectonly=T)$NL_Association +
               dataLong = Longi, dataSurv=Surv, id = "id", timeVar = "year",
               assoc = "NL_CV", basRisk = "rw2", NbasRisk=25,
               control=list(int.strategy="eb"))
-  summary(M2)
 
 
   #Plot the association
   
-  plot(M2$summary.random$uv1$mean, M2$summary.random$NL_CV_L1_S1$mean, main = "Edema association: \n death event",
-       xlab = "Linear predictor value", ylab = "multiplication factor", type = "p", pch = 20)
-  
-  abline(h = 0)
-  abline(h = M1$summary.hyperpar$mean[4], col = "blue", lty = 4, lwd = 2) 
-  
-  polygon(x = c(min(M2$summary.random$uv1$mean)-10, max(M2$summary.random$uv1$mean)+10,
-                max(M2$summary.random$uv1$mean)+10, min(M2$summary.random$uv1$mean)-10),
-          y = c(M1$summary.hyperpar$`0.975quant`[4], M1$summary.hyperpar$`0.975quant`[4],
-                M1$summary.hyperpar$`0.025quant`[4], M1$summary.hyperpar$`0.025quant`[4]),
-          col = "blue", density = 20)
+  plot(M2, NLeffectonly=T)$NL_Association +
+  	geom_hline(yintercept = M1$summary.hyperpar$mean[4], linetype = "dashed", color = "blue") +
+  	geom_ribbon(aes(ymin = M1$summary.hyperpar$`0.025quant`[4],
+  									ymax = M1$summary.hyperpar$`0.975quant`[4]),
+  							fill = "blue", alpha = 0.25) + 
+  	labs(title = "Edema association: \n death event",
+  			 x = "Linear predictor value", tag = "") + 
+  	theme(plot.title = element_text(hjust = 0.5))
   
   # plot(M2, NLeffectonly=TRUE)$NL_Association + 
   # 	geom_hline(yintercept = M1$summary.hyperpar$mean[4], linetype = "dashed", color = "blue") +
@@ -347,7 +321,7 @@ plot(M2, NLeffectonly=T)$NL_Association +
   
 }
 
-## edema transplant event
+## edema transplant event (done)
 {
 #Usual joint model with current value association
   M1 <- joint(formSurv = inla.surv(years, trans) ~ drug,
@@ -356,7 +330,6 @@ plot(M2, NLeffectonly=T)$NL_Association +
               dataLong = Longi, dataSurv=Surv, id = "id", timeVar = "year",
               assoc = "CV", basRisk = "rw2", NbasRisk=25,
               control=list(int.strategy="eb"))
-  summary(M1)
 
   #Joint model with nonlinear current value association
   M2 <- joint(formSurv = inla.surv(years, trans) ~ drug,
@@ -365,26 +338,22 @@ plot(M2, NLeffectonly=T)$NL_Association +
               dataLong = Longi, dataSurv=Surv, id = "id", timeVar = "year",
               assoc = "NL_CV", basRisk = "rw2", NbasRisk=25,
               control=list(int.strategy="eb"))
-  summary(M2)
 
 
   #Plot the association
-  plot(M2$summary.random$uv1$mean, M2$summary.random$NL_CV_L1_S1$mean, main = "Edema association: \n transplant event",
-       xlab = "Linear predictor value", ylab = "multiplication factor", type = "p", pch = 20)
-  
-  abline(h = 0)
-  abline(h = M1$summary.hyperpar$mean[4], col = "blue", lty = 4, lwd = 2) 
-  
-  polygon(x = c(min(M2$summary.random$uv1$mean)-10, max(M2$summary.random$uv1$mean)+10,
-                max(M2$summary.random$uv1$mean)+10, min(M2$summary.random$uv1$mean)-10),
-          y = c(M1$summary.hyperpar$`0.975quant`[4], M1$summary.hyperpar$`0.975quant`[4],
-                M1$summary.hyperpar$`0.025quant`[4], M1$summary.hyperpar$`0.025quant`[4]),
-          col = "blue", density = 20)
+  plot(M2, NLeffectonly=T)$NL_Association +
+  	geom_hline(yintercept = M1$summary.hyperpar$mean[4], linetype = "dashed", color = "blue") +
+  	geom_ribbon(aes(ymin = M1$summary.hyperpar$`0.025quant`[4],
+  									ymax = M1$summary.hyperpar$`0.975quant`[4]),
+  							fill = "blue", alpha = 0.25) + 
+  	labs(title = "Edema association: \n transplant event",
+  			 x = "Linear predictor value", tag = "") + 
+  	theme(plot.title = element_text(hjust = 0.5))
   }
 
 
 
-## platelets Death event # VERY interesting # 2
+## platelets Death event # VERY interesting # 2 (done)
 
 {#Usual joint model with current value association
   M1 <- joint(formSurv = inla.surv(years, death) ~ drug,
@@ -393,8 +362,7 @@ plot(M2, NLeffectonly=T)$NL_Association +
               dataLong = Longi, dataSurv=Surv, id = "id", timeVar = "year", 
               assoc = "CV", basRisk = "rw2", NbasRisk=25, 
               control=list(int.strategy="eb"))
-  summary(M1)		
-  
+
   #Joint model with nonlinear current value association
   M2 <- joint(formSurv = inla.surv(years, death) ~ drug,
               formLong = platelets ~ (1 + year)*drug +
@@ -402,24 +370,20 @@ plot(M2, NLeffectonly=T)$NL_Association +
               dataLong = Longi, dataSurv=Surv, id = "id", timeVar = "year", 
               assoc = "NL_CV", basRisk = "rw2", NbasRisk=25, 
               control=list(int.strategy="eb"))
-  summary(M2)		
 
   
   #Plot the association 
-  plot(M2$summary.random$uv1$mean, M2$summary.random$NL_CV_L1_S1$mean, main = "Platelets association: \n death event",
-       xlab = "Linear predictor value", ylab = "multiplication factor", type = "p", pch = 20)
-  
-  abline(h = 0)
-  abline(h = M1$summary.hyperpar$mean[6], col = "blue", lty = 4, lwd = 2) 
-  
-  polygon(x = c(min(M2$summary.random$uv1$mean)-10, max(M2$summary.random$uv1$mean)+10,
-                max(M2$summary.random$uv1$mean)+10, min(M2$summary.random$uv1$mean)-10),
-          y = c(M1$summary.hyperpar$`0.975quant`[6], M1$summary.hyperpar$`0.975quant`[6],
-                M1$summary.hyperpar$`0.025quant`[6], M1$summary.hyperpar$`0.025quant`[6]),
-          col = "blue", density = 20)
+  plot(M2, NLeffectonly=T)$NL_Association +
+  	geom_hline(yintercept = M1$summary.hyperpar$mean[6], linetype = "dashed", color = "blue") +
+  	geom_ribbon(aes(ymin = M1$summary.hyperpar$`0.025quant`[6],
+  									ymax = M1$summary.hyperpar$`0.975quant`[6]),
+  							fill = "blue", alpha = 0.25) + 
+  	labs(title = "Platelets association: \n death event",
+  			 x = "Linear predictor value", tag = "") + 
+  	theme(plot.title = element_text(hjust = 0.5))
 }
 
-## platelets transplant event
+## platelets transplant event (done)
 {#Usual joint model with current value association
   M1 <- joint(formSurv = inla.surv(years, trans) ~ drug,
               formLong = platelets ~ (1 + year)*drug +
@@ -427,8 +391,7 @@ plot(M2, NLeffectonly=T)$NL_Association +
               dataLong = Longi, dataSurv=Surv, id = "id", timeVar = "year", 
               assoc = "CV", basRisk = "rw2", NbasRisk=25, 
               control=list(int.strategy="eb"))
-  summary(M1)		
-  
+
   #Joint model with nonlinear current value association
   M2 <- joint(formSurv = inla.surv(years, trans) ~ drug,
               formLong = platelets ~ (1 + year)*drug +
@@ -436,26 +399,22 @@ plot(M2, NLeffectonly=T)$NL_Association +
               dataLong = Longi, dataSurv=Surv, id = "id", timeVar = "year", 
               assoc = "NL_CV", basRisk = "rw2", NbasRisk=25, 
               control=list(int.strategy="eb"))
-  summary(M2)		
-  
+
 
   #Plot the association 
-  plot(M2$summary.random$uv1$mean, M2$summary.random$NL_CV_L1_S1$mean, main = "Platelets association: \n transplant event",
-       xlab = "Linear predictor value", ylab = "multiplication factor", type = "p", pch = 20)
-  
-  abline(h = 0)
-  abline(h = M1$summary.hyperpar$mean[6], col = "blue", lty = 4, lwd = 2) 
-  
-  polygon(x = c(min(M2$summary.random$uv1$mean)-10, max(M2$summary.random$uv1$mean)+10,
-                max(M2$summary.random$uv1$mean)+10, min(M2$summary.random$uv1$mean)-10),
-          y = c(M1$summary.hyperpar$`0.975quant`[6], M1$summary.hyperpar$`0.975quant`[6],
-                M1$summary.hyperpar$`0.025quant`[6], M1$summary.hyperpar$`0.025quant`[6]),
-          col = "blue", density = 20)
+  plot(M2, NLeffectonly=T)$NL_Association +
+  	geom_hline(yintercept = M1$summary.hyperpar$mean[6], linetype = "dashed", color = "blue") +
+  	geom_ribbon(aes(ymin = M1$summary.hyperpar$`0.025quant`[6],
+  									ymax = M1$summary.hyperpar$`0.975quant`[6]),
+  							fill = "blue", alpha = 0.25) + 
+  	labs(title = "Platelets association: \n transplant event",
+  			 x = "Linear predictor value", tag = "") + 
+  	theme(plot.title = element_text(hjust = 0.5))
 }
 
 
 
-## alkaline Death event # kind of not really # 3
+## alkaline Death event # kind of not really # 3 (done)
 {#Usual joint model with current value association
   M1 <- joint(formSurv = inla.surv(years, death) ~ drug,
               formLong = alkaline ~ (1 + year)*drug +
@@ -463,8 +422,7 @@ plot(M2, NLeffectonly=T)$NL_Association +
               dataLong = Longi, dataSurv=Surv, id = "id", timeVar = "year", 
               assoc = "CV", basRisk = "rw2", NbasRisk=25, 
               control=list(int.strategy="eb"))
-  summary(M1)		
-  
+
   #Joint model with nonlinear current value association
   M2 <- joint(formSurv = inla.surv(years, death) ~ drug,
               formLong = alkaline ~ (1 + year)*drug +
@@ -472,23 +430,19 @@ plot(M2, NLeffectonly=T)$NL_Association +
               dataLong = Longi, dataSurv=Surv, id = "id", timeVar = "year", 
               assoc = "NL_CV", basRisk = "rw2", NbasRisk=25, 
               control=list(int.strategy="eb"))
-  summary(M2)		
-  
+
   #Plot the association 
-  plot(M2$summary.random$uv1$mean, M2$summary.random$NL_CV_L1_S1$mean, main = "alkaline association: \n death event",
-       xlab = "Linear predictor value", ylab = "multiplication factor", type = "p", pch = 20)
-  
-  abline(h = 0)
-  abline(h = M1$summary.hyperpar$mean[6], col = "blue", lty = 4, lwd = 2) 
-  
-  polygon(x = c(min(M2$summary.random$uv1$mean)-10, max(M2$summary.random$uv1$mean)+10,
-                max(M2$summary.random$uv1$mean)+10, min(M2$summary.random$uv1$mean)-10),
-          y = c(M1$summary.hyperpar$`0.975quant`[6], M1$summary.hyperpar$`0.975quant`[6],
-                M1$summary.hyperpar$`0.025quant`[6], M1$summary.hyperpar$`0.025quant`[6]),
-          col = "blue", density = 20)
+  plot(M2, NLeffectonly=T)$NL_Association +
+  	geom_hline(yintercept = M1$summary.hyperpar$mean[6], linetype = "dashed", color = "blue") +
+  	geom_ribbon(aes(ymin = M1$summary.hyperpar$`0.025quant`[6],
+  									ymax = M1$summary.hyperpar$`0.975quant`[6]),
+  							fill = "blue", alpha = 0.25) + 
+  	labs(title = "Alkaline association: \n death event",
+  			 x = "Linear predictor value", tag = "") + 
+  	theme(plot.title = element_text(hjust = 0.5))
 }
 
-## alkaline transplant event
+## alkaline transplant event (done)
 {#Usual joint model with current value association
   M1 <- joint(formSurv = inla.surv(years, trans) ~ drug,
               formLong = alkaline ~ (1 + year)*drug +
@@ -496,8 +450,7 @@ plot(M2, NLeffectonly=T)$NL_Association +
               dataLong = Longi, dataSurv=Surv, id = "id", timeVar = "year", 
               assoc = "CV", basRisk = "rw2", NbasRisk=25, 
               control=list(int.strategy="eb"))
-  summary(M1)		
-  
+
   #Joint model with nonlinear current value association
   M2 <- joint(formSurv = inla.surv(years, trans) ~ drug,
               formLong = alkaline ~ (1 + year)*drug +
@@ -505,25 +458,21 @@ plot(M2, NLeffectonly=T)$NL_Association +
               dataLong = Longi, dataSurv=Surv, id = "id", timeVar = "year", 
               assoc = "NL_CV", basRisk = "rw2", NbasRisk=25, 
               control=list(int.strategy="eb"))
-  summary(M2)		
-  
+
   #Plot the association 
-  plot(M2$summary.random$uv1$mean, M2$summary.random$NL_CV_L1_S1$mean, main = "Alkaline association: \n transplant event",
-       xlab = "Linear predictor value", ylab = "multiplication factor", type = "p", pch = 20)
-  
-  abline(h = 0)
-  abline(h = M1$summary.hyperpar$mean[6], col = "blue", lty = 4, lwd = 2) 
-  
-  polygon(x = c(min(M2$summary.random$uv1$mean)-10, max(M2$summary.random$uv1$mean)+10,
-                max(M2$summary.random$uv1$mean)+10, min(M2$summary.random$uv1$mean)-10),
-          y = c(M1$summary.hyperpar$`0.975quant`[6], M1$summary.hyperpar$`0.975quant`[6],
-                M1$summary.hyperpar$`0.025quant`[6], M1$summary.hyperpar$`0.025quant`[6]),
-          col = "blue", density = 20)
+  plot(M2, NLeffectonly=T)$NL_Association +
+  	geom_hline(yintercept = M1$summary.hyperpar$mean[6], linetype = "dashed", color = "blue") +
+  	geom_ribbon(aes(ymin = M1$summary.hyperpar$`0.025quant`[6],
+  									ymax = M1$summary.hyperpar$`0.975quant`[6]),
+  							fill = "blue", alpha = 0.25) + 
+  	labs(title = "Alkaline association: \n transplant event",
+  			 x = "Linear predictor value", tag = "") + 
+  	theme(plot.title = element_text(hjust = 0.5))
 }
 
 
 
-## ascites Death event
+## ascites Death event (done)
 {#Usual joint model with current value association
   M1 <- joint(formSurv = inla.surv(years, death) ~ drug,
               formLong = ascites ~ (1 + year)*drug +
@@ -531,8 +480,7 @@ plot(M2, NLeffectonly=T)$NL_Association +
               dataLong = Longi, dataSurv=Surv, id = "id", timeVar = "year", 
               assoc = "CV", basRisk = "rw2", NbasRisk=25, 
               control=list(int.strategy="eb"))
-  summary(M1)		
-  
+
   #Joint model with nonlinear current value association
   M2 <- joint(formSurv = inla.surv(years, death) ~ drug,
               formLong = ascites ~ (1 + year)*drug +
@@ -540,23 +488,19 @@ plot(M2, NLeffectonly=T)$NL_Association +
               dataLong = Longi, dataSurv=Surv, id = "id", timeVar = "year", 
               assoc = "NL_CV", basRisk = "rw2", NbasRisk=25, 
               control=list(int.strategy="eb"))
-  summary(M2)		
-  
+
   #Plot the association 
-  plot(M2$summary.random$uv1$mean, M2$summary.random$NL_CV_L1_S1$mean, main = "Ascites association: \n death event",
-       xlab = "Linear predictor value", ylab = "multiplication factor", type = "p", pch = 20)
-  
-  abline(h = 0)
-  abline(h = M1$summary.hyperpar$mean[4], col = "blue", lty = 4, lwd = 2) 
-  
-  polygon(x = c(min(M2$summary.random$uv1$mean)-10, max(M2$summary.random$uv1$mean)+10,
-                max(M2$summary.random$uv1$mean)+10, min(M2$summary.random$uv1$mean)-10),
-          y = c(M1$summary.hyperpar$`0.975quant`[4], M1$summary.hyperpar$`0.975quant`[4],
-                M1$summary.hyperpar$`0.025quant`[4], M1$summary.hyperpar$`0.025quant`[4]),
-          col = "blue", density = 20)
+  plot(M2, NLeffectonly=T)$NL_Association +
+  	geom_hline(yintercept = M1$summary.hyperpar$mean[4], linetype = "dashed", color = "blue") +
+  	geom_ribbon(aes(ymin = M1$summary.hyperpar$`0.025quant`[4],
+  									ymax = M1$summary.hyperpar$`0.975quant`[4]),
+  							fill = "blue", alpha = 0.25) + 
+  	labs(title = "Ascites association: \n death event",
+  			 x = "Linear predictor value", tag = "") + 
+  	theme(plot.title = element_text(hjust = 0.5))
 }
 
-## ascites transplant event # very interesting  # 4
+## ascites transplant event # very interesting  # 4 (done)
 														# Stupid warning ????
 														# ?????
 {#Usual joint model with current value association
@@ -566,8 +510,7 @@ plot(M2, NLeffectonly=T)$NL_Association +
               dataLong = Longi, dataSurv=Surv, id = "id", timeVar = "year", 
               assoc = "CV", basRisk = "rw2", NbasRisk=25, 
               control=list(int.strategy="eb"))
-  summary(M1)		
-  
+
   #Joint model with nonlinear current value association
   M2 <- joint(formSurv = inla.surv(years, trans) ~ drug,
               formLong = ascites ~ (1 + year)*drug +
@@ -575,24 +518,20 @@ plot(M2, NLeffectonly=T)$NL_Association +
               dataLong = Longi, dataSurv=Surv, id = "id", timeVar = "year", 
               assoc = "NL_CV", basRisk = "rw2", NbasRisk=25, 
               control=list(int.strategy="eb"))
-  summary(M2)		
-  
+
   #Plot the association 
-  plot(M2$summary.random$uv1$mean, M2$summary.random$NL_CV_L1_S1$mean, main = "Ascites association: \n transplant event",
-       xlab = "Linear predictor value", ylab = "multiplication factor", type = "p", pch = 20)
-  
-  abline(h = 0)
-  abline(h = M1$summary.hyperpar$mean[4], col = "blue", lty = 4, lwd = 2) 
-  
-  polygon(x = c(min(M2$summary.random$uv1$mean)-10, max(M2$summary.random$uv1$mean)+10,
-                max(M2$summary.random$uv1$mean)+10, min(M2$summary.random$uv1$mean)-10),
-          y = c(M1$summary.hyperpar$`0.975quant`[4], M1$summary.hyperpar$`0.975quant`[4],
-                M1$summary.hyperpar$`0.025quant`[4], M1$summary.hyperpar$`0.025quant`[4]),
-          col = "blue", density = 20)
+  plot(M2, NLeffectonly=T)$NL_Association +
+  	geom_hline(yintercept = M1$summary.hyperpar$mean[4], linetype = "dashed", color = "blue") +
+  	geom_ribbon(aes(ymin = M1$summary.hyperpar$`0.025quant`[4],
+  									ymax = M1$summary.hyperpar$`0.975quant`[4]),
+  							fill = "blue", alpha = 0.25) + 
+  	labs(title = "Ascites association: \n transplant event",
+  			 x = "Linear predictor value", tag = "") + 
+  	theme(plot.title = element_text(hjust = 0.5))
 }
 
 
-##Spiders Death event # interesting # 5
+##Spiders Death event # interesting # 5 (done)
 											#????
 {
 M1 <- joint(formSurv = inla.surv(years, death) ~ drug,
@@ -601,7 +540,6 @@ M1 <- joint(formSurv = inla.surv(years, death) ~ drug,
             dataLong = Longi, dataSurv=Surv, id = "id", timeVar = "year", 
             assoc = "CV", basRisk = "rw2", NbasRisk=25, 
             control=list(int.strategy="eb"))
-summary(M1)		
 
 #Joint model with nonlinear current value association
 M2 <- joint(formSurv = inla.surv(years, death) ~ drug,
@@ -610,24 +548,19 @@ M2 <- joint(formSurv = inla.surv(years, death) ~ drug,
             dataLong = Longi, dataSurv=Surv, id = "id", timeVar = "year", 
             assoc = "NL_CV", basRisk = "rw2", NbasRisk=25, 
             control=list(int.strategy="eb"))
-summary(M2)		
 
 #Spiders plot
-
-plot(M2$summary.random$uv1$mean, M2$summary.random$NL_CV_L1_S1$mean, main = "Spiders association: \n death event",
-     xlab = "Linear predictor value", ylab = "multiplication factor", type = "p", pch = 20)
-
-abline(h = 0)
-abline(h = M1$summary.hyperpar$mean[4], col = "blue", lty = 4, lwd = 2) 
-
-polygon(x = c(min(M2$summary.random$uv1$mean)-10, max(M2$summary.random$uv1$mean)+10,
-              max(M2$summary.random$uv1$mean)+10, min(M2$summary.random$uv1$mean)-10),
-        y = c(M1$summary.hyperpar$`0.975quant`[4], M1$summary.hyperpar$`0.975quant`[4],
-              M1$summary.hyperpar$`0.025quant`[4], M1$summary.hyperpar$`0.025quant`[4]),
-        col = "blue", density = 20)
+plot(M2, NLeffectonly=T)$NL_Association +
+	geom_hline(yintercept = M1$summary.hyperpar$mean[4], linetype = "dashed", color = "blue") +
+	geom_ribbon(aes(ymin = M1$summary.hyperpar$`0.025quant`[4],
+									ymax = M1$summary.hyperpar$`0.975quant`[4]),
+							fill = "blue", alpha = 0.25) + 
+	labs(title = "Spiders association: \n death event",
+			 x = "Linear predictor value", tag = "") + 
+	theme(plot.title = element_text(hjust = 0.5))
 }
 
-##Spiders transplant event #  pretty interesting # 6
+##Spiders transplant event #  pretty interesting # 6 (done)
 													 # STUPID WARNING ?????
 													# ?????????
 {
@@ -637,8 +570,7 @@ polygon(x = c(min(M2$summary.random$uv1$mean)-10, max(M2$summary.random$uv1$mean
               dataLong = Longi, dataSurv=Surv, id = "id", timeVar = "year", 
               assoc = "CV", basRisk = "rw2", NbasRisk=25, 
               control=list(int.strategy="eb"))
-  summary(M1)		
-  
+
   #Joint model with nonlinear current value association
   M2 <- joint(formSurv = inla.surv(years, trans) ~ drug,
               formLong = spiders ~ (1 + year)*drug +
@@ -646,21 +578,17 @@ polygon(x = c(min(M2$summary.random$uv1$mean)-10, max(M2$summary.random$uv1$mean
               dataLong = Longi, dataSurv=Surv, id = "id", timeVar = "year", 
               assoc = "NL_CV", basRisk = "rw2", NbasRisk=25, 
               control=list(int.strategy="eb"))
-  summary(M2)		
-  
+
   #Spiders plot
   
-  plot(M2$summary.random$uv1$mean, M2$summary.random$NL_CV_L1_S1$mean, main = "Spiders association: \n transplant event",
-       xlab = "Linear predictor value", ylab = "multiplication factor", type = "p", pch = 20)
-  
-  abline(h = 0)
-  abline(h = M1$summary.hyperpar$mean[4], col = "blue", lty = 4, lwd = 2) 
-  
-  polygon(x = c(min(M2$summary.random$uv1$mean)-10, max(M2$summary.random$uv1$mean)+10,
-                max(M2$summary.random$uv1$mean)+10, min(M2$summary.random$uv1$mean)-10),
-          y = c(M1$summary.hyperpar$`0.975quant`[4], M1$summary.hyperpar$`0.975quant`[4],
-                M1$summary.hyperpar$`0.025quant`[4], M1$summary.hyperpar$`0.025quant`[4]),
-          col = "blue", density = 20)
+  plot(M2, NLeffectonly=T)$NL_Association +
+  	geom_hline(yintercept = M1$summary.hyperpar$mean[4], linetype = "dashed", color = "blue") +
+  	geom_ribbon(aes(ymin = M1$summary.hyperpar$`0.025quant`[4],
+  									ymax = M1$summary.hyperpar$`0.975quant`[4]),
+  							fill = "blue", alpha = 0.25) + 
+  	labs(title = "Spiders association: \n transplant event",
+  			 x = "Linear predictor value", tag = "") + 
+  	theme(plot.title = element_text(hjust = 0.5))
 }
 
 

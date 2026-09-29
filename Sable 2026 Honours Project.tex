@@ -13,6 +13,7 @@
 \usepackage{amsthm}
 \usepackage{graphicx}
 \usepackage{setspace}
+\usepackage{multirow}
 
 \newcommand{\ubar}[1]{\text{\b{$#1$}}}
 
@@ -127,15 +128,14 @@ the final document is printed and submitted.
 
 \section{Introduction}
 
-YOUR 10 PAGE COUNT STARTS HERE
+%YOUR 10 PAGE COUNT STARTS HERE
 
-The introduction should provide a detailed description of the topic
-and the aim of the research report. In addition the literature review
-should intertwine with this. It is important to always reference where
-needed. All work from somewhere else requires a reference \cite{Anguelov2010}.
-\\
+%The introduction should provide a detailed description of the topic
+%and the aim of the research report. In addition the literature review
+%should intertwine with this. It is important to always reference where
+%needed. All work from somewhere else requires a reference \cite{Anguelov2010}.
 
-Consider the case where data on one or more patients with a certain condition is available. Two processes are of interest in this example. The longitudinal (time-dependant) biomarker evolution and when a specific event will or will no occur or Time-To-Event (TTE) survivability. Biomarker examples include insulin levels, tumor sizes, and cholesterol levels. Corresponding events may be a diabetes diagnosis, death, or a heart attack. These two processes are not independent. If the patients biomarkers improve then their survivability is expected to be better than that of a patient whose biomarkers are degrading. Furthermore, if the event is censoring (as in the case for death), then the remaining patient biomarker data is expected to bias itself to values that correspond to the event not occurring. To capture the interaction and codependency of these processes, a joint model is used.
+Consider the case where data on one or more patients with a certain condition is available. Two processes are of interest in this example. The longitudinal (time-dependant) biomarker evolution and when a specific event will or will no occur or Time-To-Event (TTE) survivability. Biomarker examples include insulin levels, tumor sizes, and cholesterol levels. Corresponding events may be a diabetes diagnosis, death, or a heart attack. These two processes are not independent. If the patients biomarkers improve then their survivability is expected to be better than that of a patient whose biomarkers are degrading. Furthermore, if the event is censoring, i.e. no measurents can be taken after the event has occured such as in the case of a death event, then the remaining patient biomarker data is expected to bias itself to values that correspond to the event being less likely. To capture the interaction and codependency of these processes, a joint model is used.
 \\
 
 A joint model makes use of a linkage function (denoted $f(t, \ubar{\Psi}_i)$ where $t$ is the time at which patient $i$ is being considered and $\ubar{\Psi}_i$ are the individual parameters of patient $i$) to model the interaction between the longitudinal and TTE processes. For the sake of interpretability and simplicity, linear linkage functions are often used. Common examples include:
@@ -150,52 +150,39 @@ A joint model makes use of a linkage function (denoted $f(t, \ubar{\Psi}_i)$ whe
 Use of non-linear joint models is limited and generally uncommon. Notable examples of non-linear models do exist. Namely (Desmee) where the Prostate-Specific Antigens (PSA), a biomarker often associated with prostate cancer, were modelled jointly with the risk of death. The link function $f(t, \ubar{\Psi}_i) = \mathrm{log}(\mathrm{PSA}(t, \ubar{\Psi}_i) + 1)$ was used where one is added to the biomarker value to ensure the log function argument is greater than or equal to one. Additionally, splines make for highly flexible if unpredictable non-linear links functions.
 \\
 
-Currently, multiple R packages are capable of fitting joint models. Examples include joineR, JM, JMbayes, rstanarm, and INLAjoint. However, these packages do not have options for non-linear link functions and do not allow custom link functions, limiting them to linear linkage cases. This creates a challenge in the testing and investigation of non-linear models as such models must be created by the researcher themself.
+Currently, multiple R packages are capable of fitting joint models. Examples include joineR, JM, JMbayes, rstanarm, and INLAjoint. However, the majority of these packages do not have options for non-linear link functions and do not allow custom link functions, limiting them to linear linkage cases. This creates a challenge in the testing and investigation of non-linear models as such models must be created by the researcher themself.
 
 This study aims to investigate the the effects of using a non-linear association function in a joint model within a clinical context; advantages, disadvantages, and general efficacy will be investigated and discussed.
 
-QUESTIONS/POINTS TO COVER:
 
--
+%Numbered display equation: 
+%\begin{equation}
+%x=y\label{eq:afe,fjgd}
+%\end{equation}
 
--
+%Numbered equation: 
+%\begin{equation}
+%x=y+1
+%\end{equation}
 
--
+%Equation array: 
 
--
-
--
-
-Inline equation: $x=y$
-
-Display equation: \[x=y\]
-
-Numbered display equation: 
-\begin{equation}
-x=y\label{eq:afe,fjgd}
-\end{equation}
-
-Numbered equation: 
-\begin{equation}
-x=y+1
-\end{equation}
-
-Equation array: 
-
-\begin{eqnarray*}
-x & = & y+2+3\\
- & = & y+5.
-\end{eqnarray*}
+%\begin{eqnarray*}
+%x & = & y+2+3\\
+% & = & y+5.
+%\end{eqnarray*}
 
 
 \section{Methodology}
 
+The relevant theory and methodology behind joint models are discussed here.
+
 \subsection{Longitudinal mixed-effect model}
 
 For some patient $i$, let their measured biomarker value at time $t$ be
-$$
+\begin{equation}
 y_i(t) = m(t, \ubar{\Psi}_i) + (a + b \cdot m(t, \ubar{\Psi}_i)) \cdot e_i(t)
-$$
+\end{equation}
 where:
 \begin{itemize}
 	\item $m(t, \ubar{\Psi}_i)$ is the constructed biomarker model.
@@ -227,29 +214,29 @@ $$
 Thus, every patient has the TTE data $(T_i, \delta_i)$. Where:
 \begin{itemize}
 	\item $T_i = \mathrm{min}(X_i, C_i)$
-	\item $C_i$ is the censoring. i.e. the time at which the event is no longer measurable and has not yet occurred.
+	\item $C_i$ is the censoring time. i.e. the time at which the event is no longer measurable and has not yet occurred.
 \end{itemize}
 
 Let the hazard function $h_i(t)$ be the instantaneous risk of the event occurring to patient $i$ at time $t$. Then $h_i(t)$ is defined as
 
-$$
+\begin{equation}
 h_i(t) = \lim_{\Delta t \to 0} \frac{\mathrm{P}(t < T_i \le t + \Delta t \mid T_i > t)}{\Delta t}
-$$
+\end{equation}
 
 Generally, a proportional model is used to account for the effect of specific covariate(s), say $x_i$. In this case,
 
-$$
+\begin{equation}
 h_i(t) = h_0(t) \cdot e^{\rho x_i}
-$$
+\end{equation}
 
-Where $h_0(t)$ is the baseline hazard function shared across patients and $\rho$ characterizes to strength of association be tween $x_i$ and the risk of event.
+Where $h_0(t)$ is the baseline hazard function shared across patients and $\rho$ indicates the strength and direction of association between $x_i$ and the risk of event.
 \\
 
-Of more interest is the probability that the event has not occurred to patient $i$ at time $t$. This survival function is defined as
+Of greater interest is the probability that the event will have not occurred to patient $i$ at time $t$. This survival function is defined as
 
-$$
+\begin{equation}
 S_i(t) = \mathrm{P}(T_i > t) = e^{ - \int_{0}^{t} h_i(u)\ du}
-$$
+\end{equation}
 
 Let $\theta_s = \{\theta_0, \rho\}$ be the set of population parameters for the survival model where $\theta_0$ is the set of parameters for $h_0$.
 
@@ -257,13 +244,14 @@ Let $\theta_s = \{\theta_0, \rho\}$ be the set of population parameters for the 
 
 From this, a joint model can be easily defined as 
 
-$$
-h_i(t, \ubar{\Psi}_i) = h_0(t) \cdot e^{\ \beta \cdot  f(t, \ubar{\Psi}_i)}
-$$
+\begin{equation}
+h_i(t, \ubar{\Psi}_i) = h_0(t) \cdot e^{\ \beta \cdot  f(t, \ubar{\Psi}_i)\ +\ \gamma \cdot g(\ubar{\Psi}_i)}
+\end{equation}
 
-Where $f$ is the link function and $\beta$ is the link parameter.
+Where $f(t, \ubar{\Psi}_i)$ is the direct effects and is some function of $m(t, \ubar{\Psi}_i)$ and $g(\bar{\Psi}_i)$ is the direct effects.
+The joint model is non-linear in the case where $\beta$ is some non-constant function of $f(t, \ubar{\Psi}_i)$.
 
-Thus, once a link function is chosen, the population parameters $\theta = \{\theta_m, \theta_i, \beta \}$ can be estimated.
+Thus, once a link function is chosen, the population parameters $\theta = \{\theta_m, \theta_i, \beta, \gamma \}$ can be estimated.
 
 \subsection{Inference}
 
@@ -271,20 +259,24 @@ In this study, a Bayesian approach to inference will be taken. This allows for t
 
 By direct application of Bayes theorem, we obtain
 
-\begin{align*}
+
+\begin{align}
 \mathrm{P}(\ubar{\theta}, \ubar{\eta}_i \mid \ubar{Y}_i, T_i, \delta_i) &\propto
 \mathrm{p}(\ubar{\theta}, \ubar{\eta}_i) \cdot
 \mathrm{L}(\ubar{Y}_i, T_i, \delta_i \mid \ubar{\theta}, \ubar{\eta}_i)\\  &\propto
 \prod_{j = 1}^{n_i} \mathrm{P}(Y_{ij} \mid \ubar{\theta}, \ubar{\eta}_i) \cdot
 \mathrm{P}(T_i, \delta_i \mid \ubar{\theta}, \ubar{\eta}_i) \cdot
 \mathrm{P}(\ubar{\eta}_i \mid \ubar{\theta}) \cdot \mathrm{P}(\ubar{\theta})
-\end{align*}
+\end{align}
+
 
 Where $\ubar{Y}_i$ is the vector of all biomarker measurements for patient $i$, $Y_{ij}$ is the biomarker value for patient $i$ at their $j$'th measurement, and $n_i$ is the number of biomarker measurements for patient $i$.
 \\
 
-Hence, to estimate the population parameters and the random effects, we need only to sample them from the obtained posterior distribution. However, in the case of a non-linear joint model, this process becomes more challenging than that of a linear model. One solution is the No-U-Turn Sampler variation of the Hamiltonian-Monte Carlo algorithm as implemented in Stan.% Alternatively, a combination of the standard MCMC Gibbs sampling and Metropolis-Hastings as implemented in WimBUGS may be used.
+Hence, to estimate the population parameters and the random effects, we need only to sample them from the obtained posterior distribution. However, in the case of a non-linear joint model, this process becomes more challenging than that of a linear model. One solution is the No-U-Turn Sampler variation of the Hamiltonian-Monte Carlo algorithm as implemented in Stan.
+%AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa
 
+\begin{comment}
 \subsection{Individual prediction}
 
 Of great use to the medical field is the ability to make predictions regarding an individual patient thus make better informed decisions regarding treatment of that individual patient.
@@ -365,9 +357,70 @@ m,fgkrjtbnel
 vnitunrivuptnriuwvtnoiutnreuvnt
 \end{proof}
 
+\end{comment}
 
 
 \section{Application}
+
+The primary biliary cirrhosis dataset as gathered by the Mayo Clinic between 1974 and 1984, measuring 19 variables across 312 randomised patients, will be analysed [FLEMINGAAAAAAAA]. The version of this dataset found in the R package JMbayes2 under the name pbc2 will be used.[BBBBBBB]. 
+Within the orginal dataset, the edema variable is a trinary variable. For this study, this variable has been reduced to a binary variable indicating whether or not an edema was present at measurement.
+\\
+
+Linear and non-linear joint models are to be fitted using INLAjoint in R.  The eight variables to be considered are  serum bilirubin concentration, SGOT concentration, albumin concentration, edema presence, platelet count, alkaline phosphatase concentration, ascites presence, ad presence of spider-like patterns on the skin.
+\\
+
+For each variable, four joint models will be fitted. A linear joint model and a non-linear joint model will be fitted treating death as the event of interest. A similar pair of joint models will be fitted treating liver transplant as the event of interest.
+\\
+
+For each joint model pair, the estimated effect and corresponding 95\% confidence interval are plotted together and interpreted. Specific attention will be given to the analysis of the models of the ascites variable where liver tranplantation is the event of interest. The Deviance Information Criterion (DIC) and Widely applicable Bayesian Information Criterion (WBIC) are calulated for each model and compared.
+
+\section{Results}
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{| l | l | c | c | c | c |}
+\cline{3-6}
+ \multicolumn{2}{ c |}{} & \multicolumn{2}{ c |}{{Linear model}} & \multicolumn{2}{ c |}{{Non-linear model}} \\
+\hline
+{Variable} & {Event} & {DIC} & {WBIC} & {DIC} & {WBIC} \\
+\hline
+\hline
+\multirow{2}{4em}{Serum bilirubin} & Death        & 4902.609 & 4946.742 &  4902.13 & 4944.485\\
+\cline{2-2}
+					           & Transplant & 4071.672 & 4117.198 & 4070.28  & 4115.777\\
+\cline{1-2}
+\multirow{2}{4em}{SGOT}               & Death       & 19497.23 & 20037.12 & 19482.86 & 20022.05\\
+\cline{2-2}
+						  & Transplant & 18544.92 & 19069.8 & 18534.57 & 19061.93\\
+\cline{1-2}
+\multirow{2}{4em}{Albumin}          & Death        & 2764.856 & 3014.882 & 2766.197 & 3048.331\\
+\cline{2-2}
+						  & Transplant & 1908.689 & 2069.652 & 1895.431 & 2007.982\\
+\cline{1-2}
+\multirow{2}{4em}{Edema}            & Death        & 2582.435 & 2530.852 & 2604.887 & 2576.556\\
+\cline{2-2}
+						 & Transplant & 1730.421 & 1664.705 & 1708.107 & 1677.515\\
+\cline{1-2}
+\multirow{2}{4em}{Platelets}         & Death        & 21196.92 & 21323.67 & 21191.45 & 21315.79\\
+\cline{2-2}
+						 & Transplant & 20220.62 & 20349.74 & 20224.22 & 20352.82\\
+\cline{1-2}
+\multirow{2}{4em}{Alkaline}		 & Death	    & 29024.2 & 29178.92 & 29018.79 & 29173.92\\
+\cline{2-2}
+						& Transplant & 28015.65 & 28169.95 & 27997.13 & 28155.36\\
+\cline{1-2}
+\multirow{2}{4em}{Ascites}		& Death	   & 2185.548 & 2159.431 & 2226.738 & 2231.49\\
+\cline{2-2}
+						& Transplant & 1369.197 & 1343.332 & 1278.394 & 1259.9\\
+\cline{1-2}
+\multirow{2}{4em}{Spiders}		& Death	   & 2868.248 & 2807.265 & 2771.853 & 2711.456\\
+\cline{2-2}
+						& Transplant & 1929.686 & 1858.482 & 1922.981 & 1851.726\\
+\hline
+\end{tabular}
+\caption{DIC and WBIC for fitted models}
+\end{center}
+\end{table}
+
 
 \begin{sidewaystable}
 \begin{centering}
