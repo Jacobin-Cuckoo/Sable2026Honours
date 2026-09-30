@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.7.18)  30 SEP 2026 16:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.7.18)  30 SEP 2026 16:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -771,83 +771,73 @@ Non-PDF special ignored!
 Non-PDF special ignored!
 <special> ps:tx@Dict begin  gsave STV CP T /ps@rot 0 def grestore  end
 {C:/Users/twink/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <./UPlogohigh
-res.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 74--78
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 79--81
-
- []
-
-[2] [3] (Sable 2026 Honours Project.toc)
+res.jpg>] [2] [3] (Sable 2026 Honours Project.toc)
 \tf@toc=\write3
 \openout3 = `"Sable 2026 Honours Project.toc"'.
 
- (Sable 2026 Honours Project.lof)
+
+(Sable 2026 Honours Project.lof)
 \tf@lof=\write4
 \openout4 = `"Sable 2026 Honours Project.lof"'.
 
-
-(Sable 2026 Honours Project.lot)
+ (Sable 2026 Honours Project.lot)
 \tf@lot=\write5
 \openout5 = `"Sable 2026 Honours Project.lot"'.
 
  [4]
-Underfull \hbox (badness 10000) in paragraph at lines 138--140
+Underfull \hbox (badness 10000) in paragraph at lines 133--135
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 150--152
+Underfull \hbox (badness 10000) in paragraph at lines 145--147
 
  []
 
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 211--213
+Underfull \hbox (badness 10000) in paragraph at lines 206--208
 
  []
 
 [6]
-Underfull \hbox (badness 10000) in paragraph at lines 232--234
+Underfull \hbox (badness 10000) in paragraph at lines 227--229
 
  []
 
 [7]
-Underfull \hbox (badness 10000) in paragraph at lines 273--275
+Underfull \hbox (badness 10000) in paragraph at lines 268--270
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 365--368
+Underfull \hbox (badness 10000) in paragraph at lines 360--363
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 369--371
+Underfull \hbox (badness 10000) in paragraph at lines 364--366
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 372--374
+Underfull \hbox (badness 10000) in paragraph at lines 367--369
 
  []
 
 [8]
-Underfull \hbox (badness 10000) in paragraph at lines 381--383
+Underfull \hbox (badness 10000) in paragraph at lines 376--378
 
  []
 
 <AscitesTrans.png, id=50, 405.01312pt x 305.64188pt>
 File: AscitesTrans.png Graphic file (type png)
 <use AscitesTrans.png>
-Package pdftex.def Info: AscitesTrans.png  used on input line 386.
+Package pdftex.def Info: AscitesTrans.png  used on input line 381.
 (pdftex.def)             Requested size: 227.62204pt x 171.77855pt.
 <EdemaDeath.png, id=52, 405.01312pt x 304.88907pt>
 File: EdemaDeath.png Graphic file (type png)
 <use EdemaDeath.png>
-Package pdftex.def Info: EdemaDeath.png  used on input line 398.
+Package pdftex.def Info: EdemaDeath.png  used on input line 393.
 (pdftex.def)             Requested size: 227.62204pt x 171.35545pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -856,22 +846,22 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 453--455
+Underfull \hbox (badness 10000) in paragraph at lines 448--450
 
  []
 
 [9 <./AscitesTrans.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 456--458
+Underfull \hbox (badness 10000) in paragraph at lines 451--453
 
  []
 
 [10 <./EdemaDeath.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 459--461
+Underfull \hbox (badness 10000) in paragraph at lines 454--456
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 501--502
+Underfull \hbox (badness 10000) in paragraph at lines 496--497
 
  []
 
@@ -916,9 +906,9 @@ Data/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/tw
 ink/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:
 /Users/twink/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7
 .pfb>
-Output written on "Sable 2026 Honours Project.pdf" (13 pages, 1829786 bytes).
+Output written on "Sable 2026 Honours Project.pdf" (13 pages, 1829269 bytes).
 PDF statistics:
- 451 PDF objects out of 1000 (max. 8388607)
+ 450 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  16 words of extra memory for PDF output out of 10000 (max. 10000000)
 
