@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.7.18)  29 SEP 2026 15:29
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.7.18)  30 SEP 2026 16:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -834,22 +834,63 @@ Underfull \hbox (badness 10000) in paragraph at lines 372--374
 
  []
 
-[8] [9] [10]
+[8]
+Underfull \hbox (badness 10000) in paragraph at lines 381--383
+
+ []
+
+<AscitesTrans.png, id=50, 405.01312pt x 305.64188pt>
+File: AscitesTrans.png Graphic file (type png)
+<use AscitesTrans.png>
+Package pdftex.def Info: AscitesTrans.png  used on input line 386.
+(pdftex.def)             Requested size: 227.62204pt x 171.77855pt.
+<EdemaDeath.png, id=52, 405.01312pt x 304.88907pt>
+File: EdemaDeath.png Graphic file (type png)
+<use EdemaDeath.png>
+Package pdftex.def Info: EdemaDeath.png  used on input line 398.
+(pdftex.def)             Requested size: 227.62204pt x 171.35545pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 453--455
+
+ []
+
+[9 <./AscitesTrans.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 456--458
+
+ []
+
+[10 <./EdemaDeath.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 459--461
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 501--502
+
+ []
+
+[11] [12]
 No file "Sable 2026 Honours Project".bbl.
-[11] (Sable 2026 Honours Project.aux)
+[13] (Sable 2026 Honours Project.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 15408 strings out of 467866
- 274602 string characters out of 5418313
- 760117 words of memory out of 5000000
- 43975 multiletter control sequences out of 15000+600000
+ 15413 strings out of 467866
+ 274693 string characters out of 5418313
+ 757069 words of memory out of 5000000
+ 43980 multiletter control sequences out of 15000+600000
  644478 words of font info for 82 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 87i,17n,93p,1023b,368s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 87i,17n,93p,1027b,368s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\twink\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm
 0700.pk> <C:\Users\twink\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi60
 0\ecbx1200.pk> <C:\Users\twink\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec
@@ -875,9 +916,9 @@ Data/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/tw
 ink/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:
 /Users/twink/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7
 .pfb>
-Output written on "Sable 2026 Honours Project.pdf" (11 pages, 1810086 bytes).
+Output written on "Sable 2026 Honours Project.pdf" (13 pages, 1829786 bytes).
 PDF statistics:
- 437 PDF objects out of 1000 (max. 8388607)
+ 451 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 16 words of extra memory for PDF output out of 10000 (max. 10000000)
 

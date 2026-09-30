@@ -135,7 +135,7 @@ the final document is printed and submitted.
 %should intertwine with this. It is important to always reference where
 %needed. All work from somewhere else requires a reference \cite{Anguelov2010}.
 
-Consider the case where data on one or more patients with a certain condition is available. Two processes are of interest in this example. The longitudinal (time-dependant) biomarker evolution and when a specific event will or will no occur or Time-To-Event (TTE) survivability. Biomarker examples include insulin levels, tumor sizes, and cholesterol levels. Corresponding events may be a diabetes diagnosis, death, or a heart attack. These two processes are not independent. If the patients biomarkers improve then their survivability is expected to be better than that of a patient whose biomarkers are degrading. Furthermore, if the event is censoring, i.e. no measurents can be taken after the event has occured such as in the case of a death event, then the remaining patient biomarker data is expected to bias itself to values that correspond to the event being less likely. To capture the interaction and codependency of these processes, a joint model is used.
+Consider the case where data on one or more patients with a certain condition is available. Two processes are of interest in this example. The longitudinal (time-dependant) biomarker evolution and when a specific event will or will no occur or Time-To-Event (TTE) survivability. Biomarker examples include insulin levels, tumour sizes, and cholesterol levels. Corresponding events may be a diabetes diagnosis, death, or a heart attack. These two processes are not independent. If the patients biomarkers improve then their survivability is expected to be better than that of a patient whose biomarkers are degrading. Furthermore, if the event is censoring, i.e. no measurements can be taken after the event has occurred such as in the case of a death event, then the remaining patient biomarker data is expected to bias itself to values that correspond to the event being less likely. To capture the interaction and codependency of these processes, a joint model is used.
 \\
 
 A joint model makes use of a linkage function (denoted $f(t, \ubar{\Psi}_i)$ where $t$ is the time at which patient $i$ is being considered and $\ubar{\Psi}_i$ are the individual parameters of patient $i$) to model the interaction between the longitudinal and TTE processes. For the sake of interpretability and simplicity, linear linkage functions are often used. Common examples include:
@@ -363,18 +363,44 @@ vnitunrivuptnriuwvtnoiutnreuvnt
 \section{Application}
 
 The primary biliary cirrhosis dataset as gathered by the Mayo Clinic between 1974 and 1984, measuring 19 variables across 312 randomised patients, will be analysed [FLEMINGAAAAAAAA]. The version of this dataset found in the R package JMbayes2 under the name pbc2 will be used.[BBBBBBB]. 
-Within the orginal dataset, the edema variable is a trinary variable. For this study, this variable has been reduced to a binary variable indicating whether or not an edema was present at measurement.
+Within the original dataset, the edema variable is a trinary variable. For this study, this variable has been reduced to a binary variable indicating whether or not an edema was present at measurement.
 \\
 
-Linear and non-linear joint models are to be fitted using INLAjoint in R.  The eight variables to be considered are  serum bilirubin concentration, SGOT concentration, albumin concentration, edema presence, platelet count, alkaline phosphatase concentration, ascites presence, ad presence of spider-like patterns on the skin.
+Linear and non-linear joint models are to be fitted using INLAjoint in R.  The eight variables to be considered are  serum bilirubin concentration, SGOT concentration, albumin concentration, edema presence, platelet count, alkaline phosphatase concentration, ascites, and presence of spider-like patterns on the skin.
 \\
 
 For each variable, four joint models will be fitted. A linear joint model and a non-linear joint model will be fitted treating death as the event of interest. A similar pair of joint models will be fitted treating liver transplant as the event of interest.
 \\
 
-For each joint model pair, the estimated effect and corresponding 95\% confidence interval are plotted together and interpreted. Specific attention will be given to the analysis of the models of the ascites variable where liver tranplantation is the event of interest. The Deviance Information Criterion (DIC) and Widely applicable Bayesian Information Criterion (WBIC) are calulated for each model and compared.
+For each joint model pair, the estimated effect and corresponding 95\% confidence interval are plotted together and interpreted. Specific attention will be given to the analysis of the models of the ascites variable where liver transplantation is the event of interest. The Deviance Information Criterion (DIC) and Widely applicable Bayesian Information Criterion (WBIC) are calculated for each model and compared.
 
 \section{Results}
+
+
+
+Figure 1 gives the fitted overall linear and non-linear effect profiles. To obtain the relevant value of \linebreak $\beta \cdot f(t, \ubar{\Psi}_i)\ +\ \gamma \cdot g(\ubar{\Psi}_i)$ in Equation (5), the the effect (y-axis) is multiplied by the variable's linear predictor (x-axis). The dashed horizontal blue line represents the fitted linear joint model while the solid black line represents the fitted non-linear joint model. 95\% confidence intervals are given for both models. Plots of joint model pairs for variable-event combinations other than what is shown in Figure 1 and Figure 2  are given in the appendix.
+\\
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=8cm]{AscitesTrans.png}
+\caption{Fitted overall model effects for the ascites variable with transplant event}
+\end{center}
+\end{figure}
+
+%From Figure 1, it can be seen that the linear model effect is not significantly different from zero. Hence, if one were to fit only the linear joint model, they would fail to conclude that ascites have an effect on a patients risk of requiring a liver transplant. Considering the non-linear model effect, the effect is significantly different from zero for the nearly all values of the linear predictor. Furthermore, given the shape of the effect curve, if one were to fit a non-linear model, they would conclude that not only does ascites have a significant effect on the patients risk of requiring a liver transplant, they would conclude that there exist a 'sweet spot' of moderate values of the linear predictor that lowers the risk with both very high and very low values increasing the risk to the patient.
+
+
+Table 1 lists the DIC and WBIC for all fitted models. In the case of the ascites variable with the transplant event it can be seen that both the DIC and WBIC are lower in the case of the non-linear model, which is desirable.
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=8cm]{EdemaDeath.png}
+\caption{Fitted overall model effects for the edema variable with death event}
+\end{center}
+\end{figure}
+
+
 \begin{table}[h]
 \begin{center}
 \begin{tabular}{| l | l | c | c | c | c |}
@@ -417,11 +443,25 @@ For each joint model pair, the estimated effect and corresponding 95\% confidenc
 						& Transplant & 1929.686 & 1858.482 & 1922.981 & 1851.726\\
 \hline
 \end{tabular}
-\caption{DIC and WBIC for fitted models}
+\caption{DIC and WBIC for fitted models (lower is better)}
 \end{center}
 \end{table}
 
+\section{Discussion}
 
+
+From Figure 1, it can be seen that the linear model effect is not significantly different from zero. Hence, if one were to fit only the linear joint model, they would fail to conclude that ascites have an effect on a patients risk of requiring a liver transplant. Considering the non-linear model effect, the effect is significantly different from zero for the nearly all values of the linear predictor. Furthermore, given the shape of the effect curve, if one were to fit a non-linear model, they would conclude that not only does ascites have a significant effect on the patients risk of requiring a liver transplant, they would conclude that there exist a 'sweet spot' of moderate values of the linear predictor that lowers the risk with both very high and very low values increasing the risk to the patient.
+\\
+
+Thus, we have two vastly different conclusions derived from the same data resulting in two different potential ways of treating patients with primary biliary cirrhosis in the future. Either ascites in patients is treated as significant or it is not. Similar analysis can be made with the other joint model pairs.
+\\
+
+The results in Table 1 show that in the case of the ascites variable with the transplant event it can be seen that both the DIC and WBIC are lower in the case of the non-linear model. This suggests that the non-linear model better is either better fitting, more parsimonious, or both. Furthermore, the DIC of the linear model is lower in twelve out of sixteen (75\%) cases while the WBIC was lower for the non-linear model in eleven out of sixteen (69\%) cases, suggesting that a non-linear joint model performed better in the majority of cases.
+\\
+
+Drawbacks were encountered with regards to using non-linear joint models. Computation times were observed to be roughly three times longer on multiple systems. The effect of a biomarker on the hazard could at times become very difficult to describe mathematically as opposed to visually. Lastly, as in the case of the edema biomarker with the death event shown in Figure 2, a non-linear joint model can occasionally return unexpected results. The only other observed instance of a similarly unexpected result is in the case of the spiders biomarker with death as the event of interest. While both of these biomarker are categorical, the few instances of this occurring, as well as other categorical biomarker-event combinations not exhibiting this behaviour, make it difficult to speculate as to its cause. Of note however is that both of these cases are one of the few in which the DIC and WBIC were lower for the linear joint model than for the non-linear joint model.
+
+\begin{comment}
 \begin{sidewaystable}
 \begin{centering}
 \begin{tabular}{|>{\centering}p{3cm}|c|c|c|>{\centering}p{3cm}|}
@@ -454,15 +494,14 @@ Row 2 &  & \tabularnewline
 \end{table}
  The application should be presented in this section. Code should
 be included in an appendix as well as additional output if needed. 
+\end{comment}
 
 \section{Conclusion}
 
-The conclusion should summarise what was done in the research report.
-It should also provide shortfalls of the research and recommendations
-on what could be investigated in future. This section should be an
-honest summary of the research.
+Linear and non-linear joint models were fitted to multiple variables in a real dataset. In the majority of cases, the non-linear joint models had better DIC and WBIC values, drew meaningful conclusions, and captured complex processes that the respective linear joint models could not. The results of this study support the claim that linear joint models are often insufficient within a clinical context and that relying on linear models alone could lead to errors in patient care and treatment.\\
 
-YOUR 10 PAGE COUNT ENDS HERE
+However, this study focused largely on the overall models. Further studies should be done to investigate the differences between linear and non-linear joint models in their ability to make individual classifications, biomarker predictions, and survivability predictions. Similar investigations could be performed in the case of multivariate joint models. Studies utilizing multiple datasets could serve to support generality in this studies findings. Lastly, given that there were some examples of linear joint models outperforming non-linear joint models in this study, it could be worth researching whether there are any specific scenarios in which a linear joint model is expected to significantly outperform a non-linear joint model.
+
 
 \newpage
 

@@ -7,5 +7,6 @@
 \contentsline {subsection}{\numberline {2.4}Inference}{8}{}%
 \contentsline {section}{\numberline {3}Application}{8}{}%
 \contentsline {section}{\numberline {4}Results}{9}{}%
-\contentsline {section}{\numberline {5}Conclusion}{9}{}%
-\contentsline {section}{Appendix}{11}{}%
+\contentsline {section}{\numberline {5}Discussion}{10}{}%
+\contentsline {section}{\numberline {6}Conclusion}{11}{}%
+\contentsline {section}{Appendix}{13}{}%
