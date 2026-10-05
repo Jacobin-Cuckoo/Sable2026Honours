@@ -55,8 +55,8 @@
 \fi
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
-\usepackage{amsmath,epsfig,natbib,pstricks,pst-text,pst-node,pst-plot,amssymb,wrapfig,threeparttable,rotating}
-
+\usepackage{amsmath,epsfig,pstricks,pst-text,pst-node,pst-plot,amssymb,wrapfig,threeparttable,rotating}
+\usepackage[numbers]{natbib}
 \makeatother
 
 \usepackage{babel}
@@ -86,7 +86,7 @@ Joint models in a clinical context aim to simultaneously model a patients longit
 
 A spline-base association structure that allows for any smooth non-linear association between the longitudinal biomarker and the risk of the event is considered. The benefits of using a non-linear association is illustrated in an application to a dataset of patients with Primary Biliary Cirrhosis (PBC).
 
-\section{AI Declaration}
+\section*{AI Declaration}
 
 No artificial intelligence tools, including advanced language models (e.g., ChatGPT), were utilised in any stage of the preparation of this mini-dissertation/thesis. All intellectual and scholarly contributions - including the development of research questions, methodological design, data analysis, interpretation of findings, and formulation of final arguments - are entirely the author's own work. No generative AI outputs were used to produce novel research results, and all content was critically reviewed and verified by the author to ensure accuracy, academic integrity, and alignment with the research objectives.
 
@@ -150,7 +150,7 @@ the final document is printed and submitted.
 Consider the case where data on one or more patients with a certain condition is available. Two processes are of interest in this example. The longitudinal (time-dependant) biomarker evolution, and when a specific event will or will not occur or Time-To-Event (TTE) survivability. Biomarker examples include insulin levels, tumour sizes, and cholesterol levels. Corresponding events may be a diabetes diagnosis, death, or a heart attack. These two processes are not independent. If the patients biomarkers improve then their survivability is expected to be better than that of a patient whose biomarkers are degrading. Furthermore, if the event is censoring, i.e. no measurements can be taken after the event has occurred such as in the case of a death event, then the remaining patient biomarker data is expected to bias itself to values that correspond to the event being less likely. To capture the interaction and codependency of these processes, a joint model is used \cite{Marion2022}.
 \\
 
-A joint model makes use of a linkage function (denoted $f(t, \ubar{\Psi}_i)$ where $t$ is the time at which patient $i$ is being considered and $\ubar{\Psi}_i$ are the individual parameters of patient $i$) to model the interaction between the longitudinal and TTE processes. For the sake of interpretability and simplicity, linear linkage functions are often used. Common examples include:
+A joint model \cite{riz} makes use of a linkage function (denoted $f(t, \ubar{\Psi}_i)$ where $t$ is the time at which patient $i$ is being considered and $\ubar{\Psi}_i$ are the individual parameters of patient $i$) to model the interaction between the longitudinal and TTE processes. For the sake of interpretability and simplicity, linear linkage functions are often used. Common examples include:
 \begin{itemize}
 	\item $f(t, \ubar{\Psi}_i) = (a + b \cdot m(t, \ubar{\Psi}_i)) \cdot e_i(t)$ (shared random effect)
 	\item $f(t, \ubar{\Psi}_i) = m(t, \ubar{\Psi}_i)$ (current biomarker value)
@@ -159,10 +159,10 @@ A joint model makes use of a linkage function (denoted $f(t, \ubar{\Psi}_i)$ whe
 \end{itemize}
 
 
-Use of non-linear joint models is limited and generally uncommon. Notable examples of non-linear models do exist. Namely Desm\'ee \emph{et al} where the Prostate-Specific Antigens (PSA), a biomarker often associated with prostate cancer, were modelled jointly with the risk of death \cite{desmee2020}. The link function $f(t, \ubar{\Psi}_i) = \mathrm{log}(\mathrm{PSA}(t, \ubar{\Psi}_i) + 1)$ was used where one is added to the biomarker value to ensure the log function argument is greater than or equal to one. Additionally, splines make for highly flexible and unpredictable non-linear links functions.
+Use of non-linear joint models is limited and generally uncommon. Notable examples of non-linear models do exist. Namely Desm\'ee \emph{et al}  \cite{desmee2020} where the Prostate-Specific Antigens (PSA), a biomarker often associated with prostate cancer, were modelled jointly with the risk of death. The link function $f(t, \ubar{\Psi}_i) = \mathrm{log}(\mathrm{PSA}(t, \ubar{\Psi}_i) + 1)$ was used where one is added to the biomarker value to ensure the log function argument is greater than or equal to one. Additionally, splines make for highly flexible and unpredictable non-linear links functions.
 \\
 
-Currently, multiple R packages are capable of fitting joint models. Examples include joineR, JM, JMbayes, rstanarm, and INLAjoint. However, the majority of these packages do not have options for non-linear link functions and do not allow custom link functions, limiting them to linear linkage cases. This creates a challenge in the testing and investigation of non-linear joint models, as such models must be created by the researcher themself.
+Currently, multiple R packages are capable of fitting joint models. Examples include joineR \cite{joineR}, JM \cite{JM}, JMbayes \cite{jmbayes2020}, rstanarm \cite{rstanarm}, and INLAjoint \cite{joint2020}. However, the majority of these packages do not have options for non-linear link functions and do not allow custom link functions, limiting them to linear linkage cases. This creates a challenge in the testing and investigation of non-linear joint models, as such models must be created by the researcher themself.
 
 This study aims to investigate the the effects of using a non-linear association function in a joint model within a clinical context; advantages, disadvantages, and general efficacy will be investigated and discussed.
 
@@ -267,9 +267,9 @@ Thus, once a link function is chosen, the population parameters $\theta = \{\the
 
 \subsection{Inference}
 
-In this study, a Bayesian approach to inference will be taken. This allows for the simultaneous estimation of random effects and population parameters. Whereas in the frequentist approach, population parameters are estimated by conditioning the data in the random effects then the random effects are estimated from the resulting posterior conditional on the estimated population parameters, making estimation and investigation of these random effects more challenging. Furthermore, as is characteristic of Bayesian statistics, prior knowledge sourced either from previous studies or field experts can be made of use.
+In this study, a Bayesian approach to inference \cite{Gelman2016} will be taken. This allows for the simultaneous estimation of random effects and population parameters. Whereas in the frequentist approach, population parameters are estimated by conditioning the data in the random effects then the random effects are estimated from the resulting posterior conditional on the estimated population parameters, making estimation and investigation of these random effects more challenging. Furthermore, as is characteristic of Bayesian statistics, prior knowledge sourced either from previous studies or field experts can be made of use \cite{Marion2022}.
 
-By direct application of Bayes theorem, we obtain the full posterior
+By direct application of Bayes theorem \cite{bay}, we obtain the full posterior
 
 
 \begin{align}
@@ -282,11 +282,11 @@ By direct application of Bayes theorem, we obtain the full posterior
 \end{align}
 
 
-Where $\ubar{Y}_i$ is the vector of all biomarker measurements for patient $i$, $Y_{ij}$ is the biomarker value for patient $i$ at their $j$'th measurement, and $n_i$ is the number of biomarker measurements for patient $i$.
+where $\ubar{Y}_i$ is the vector of all biomarker measurements for patient $i$, $Y_{ij}$ is the biomarker value for patient $i$ at their $j$'th measurement, and $n_i$ is the number of biomarker measurements for patient $i$.
 \\
 
 Hence, to estimate the population parameters and the random effects, we need only to infer the posterior distribution. However, in the case of a non-linear joint model, this process becomes more challenging than that of a linear model. Solutions include the No-U-Turn Sampler variation of the Hamiltonian-Monte Carlo algorithm as implemented in Stan \cite{Marion2022}, the Markov Chain Monte Carlo (MCMC) method \cite{Marion2022}, and Variational Bayes (VB) \cite{VB}. In this study, INLA \cite{INLA2020} is used for its computational efficiency  in fitting complicated, non-linear joint models.
-%AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa
+
 
 \begin{comment}
 \subsection{Individual prediction}
@@ -390,27 +390,58 @@ For each joint model pair, the estimated effect and corresponding 95\% confidenc
 
 
 
-Figure 1 gives the fitted overall linear and non-linear effect profiles. To obtain the relevant value of \linebreak $\beta \cdot f(t, \ubar{\Psi}_i)\ +\ \gamma \cdot g(\ubar{\Psi}_i)$ in Equation (5), the the effect (y-axis) is multiplied by the variable's linear predictor (x-axis). The dashed horizontal blue line represents the fitted linear joint model while the solid black line represents the fitted non-linear joint model. 95\% confidence intervals are given for both models. Plots of joint model pairs for variable-event combinations other than what is shown in Figure 1 and Figure 2  are given in the appendix.
+Figure 1 presents the fitted overall linear and non-linear effect profiles as fitted the the ascites biomarker with liver transplant as the event of interest. To obtain the relevant value of \linebreak $\beta \cdot f(t, \ubar{\Psi}_i)\ +\ \gamma \cdot g(\ubar{\Psi}_i)$ in Equation (5), the the effect (y-axis) is multiplied by the variable's linear predictor (x-axis). The dashed horizontal blue line represents the fitted linear joint model while the solid black line represents the fitted non-linear joint model. 95\% confidence intervals are given for both models. Plots of joint model pairs for variable-event combinations other than what is shown in Figures 1-6  are given in the appendix.
 \\
 
-\begin{figure}[h]
+\begin{figure}[H]
 \begin{center}
 \includegraphics[width=8cm]{AscitesTrans.png}
-\caption{Fitted overall model effects for the ascites variable with transplant event}
+\caption{Fitted overall model effects for the ascites biomarker with transplant event}
 \end{center}
 \end{figure}
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=8cm]{AlbuminDeath.png}
+\caption{Fitted overall model effects for the albumin biomarker with death event}
+\end{center}
+\end{figure}
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=8cm]{AlbuminTrans.png}
+\caption{Fitted overall model effects for the albumin biomarker with transplant event}
+\end{center}
+\end{figure}
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=8cm]{PlateletsDeath.png}
+\caption{Fitted overall model effects for the platelets biomarker with death event}
+\end{center}
+\end{figure}
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=8cm]{PlateletsTrans.png}
+\caption{Fitted overall model effects for the platelets biomarker with transplant event}
+\end{center}
+\end{figure}
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=8cm]{EdemaDeath.png}
+\caption{Fitted overall model effects for the edema biomarker with death event}
+\end{center}
+\end{figure}
+
 
 %From Figure 1, it can be seen that the linear model effect is not significantly different from zero. Hence, if one were to fit only the linear joint model, they would fail to conclude that ascites have an effect on a patients risk of requiring a liver transplant. Considering the non-linear model effect, the effect is significantly different from zero for the nearly all values of the linear predictor. Furthermore, given the shape of the effect curve, if one were to fit a non-linear model, they would conclude that not only does ascites have a significant effect on the patients risk of requiring a liver transplant, they would conclude that there exist a 'sweet spot' of moderate values of the linear predictor that lowers the risk with both very high and very low values increasing the risk to the patient.
 
 
 Table 1 lists the DIC and WAIC for all fitted models. In the case of the ascites variable with the transplant event it can be seen that both the DIC and WAIC are lower in the case of the non-linear model, which is desirable.
 
-\begin{figure}[h]
-\begin{center}
-\includegraphics[width=8cm]{EdemaDeath.png}
-\caption{Fitted overall model effects for the edema variable with death event}
-\end{center}
-\end{figure}
+
 
 
 \begin{table}[h]
@@ -462,16 +493,21 @@ Table 1 lists the DIC and WAIC for all fitted models. In the case of the ascites
 \section{Discussion}
 
 
-From Figure 1, it can be seen that the linear model effect is not significantly different from zero. Hence, if one were to fit only the linear joint model, they would fail to conclude that ascites have an effect on a patients risk of requiring a liver transplant. Considering the non-linear model effect, the effect is significantly different from zero for the nearly all values of the linear predictor. Furthermore, given the shape of the effect curve, if one were to fit a non-linear model, they would conclude that not only does ascites have a significant effect on the patients risk of requiring a liver transplant, they would conclude that there exist a 'sweet spot' of moderate values of the linear predictor that lowers the risk with both very high and very low values increasing the risk to the patient.
+In the application, it was seen that the linear model effect is not significantly different from zero. Hence, if one were to fit only the linear joint model, they would fail to conclude that ascites have an effect on a patients risk of requiring a liver transplant. Considering the non-linear model effect, the effect is significantly different from zero for the nearly all values of the linear predictor. Furthermore, given the shape of the effect curve, if one were to fit a non-linear model, they would conclude that not only does ascites have a significant effect on the patients risk of requiring a liver transplant, they would conclude that there exist a 'sweet spot' of moderate values of the linear predictor that lowers the risk with both very high and very low values increasing the risk to the patient.
 \\
 
 Thus, we have two vastly different conclusions derived from the same data resulting in two different potential ways of treating patients with primary biliary cirrhosis in the future. Either ascites in patients is treated as significant or it is not. Similar analysis can be made with the other joint model pairs.
 \\
 
-The results in Table 1 show that in the case of the ascites variable with the transplant event it can be seen that both the DIC and WAIC are lower in the case of the non-linear model. This suggests that the non-linear model better is either better fitting, more parsimonious, or both. Furthermore, the DIC of the non-linear model is lower in twelve out of sixteen (75\%) cases while the WAIC was lower for the non-linear model in eleven out of sixteen (69\%) cases, suggesting that a non-linear joint model performed better in the majority of cases.
+The results in the application Table 1 show that in the case of the ascites variable with the transplant event it can be seen that both the DIC and WAIC are lower in the case of the non-linear model. This suggests that the non-linear model better is either better fitting, more parsimonious, or both. Furthermore, the DIC of the non-linear model is lower in twelve out of sixteen (75\%) cases while the WAIC was lower for the non-linear model in eleven out of sixteen (69\%) cases, suggesting that a non-linear joint model performed better in the majority of cases.
 \\
 
-Drawbacks were encountered with regards to using non-linear joint models. Computation times were observed to be roughly three times longer on multiple systems. The effect of a biomarker on the hazard could at times become very difficult to describe mathematically as opposed to visually. Lastly, as in the case of the edema biomarker with the death event shown in Figure 2, a non-linear joint model can occasionally return unexpected results. The only other observed instance of a similarly unexpected result is in the case of the spiders biomarker with death as the event of interest. While both of these biomarker are categorical, the few instances of this occurring, as well as other categorical biomarker-event combinations not exhibiting this behaviour, make it difficult to speculate as to its cause. Of note however is that both of these cases are one of the few in which the DIC and WAIC were lower for the linear joint model than for the non-linear joint model.
+Figure 2 and Figure 3 illustrate the modelled associations for the Albumin variable for both the death event and transplant event. In both cases, the linear and non-linear associations conclude that albumin is associated with a lower risk. However, the non-linear association further concludes that higher values of the biomarkers linear predictor lead to a further lowering of the risk that the linear association does not capture. Conversely, the non-linear association shows that lower values of the linear predictor lead to a higher risk than what the linear joint model would conclude. Lastly, in the case of the death event, the non-linear joint model has a much narrower confidence interval than the linear joint model association.\\
+
+Consider now the platelets variable associations as shown in Figure 4 and Figure 5. In the transplant event, the non-linear model association is not significantly different from that of the linear model, though it does suggest that the platelet count may not lower the risk to the same degree as the linear association. In the death event case, the non-linear model finds a complicated association similar to a third degree polynomial. Compared to the linear association, the non-linear model finds a lower risk for extreme low linear predictor values, higher risk for moderately low values, lower risk for moderately high values, and higher risk at extreme high values. From Table 1, the transplant event for the platelets biomarker yielded better WAIC and DIC values for the linear joint model than the non-linear joint model, despite the similar conclusions and narrower confidence band of the non-linear model. This illustrates the need for a non-linear association to be significantly better than the linear association in order to achieve better WAIC and DIC values due to the DIC and WAIC penalizing models based on number of parameters \cite{rich2020}.
+\\
+
+Drawbacks were encountered with regards to using non-linear joint models. Computation times were observed to be roughly three times longer on multiple systems. The effect of a biomarker on the hazard could at times become very difficult to describe mathematically as opposed to visually. Lastly, as in the case of the edema biomarker with the death event shown in Figure 6, a non-linear joint model can occasionally return unexpected results. The only other observed instance of a similarly unexpected result is in the case of the spiders biomarker with death as the event of interest. While both of these biomarker are categorical, the few instances of this occurring, as well as other categorical biomarker-event combinations not exhibiting this behaviour, make it difficult to speculate as to its cause. Of note however is that both of these cases are one of the few in which the DIC and WAIC were lower for the linear joint model than for the non-linear joint model.
 
 \begin{comment}
 \begin{sidewaystable}
@@ -522,21 +558,39 @@ However, this study focused largely on the overall models. Further studies shoul
 
 \bibitem{Marion2022}  M. Kerioui, J. Bertrand, R. Bruno, F. Mercier, J. Guedj, and S. Desm\'ee, "Modelling the association between biomarkers and clinical outcome: An introduction to nonlinear joint models," \emph{Brit. J. of Clin. Pharmacology}, vol. 88, no. 4, pp. 1452-1463, Jan. 2022, doi: https://doi.org/10.1111/bcp.15200.
 
+\bibitem{riz} G. Papageorgiou, K. Mauff, A. Tomer, and D. Rizopoulos, "An Overview of Joint Modeling of Time-to-Event and Longitudinal Outcomes ," \emph{ Annu. Rev. of Statisti. and Its Application}, vol. 6, pp. 223-240, Mar. 2019, doi: https://doi.org/10.1146/annurev-statistics-030718-105048.
+
 \bibitem{desmee2020} S. Desm\'ee, F. Mentr\'e, C. Veyrat-Follet, B. S\'ebastien, and J. Guedj, "Nonlinear joint models for individual dynamic prediction of risk of death using Hamiltonian Monte Carlo: application to metastatic prostate cancer," \emph{BMC Med. Res. Methodology}, vol.17, no. 105, doi: https://doi.org/10.1186/s12874-017-0382-9.
 
-\bibitem{VB} D. M. Blei, A. Kucukelbir, and J. D. McAuliffe, "Variational Inference: A Review for Statisticians," \emph{Journal of the American Statistical Association}, vol. 112, no. 518, pp. 859-877, Jul. 2017, doi: https://doi.org/10.1080/01621459.2017.1285773.
+
+\bibitem{joineR} P. Philipson, I. Sousa, P. J. Diggle, P. Williamson, R. Kolamunnage-Dona, R. Henderson, G. L. Hickey, M. Sudell, \emph{joineR: Joint Modelling of Repeated Measurements and Time-to-Event Data}, (1.2.9), Jun. 2026, doi: https://doi.org/10.32614/CRAN.package.joineR.
+
+\bibitem{JM} D. Rizopoulos, \emph{JM: Joint Modeling of Longitudinal and Survival Data}, (1.5-2), Aug. 2022, doi: https://doi.org/10.32614/CRAN.package.JM.
+
+\bibitem{jmbayes2020} D. Rizopoulos, P. Miranda-Afonso, and G. Papageorgiou, \emph{JMbayes2: Extended Joint Models for Longitudinal and Time-to-Event Data}, (0.6-0), Jan. 2026, doi: https://doi.org/10.32614/CRAN.package.JMbayes2.
+
+\bibitem{rstanarm} J. Gabry, I. Ali, S. Brilleman, J. B. Novik, S. Wood, D. Bates, M. Maechler, B. Bolker, S. Walker, B. Ripley, W. Venables, P. Berkner, B. Goodrich, \emph{rstanarm: Bayesian Applied Regression Modeling via Stan}, (2.32.2), Sep. 2025, doi: https://doi.org/10.32614/CRAN.package.rstanarm.
+
+\bibitem{joint2020} D.Rustand, E. T. Krainski, H. Rue, and J. van Niekerk, \emph{INLAjoint: Multivariate Joint Modeling for Longitudinal and Time-to-Event Outcomes with 'INLA'}, (26.6.2), Jun. 2026, doi: https://doi.org/10.32614/CRAN.package.INLAjoint.
+
+
+\bibitem{Gelman2016} A. Gelman, \emph{Bayesian data analysis}, Third edition. Boca Raton: CRC Press, 2014.
+
+\bibitem{bay} J. L. Puga, M. Krzywinski, and N. Altman, "Points of Significance: Bayes' theorem," \emph{Nature Methods}, vol. 12, no. 4, pp. 277-278, doi: https://doi.org/10.1038/nmeth.3335.
+
+\bibitem{VB} D. M. Blei, A. Kucukelbir, and J. D. McAuliffe, "Variational Inference: A Review for Statisticians," \emph{J. of the Amer. Statistical Assoc.}, vol. 112, no. 518, pp. 859-877, Jul. 2017, doi: https://doi.org/10.1080/01621459.2017.1285773.
 
 \bibitem{INLA2020} J. van Niekerk, E. Krainski, D. Rustand, and H. Rue, "A new avenue for Bayesian inference with INLA," \emph{Computational Statistics \& Data Analysis}, vol. 181, no. 107692,  May. 2023, doi: https://doi.org/10.1016/j.csda.2023.107692.
 
 
 \bibitem{fleming2020} T. R. Fleming and D. P. Harrington, \emph{Counting Processes and Survival Analysis}. New York: Wiley, 2011. Accessed: Aug. 16, 2026. [Online]. Available: http://public.eblib.com/choice/publicfullrecord.aspx?p=818803.
 
-\bibitem{jmbayes2020} D. Rizopoulos, P. Miranda-Afonso, and G. Papageorgiou, \emph{JMbayes2: Extended Joint Models for Longitudinal and Time-to-Event Data}, (0.6-0), Jan. 2026, doi: https://doi.org/10.32614/CRAN.package.JMbayes2.
+
 
 \bibitem{R2020}  \emph{R: A Language and Environment for Statistical Computing}. (4.6.1), R Foundation for Statistical Computing, doi: https://doi.org/10.32614/R.manuals, [Online]. Available: https://www.R-project.org/.
 
 
-\bibitem{joint2020} D.Rustand, E. T. Krainski, H. Rue, and J. van Niekerk, \emph{INLAjoint: Multivariate Joint Modeling for Longitudinal and Time-to-Event Outcomes with 'INLA'}, (26.6.2), Jun. 2026, doi: https://doi.org/10.32614/CRAN.package.INLAjoint.
+
 
 \bibitem{rich2020} R. McElreath, "OVERFITTING, REGULARIZATION, AND INFORMATION CRITERIA," in \emph{Statistical Rethinking: A Bayesian Course with Examples in R and Stan}, Boca Raton, FL, USA: CRC Press, 2016, ch. 6, sec. 4, pp. 190-192.
 
@@ -563,17 +617,6 @@ This research was approved by the Ethics Committee, Faculty of Natural and Agric
 The code used can be found at https://github.com/Jacobin-Cuckoo/Sable2026Honours.\\
 
 
-\begin{figure}[H]
-\begin{minipage}[c]{0.4\linewidth}
-\includegraphics[width=\linewidth]{AlbuminDeath.png}
-\caption{Albumin with death event}
-\end{minipage}
-\hfill
-\begin{minipage}[c]{0.4\linewidth}
-\includegraphics[width=\linewidth]{AlbuminTrans.png}
-\caption{Albumin with transplant event}
-\end{minipage}%
-\end{figure}
 
 \begin{figure}[H]
 \begin{minipage}[c]{0.4\linewidth}
@@ -599,17 +642,6 @@ The code used can be found at https://github.com/Jacobin-Cuckoo/Sable2026Honours
 \end{minipage}%
 \end{figure}
 
-\begin{figure}[H]
-\begin{minipage}[c]{0.4\linewidth}
-\includegraphics[width=\linewidth]{PlateletsDeath.png}
-\caption{Platelets with death event}
-\end{minipage}
-\hfill
-\begin{minipage}[c]{0.4\linewidth}
-\includegraphics[width=\linewidth]{PlateletsTrans.png}
-\caption{Platelets with transplant event}
-\end{minipage}%
-\end{figure}
 
 \begin{figure}[H]
 \begin{minipage}[c]{0.4\linewidth}

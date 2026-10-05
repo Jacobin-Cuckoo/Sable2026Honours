@@ -1,14 +1,13 @@
 \babel@toc {english}{}\relax 
-\contentsline {section}{\numberline {1}AI Declaration}{2}{}%
-\contentsline {section}{\numberline {2}Introduction}{6}{}%
-\contentsline {section}{\numberline {3}Methodology}{7}{}%
-\contentsline {subsection}{\numberline {3.1}Longitudinal mixed-effect model}{7}{}%
-\contentsline {subsection}{\numberline {3.2}Survival model}{7}{}%
-\contentsline {subsection}{\numberline {3.3}Joint model}{8}{}%
-\contentsline {subsection}{\numberline {3.4}Inference}{9}{}%
-\contentsline {section}{\numberline {4}Application}{9}{}%
-\contentsline {section}{\numberline {5}Results}{10}{}%
-\contentsline {section}{\numberline {6}Discussion}{11}{}%
-\contentsline {section}{\numberline {7}Conclusion}{12}{}%
-\contentsline {section}{\numberline {8}Acknowledgements}{15}{}%
-\contentsline {section}{Appendix}{15}{}%
+\contentsline {section}{\numberline {1}Introduction}{6}{}%
+\contentsline {section}{\numberline {2}Methodology}{7}{}%
+\contentsline {subsection}{\numberline {2.1}Longitudinal mixed-effect model}{7}{}%
+\contentsline {subsection}{\numberline {2.2}Survival model}{7}{}%
+\contentsline {subsection}{\numberline {2.3}Joint model}{8}{}%
+\contentsline {subsection}{\numberline {2.4}Inference}{9}{}%
+\contentsline {section}{\numberline {3}Application}{9}{}%
+\contentsline {section}{\numberline {4}Results}{10}{}%
+\contentsline {section}{\numberline {5}Discussion}{12}{}%
+\contentsline {section}{\numberline {6}Conclusion}{14}{}%
+\contentsline {section}{\numberline {7}Acknowledgements}{18}{}%
+\contentsline {section}{Appendix}{18}{}%
