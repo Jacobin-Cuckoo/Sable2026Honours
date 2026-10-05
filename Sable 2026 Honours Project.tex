@@ -61,7 +61,7 @@ WST795 Research Report\vspace{2cm}\\
 Submitted in partial fulfillment of the degree BSc(Hons) Mathematical
 Statistics \\
 \vspace{0.5cm}\\
-Supervisor(s): J. van Niekerk\vspace{2cm}\\
+Supervisor: J. van Niekerk\vspace{2cm}\\
 Department of Statistics, University of Pretoria\vspace{0.5cm}\\
 \includegraphics[width=5cm]{UPlogohighres.jpg}\vspace{0.5cm}\\
 }
@@ -72,7 +72,15 @@ Department of Statistics, University of Pretoria\vspace{0.5cm}\\
 \newpage{}
 \begin{abstract}
 
-Joint models in a clinical context aim to simultaneously model a patients longitudinal biomarker data and their Time-To-Event (TTE) survival data. For the sake of statistical, mathematical, theoretical, and practical simplicity, a linear linkage function between the two processes is assumed. However, this may easily fail to capture the complex and often non-linear processes and mechanisms that characterize pharmacokinetics and pharmacodynamics.
+Joint models in a clinical context aim to simultaneously model a patients longitudinal biomarker data and their Time-To-Event (TTE) survival data. For the sake of statistical, mathematical, theoretical, and practical simplicity, a linear linkage function between the two processes is assumed. However, this may easily fail to capture the complex and often non-linear processes and mechanisms that characterize pharmacokinetics and pharmacodynamics.\\
+
+A spline-base association structure that allows for any smooth non-linear association between the longitudinal biomarker and the risk of the event is considered. The benefits of using a non-linear association is illustrated in an application to a dataset of patients with Primary Biliary Cirrhosis (PBC).
+\\
+
+This research was approved by the Ethics Committee, Faculty of Natural and Agricultural Sciences of the University of Pretoria, Reference Number NAS116/2019.\\
+
+No artificial intelligence tools, including advanced language models (e.g., ChatGPT), were utilised in any stage of the preparation of this mini-dissertation/thesis. All intellectual and scholarly contributions - including the development of research questions, methodological design, data analysis, interpretation of findings, and formulation of final arguments - are entirely the author's own work. No generative AI outputs were used to produce novel research results, and all content was critically reviewed and verified by the author to ensure accuracy, academic integrity, and alignment with the research objectives.
+
 
 
 
@@ -130,7 +138,7 @@ the final document is printed and submitted.
 %should intertwine with this. It is important to always reference where
 %needed. All work from somewhere else requires a reference \cite{Anguelov2010}.
 
-Consider the case where data on one or more patients with a certain condition is available. Two processes are of interest in this example. The longitudinal (time-dependant) biomarker evolution and when a specific event will or will no occur or Time-To-Event (TTE) survivability. Biomarker examples include insulin levels, tumour sizes, and cholesterol levels. Corresponding events may be a diabetes diagnosis, death, or a heart attack. These two processes are not independent. If the patients biomarkers improve then their survivability is expected to be better than that of a patient whose biomarkers are degrading. Furthermore, if the event is censoring, i.e. no measurements can be taken after the event has occurred such as in the case of a death event, then the remaining patient biomarker data is expected to bias itself to values that correspond to the event being less likely. To capture the interaction and codependency of these processes, a joint model is used.
+Consider the case where data on one or more patients with a certain condition is available. Two processes are of interest in this example. The longitudinal (time-dependant) biomarker evolution, and when a specific event will or will not occur or Time-To-Event (TTE) survivability. Biomarker examples include insulin levels, tumour sizes, and cholesterol levels. Corresponding events may be a diabetes diagnosis, death, or a heart attack. These two processes are not independent. If the patients biomarkers improve then their survivability is expected to be better than that of a patient whose biomarkers are degrading. Furthermore, if the event is censoring, i.e. no measurements can be taken after the event has occurred such as in the case of a death event, then the remaining patient biomarker data is expected to bias itself to values that correspond to the event being less likely. To capture the interaction and codependency of these processes, a joint model [AAAAA] is used.
 \\
 
 A joint model makes use of a linkage function (denoted $f(t, \ubar{\Psi}_i)$ where $t$ is the time at which patient $i$ is being considered and $\ubar{\Psi}_i$ are the individual parameters of patient $i$) to model the interaction between the longitudinal and TTE processes. For the sake of interpretability and simplicity, linear linkage functions are often used. Common examples include:
@@ -142,10 +150,10 @@ A joint model makes use of a linkage function (denoted $f(t, \ubar{\Psi}_i)$ whe
 \end{itemize}
 
 
-Use of non-linear joint models is limited and generally uncommon. Notable examples of non-linear models do exist. Namely (Desmee) where the Prostate-Specific Antigens (PSA), a biomarker often associated with prostate cancer, were modelled jointly with the risk of death. The link function $f(t, \ubar{\Psi}_i) = \mathrm{log}(\mathrm{PSA}(t, \ubar{\Psi}_i) + 1)$ was used where one is added to the biomarker value to ensure the log function argument is greater than or equal to one. Additionally, splines make for highly flexible if unpredictable non-linear links functions.
+Use of non-linear joint models is limited and generally uncommon. Notable examples of non-linear models do exist. Namely (Desmee) where the Prostate-Specific Antigens (PSA), a biomarker often associated with prostate cancer, were modelled jointly with the risk of death [AAA]. The link function $f(t, \ubar{\Psi}_i) = \mathrm{log}(\mathrm{PSA}(t, \ubar{\Psi}_i) + 1)$ was used where one is added to the biomarker value to ensure the log function argument is greater than or equal to one. Additionally, splines make for highly flexible and unpredictable non-linear links functions.
 \\
 
-Currently, multiple R packages are capable of fitting joint models. Examples include joineR, JM, JMbayes, rstanarm, and INLAjoint. However, the majority of these packages do not have options for non-linear link functions and do not allow custom link functions, limiting them to linear linkage cases. This creates a challenge in the testing and investigation of non-linear models as such models must be created by the researcher themself.
+Currently, multiple R packages are capable of fitting joint models. Examples include joineR, JM, JMbayes, rstanarm, and INLAjoint. However, the majority of these packages do not have options for non-linear link functions and do not allow custom link functions, limiting them to linear linkage cases. This creates a challenge in the testing and investigation of non-linear joint models, as such models must be created by the researcher themself.
 
 This study aims to investigate the the effects of using a non-linear association function in a joint model within a clinical context; advantages, disadvantages, and general efficacy will be investigated and discussed.
 
@@ -174,20 +182,20 @@ The relevant theory and methodology behind joint models are discussed here.
 
 \subsection{Longitudinal mixed-effect model}
 
-For some patient $i$, let their measured biomarker value at time $t$ be
+For patient $i$, let their measured biomarker value at time $t$ be
 \begin{equation}
-y_i(t) = m(t, \ubar{\Psi}_i) + (a + b \cdot m(t, \ubar{\Psi}_i)) \cdot e_i(t)
+y_i(t) = m(t, \ubar{\Psi}_i) + (a + b \cdot m(t, \ubar{\Psi}_i)) \cdot e_i(t),
 \end{equation}
 where:
 \begin{itemize}
 	\item $m(t, \ubar{\Psi}_i)$ is the constructed biomarker model.
-	\item $\ubar{\Psi}_i$ is the individual parameter vector for patient $i$. Dependant of fixed-effect vector $\ubar{\mu}$ and individual random effect vector $\ubar{\eta}_i$. It is typically assumed that $\ubar{\eta}_i \sim \textrm{N}(\ubar{0}, \mathbf{\Omega})$ with $\mathbf{\Omega}$ usually assumed to be diagonal.
+	\item $\ubar{\Psi}_i$ is the individual parameter vector for patient $i$, dependant on fixed-effect vector $\ubar{\mu}$ and individual random effect vector $\ubar{\eta}_i$. It is typically assumed that $\ubar{\eta}_i \sim \textrm{N}(\ubar{0}, \Omega)$ with $\Omega$ usually assumed to be diagonal.
 	\item $e_i(t)$ is the error term for patient $i$ at time $t$. Typically assumed to be Gaussian.
 	\item $a$ is the additive component of the error term.
 	\item $b$ is the multiplicative component of the error term.
 \end{itemize}
 
-Let $\theta_m = \{ \ubar{\mu}, \mathbf{\Omega}, a, b \}$ be the set of population parameters for the mixed-effect model.
+Let $\theta_m = \{ \ubar{\mu}, \Omega, a, b \}$ be the set of population parameters for the mixed-effect model.
 
 
 
@@ -215,22 +223,22 @@ Thus, every patient has the TTE data $(T_i, \delta_i)$. Where:
 Let the hazard function $h_i(t)$ be the instantaneous risk of the event occurring to patient $i$ at time $t$. Then $h_i(t)$ is defined as
 
 \begin{equation}
-h_i(t) = \lim_{\Delta t \to 0} \frac{\mathrm{P}(t < T_i \le t + \Delta t \mid T_i > t)}{\Delta t}
+h_i(t) = \lim_{\Delta t \to 0} \frac{\mathrm{P}(t < T_i \le t + \Delta t \mid T_i > t)}{\Delta t}.
 \end{equation}
 
-Generally, a proportional model is used to account for the effect of specific covariate(s), say $x_i$. In this case,
+Generally, a proportional model [AAA] is used to account for the effect of specific covariate(s), say $x_i$. In this case,
 
 \begin{equation}
-h_i(t) = h_0(t) \cdot e^{\rho x_i}
+h_i(t) = h_0(t) \cdot e^{\rho x_i},
 \end{equation}
 
-Where $h_0(t)$ is the baseline hazard function shared across patients and $\rho$ indicates the strength and direction of association between $x_i$ and the risk of event.
+where $h_0(t)$ is the baseline hazard function shared across patients and $\rho$ indicates the strength and direction of association between $x_i$ and the risk of event.
 \\
 
-Of greater interest is the probability that the event will have not occurred to patient $i$ at time $t$. This survival function is defined as
+Of greater interest is the probability that patient $i$ survived until time $t$. This survival function is defined as
 
 \begin{equation}
-S_i(t) = \mathrm{P}(T_i > t) = e^{ - \int_{0}^{t} h_i(u)\ du}
+S_i(t) = \mathrm{P}(T_i > t) = e^{ - \int_{0}^{t} h_i(u)\ du}.
 \end{equation}
 
 Let $\theta_s = \{\theta_0, \rho\}$ be the set of population parameters for the survival model where $\theta_0$ is the set of parameters for $h_0$.
@@ -240,35 +248,35 @@ Let $\theta_s = \{\theta_0, \rho\}$ be the set of population parameters for the 
 From this, a joint model can be easily defined as 
 
 \begin{equation}
-h_i(t, \ubar{\Psi}_i) = h_0(t) \cdot e^{\ \beta \cdot  f(t, \ubar{\Psi}_i)\ +\ \gamma \cdot g(\ubar{\Psi}_i)}
+h_i(t, \ubar{\Psi}_i) = h_0(t) \cdot e^{\ \beta \cdot  f(t, \ubar{\Psi}_i)\ +\ \gamma \cdot g(\ubar{\Psi}_i)},
 \end{equation}
 
-Where $f(t, \ubar{\Psi}_i)$ is the direct effects and is some function of $m(t, \ubar{\Psi}_i)$ and $g(\bar{\Psi}_i)$ is the direct effects.
+where $f(t, \ubar{\Psi}_i)$ is the indirect effects and is some function of $m(t, \ubar{\Psi}_i)$, and $g(\bar{\Psi}_i)$ is the direct effects.
 The joint model is non-linear in the case where $\beta$ is some non-constant function of $f(t, \ubar{\Psi}_i)$.
 
-Thus, once a link function is chosen, the population parameters $\theta = \{\theta_m, \theta_i, \beta, \gamma \}$ can be estimated.
+Thus, once a link function is chosen, the population parameters $\theta = \{\theta_m, \theta_s, \beta, \gamma \}$ can be estimated.
 
 \subsection{Inference}
 
 In this study, a Bayesian approach to inference will be taken. This allows for the simultaneous estimation of random effects and population parameters. Whereas in the frequentist approach, population parameters are estimated by conditioning the data in the random effects then the random effects are estimated from the resulting posterior conditional on the estimated population parameters, making estimation and investigation of these random effects more challenging. Furthermore, as is characteristic of Bayesian statistics, prior knowledge sourced either from previous studies or field experts can be made of use.
 
-By direct application of Bayes theorem, we obtain
+By direct application of Bayes theorem, we obtain the full posterior
 
 
 \begin{align}
 \mathrm{P}(\ubar{\theta}, \ubar{\eta}_i \mid \ubar{Y}_i, T_i, \delta_i) &\propto
 \mathrm{p}(\ubar{\theta}, \ubar{\eta}_i) \cdot
-\mathrm{L}(\ubar{Y}_i, T_i, \delta_i \mid \ubar{\theta}, \ubar{\eta}_i)\\  &\propto
+\mathrm{L}(\ubar{Y}_i, T_i, \delta_i \mid \ubar{\theta}, \ubar{\eta}_i) \nonumber \\  &\propto
 \prod_{j = 1}^{n_i} \mathrm{P}(Y_{ij} \mid \ubar{\theta}, \ubar{\eta}_i) \cdot
 \mathrm{P}(T_i, \delta_i \mid \ubar{\theta}, \ubar{\eta}_i) \cdot
-\mathrm{P}(\ubar{\eta}_i \mid \ubar{\theta}) \cdot \mathrm{P}(\ubar{\theta})
+\mathrm{P}(\ubar{\eta}_i \mid \ubar{\theta}) \cdot \mathrm{P}(\ubar{\theta}),
 \end{align}
 
 
 Where $\ubar{Y}_i$ is the vector of all biomarker measurements for patient $i$, $Y_{ij}$ is the biomarker value for patient $i$ at their $j$'th measurement, and $n_i$ is the number of biomarker measurements for patient $i$.
 \\
 
-Hence, to estimate the population parameters and the random effects, we need only to sample them from the obtained posterior distribution. However, in the case of a non-linear joint model, this process becomes more challenging than that of a linear model. One solution is the No-U-Turn Sampler variation of the Hamiltonian-Monte Carlo algorithm as implemented in Stan.
+Hence, to estimate the population parameters and the random effects, we need only to infer the posterior distribution. However, in the case of a non-linear joint model, this process becomes more challenging than that of a linear model. One solution is the No-U-Turn Sampler [AAAA] variation of the Hamiltonian-Monte Carlo [AAA] algorithm as implemented in Stan. In this study, INLA is used for its computational efficiency  in fitting complicated, non-linear joint models.
 %AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa
 
 \begin{comment}
@@ -357,17 +365,17 @@ vnitunrivuptnriuwvtnoiutnreuvnt
 
 \section{Application}
 
-The primary biliary cirrhosis dataset as gathered by the Mayo Clinic between 1974 and 1984, measuring 19 variables across 312 randomised patients, will be analysed [FLEMINGAAAAAAAA]. The version of this dataset found in the R package JMbayes2 under the name pbc2 will be used.[BBBBBBB]. 
+The Primary Biliary Cirrhosis (PBC) dataset as gathered by the Mayo Clinic between 1974 and 1984, measuring 19 variables across 312 randomised patients, will be analysed [FLEMINGAAAAAAAA]. The version of this dataset found in the R package JMbayes2 under the name pbc2 will be used.[BBBBBBB]. 
 Within the original dataset, the edema variable is a trinary variable. For this study, this variable has been reduced to a binary variable indicating whether or not an edema was present at measurement.
 \\
 
-Linear and non-linear joint models are to be fitted using INLAjoint in R.  The eight variables to be considered are  serum bilirubin concentration, SGOT concentration, albumin concentration, edema presence, platelet count, alkaline phosphatase concentration, ascites, and presence of spider-like patterns on the skin.
+Linear and non-linear joint models are to be fitted using INLAjoint [AAAA] in R.  The eight variables to be considered are  serum bilirubin concentration, SGOT concentration, albumin concentration, edema presence, platelet count, alkaline phosphatase concentration, ascites, and presence of spider-like patterns on the skin.
 \\
 
 For each variable, four joint models will be fitted. A linear joint model and a non-linear joint model will be fitted treating death as the event of interest. A similar pair of joint models will be fitted treating liver transplant as the event of interest.
 \\
 
-For each joint model pair, the estimated effect and corresponding 95\% confidence interval are plotted together and interpreted. Specific attention will be given to the analysis of the models of the ascites variable where liver transplantation is the event of interest. The Deviance Information Criterion (DIC) and Widely applicable Bayesian Information Criterion (WBIC) are calculated for each model and compared.
+For each joint model pair, the estimated effect and corresponding 95\% confidence interval are plotted together and interpreted. Specific attention will be given to the analysis of the models of the ascites variable where liver transplantation is the event of interest. The Deviance Information Criterion (DIC) [AAA] and Widely Applicable Bayesian Information Criterion (WAIC) [AAA] are calculated for each model and compared.
 
 \section{Results}
 
@@ -386,7 +394,7 @@ Figure 1 gives the fitted overall linear and non-linear effect profiles. To obta
 %From Figure 1, it can be seen that the linear model effect is not significantly different from zero. Hence, if one were to fit only the linear joint model, they would fail to conclude that ascites have an effect on a patients risk of requiring a liver transplant. Considering the non-linear model effect, the effect is significantly different from zero for the nearly all values of the linear predictor. Furthermore, given the shape of the effect curve, if one were to fit a non-linear model, they would conclude that not only does ascites have a significant effect on the patients risk of requiring a liver transplant, they would conclude that there exist a 'sweet spot' of moderate values of the linear predictor that lowers the risk with both very high and very low values increasing the risk to the patient.
 
 
-Table 1 lists the DIC and WBIC for all fitted models. In the case of the ascites variable with the transplant event it can be seen that both the DIC and WBIC are lower in the case of the non-linear model, which is desirable.
+Table 1 lists the DIC and WAIC for all fitted models. In the case of the ascites variable with the transplant event it can be seen that both the DIC and WAIC are lower in the case of the non-linear model, which is desirable.
 
 \begin{figure}[h]
 \begin{center}
@@ -402,43 +410,43 @@ Table 1 lists the DIC and WBIC for all fitted models. In the case of the ascites
 \cline{3-6}
  \multicolumn{2}{ c |}{} & \multicolumn{2}{ c |}{{Linear model}} & \multicolumn{2}{ c |}{{Non-linear model}} \\
 \hline
-{Variable} & {Event} & {DIC} & {WBIC} & {DIC} & {WBIC} \\
+{Variable} & {Event} & {DIC} & {WAIC} & {DIC} & {WAIC} \\
 \hline
 \hline
-\multirow{2}{4em}{Serum bilirubin} & Death        & 4902.609 & 4946.742 &  4902.13 & 4944.485\\
+\multirow{2}{4em}{Serum bilirubin} & Death        & 4902.609 & 4946.742 &  \bf{4902.13} & \bf{4944.485}\\
 \cline{2-2}
-					           & Transplant & 4071.672 & 4117.198 & 4070.28  & 4115.777\\
+					           & Transplant & 4071.672 & 4117.198 & \bf{4070.28}  & \bf{4115.777}\\
 \cline{1-2}
-\multirow{2}{4em}{SGOT}               & Death       & 19497.23 & 20037.12 & 19482.86 & 20022.05\\
+\multirow{2}{4em}{SGOT}               & Death       & 19497.23 & 20037.12 & \bf{19482.86} & \bf{20022.05}\\
 \cline{2-2}
-						  & Transplant & 18544.92 & 19069.8 & 18534.57 & 19061.93\\
+						  & Transplant & 18544.92 & 19069.8 & \bf{18534.57} & \bf{19061.93}\\
 \cline{1-2}
-\multirow{2}{4em}{Albumin}          & Death        & 2764.856 & 3014.882 & 2766.197 & 3048.331\\
+\multirow{2}{4em}{Albumin}          & Death        & \bf{2764.856} & \bf{3014.882} & 2766.197 & 3048.331\\
 \cline{2-2}
-						  & Transplant & 1908.689 & 2069.652 & 1895.431 & 2007.982\\
+						  & Transplant & 1908.689 & 2069.652 & \bf{1895.431} & \bf{2007.982}\\
 \cline{1-2}
-\multirow{2}{4em}{Edema}            & Death        & 2582.435 & 2530.852 & 2604.887 & 2576.556\\
+\multirow{2}{4em}{Edema}            & Death        & \bf{2582.435} & \bf{2530.852} & 2604.887 & 2576.556\\
 \cline{2-2}
-						 & Transplant & 1730.421 & 1664.705 & 1708.107 & 1677.515\\
+						 & Transplant & 1730.421 & \bf{1664.705} & \bf{1708.107} & 1677.515\\
 \cline{1-2}
-\multirow{2}{4em}{Platelets}         & Death        & 21196.92 & 21323.67 & 21191.45 & 21315.79\\
+\multirow{2}{4em}{Platelets}         & Death        & 21196.92 & 21323.67 & \bf{21191.45} & \bf{21315.79}\\
 \cline{2-2}
-						 & Transplant & 20220.62 & 20349.74 & 20224.22 & 20352.82\\
+						 & Transplant & \bf{20220.62} & \bf{20349.74} & 20224.22 & 20352.82\\
 \cline{1-2}
-\multirow{2}{4em}{Alkaline}		 & Death	    & 29024.2 & 29178.92 & 29018.79 & 29173.92\\
+\multirow{2}{4em}{Alkaline}		 & Death	    & 29024.2 & 29178.92 & \bf{29018.79} & \bf{29173.92}\\
 \cline{2-2}
-						& Transplant & 28015.65 & 28169.95 & 27997.13 & 28155.36\\
+						& Transplant & 28015.65 & 28169.95 & \bf{27997.13} & \bf{28155.36}\\
 \cline{1-2}
-\multirow{2}{4em}{Ascites}		& Death	   & 2185.548 & 2159.431 & 2226.738 & 2231.49\\
+\multirow{2}{4em}{Ascites}		& Death	   & \bf{2185.548} & \bf{2159.431} & 2226.738 & 2231.49\\
 \cline{2-2}
-						& Transplant & 1369.197 & 1343.332 & 1278.394 & 1259.9\\
+						& Transplant & 1369.197 & 1343.332 & \bf{1278.394} & \bf{1259.9}\\
 \cline{1-2}
-\multirow{2}{4em}{Spiders}		& Death	   & 2868.248 & 2807.265 & 2771.853 & 2711.456\\
+\multirow{2}{4em}{Spiders}		& Death	   & 2868.248 & 2807.265 & \bf{2771.853} & \bf{2711.456}\\
 \cline{2-2}
-						& Transplant & 1929.686 & 1858.482 & 1922.981 & 1851.726\\
+						& Transplant & 1929.686 & 1858.482 & \bf{1922.981} & \bf{1851.726}\\
 \hline
 \end{tabular}
-\caption{DIC and WBIC for fitted models (lower is better)}
+\caption{DIC and WBIC for fitted models (better values bolded)}
 \end{center}
 \end{table}
 
@@ -451,10 +459,10 @@ From Figure 1, it can be seen that the linear model effect is not significantly 
 Thus, we have two vastly different conclusions derived from the same data resulting in two different potential ways of treating patients with primary biliary cirrhosis in the future. Either ascites in patients is treated as significant or it is not. Similar analysis can be made with the other joint model pairs.
 \\
 
-The results in Table 1 show that in the case of the ascites variable with the transplant event it can be seen that both the DIC and WBIC are lower in the case of the non-linear model. This suggests that the non-linear model better is either better fitting, more parsimonious, or both. Furthermore, the DIC of the linear model is lower in twelve out of sixteen (75\%) cases while the WBIC was lower for the non-linear model in eleven out of sixteen (69\%) cases, suggesting that a non-linear joint model performed better in the majority of cases.
+The results in Table 1 show that in the case of the ascites variable with the transplant event it can be seen that both the DIC and WAIC are lower in the case of the non-linear model. This suggests that the non-linear model better is either better fitting, more parsimonious, or both. Furthermore, the DIC of the non-linear model is lower in twelve out of sixteen (75\%) cases while the WAIC was lower for the non-linear model in eleven out of sixteen (69\%) cases, suggesting that a non-linear joint model performed better in the majority of cases.
 \\
 
-Drawbacks were encountered with regards to using non-linear joint models. Computation times were observed to be roughly three times longer on multiple systems. The effect of a biomarker on the hazard could at times become very difficult to describe mathematically as opposed to visually. Lastly, as in the case of the edema biomarker with the death event shown in Figure 2, a non-linear joint model can occasionally return unexpected results. The only other observed instance of a similarly unexpected result is in the case of the spiders biomarker with death as the event of interest. While both of these biomarker are categorical, the few instances of this occurring, as well as other categorical biomarker-event combinations not exhibiting this behaviour, make it difficult to speculate as to its cause. Of note however is that both of these cases are one of the few in which the DIC and WBIC were lower for the linear joint model than for the non-linear joint model.
+Drawbacks were encountered with regards to using non-linear joint models. Computation times were observed to be roughly three times longer on multiple systems. The effect of a biomarker on the hazard could at times become very difficult to describe mathematically as opposed to visually. Lastly, as in the case of the edema biomarker with the death event shown in Figure 2, a non-linear joint model can occasionally return unexpected results. The only other observed instance of a similarly unexpected result is in the case of the spiders biomarker with death as the event of interest. While both of these biomarker are categorical, the few instances of this occurring, as well as other categorical biomarker-event combinations not exhibiting this behaviour, make it difficult to speculate as to its cause. Of note however is that both of these cases are one of the few in which the DIC and WAIC were lower for the linear joint model than for the non-linear joint model.
 
 \begin{comment}
 \begin{sidewaystable}
@@ -493,7 +501,7 @@ be included in an appendix as well as additional output if needed.
 
 \section{Conclusion}
 
-Linear and non-linear joint models were fitted to multiple variables in a real dataset. In the majority of cases, the non-linear joint models had better DIC and WBIC values, drew meaningful conclusions, and captured complex processes that the respective linear joint models could not. The results of this study support the claim that linear joint models are often insufficient within a clinical context and that relying on linear models alone could lead to errors in patient care and treatment.\\
+Linear and non-linear joint models were fitted to multiple variables in a real dataset. In the majority of cases, the non-linear joint models had better DIC and WAIC values, drew meaningful conclusions, and captured complex processes that the respective linear joint models could not. The results of this study support the claim that linear joint models are often insufficient within a clinical context and that relying on linear models alone could lead to errors in patient care and treatment.\\
 
 However, this study focused largely on the overall models. Further studies should be done to investigate the differences between linear and non-linear joint models in their ability to make individual classifications, biomarker predictions, and survivability predictions. Similar investigations could be performed in the case of multivariate joint models. Studies utilizing multiple datasets could serve to support generality in this studies findings. Lastly, given that there were some examples of linear joint models outperforming non-linear joint models in this study, it could be worth researching whether there are any specific scenarios in which a linear joint model is expected to significantly outperform a non-linear joint model.
 
