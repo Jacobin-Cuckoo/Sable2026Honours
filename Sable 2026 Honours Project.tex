@@ -75,9 +75,8 @@ Department of Statistics, University of Pretoria\vspace{0.5cm}\\
 Joint models in a clinical context aim to simultaneously model a patients longitudinal biomarker data and their Time-To-Event (TTE) survival data. For the sake of statistical, mathematical, theoretical, and practical simplicity, a linear linkage function between the two processes is assumed. However, this may easily fail to capture the complex and often non-linear processes and mechanisms that characterize pharmacokinetics and pharmacodynamics.\\
 
 A spline-base association structure that allows for any smooth non-linear association between the longitudinal biomarker and the risk of the event is considered. The benefits of using a non-linear association is illustrated in an application to a dataset of patients with Primary Biliary Cirrhosis (PBC).
-\\
 
-This research was approved by the Ethics Committee, Faculty of Natural and Agricultural Sciences of the University of Pretoria, Reference Number NAS116/2019.\\
+\section{AI Declaration}
 
 No artificial intelligence tools, including advanced language models (e.g., ChatGPT), were utilised in any stage of the preparation of this mini-dissertation/thesis. All intellectual and scholarly contributions - including the development of research questions, methodological design, data analysis, interpretation of findings, and formulation of final arguments - are entirely the author's own work. No generative AI outputs were used to produce novel research results, and all content was critically reviewed and verified by the author to ensure accuracy, academic integrity, and alignment with the research objectives.
 
@@ -138,7 +137,7 @@ the final document is printed and submitted.
 %should intertwine with this. It is important to always reference where
 %needed. All work from somewhere else requires a reference \cite{Anguelov2010}.
 
-Consider the case where data on one or more patients with a certain condition is available. Two processes are of interest in this example. The longitudinal (time-dependant) biomarker evolution, and when a specific event will or will not occur or Time-To-Event (TTE) survivability. Biomarker examples include insulin levels, tumour sizes, and cholesterol levels. Corresponding events may be a diabetes diagnosis, death, or a heart attack. These two processes are not independent. If the patients biomarkers improve then their survivability is expected to be better than that of a patient whose biomarkers are degrading. Furthermore, if the event is censoring, i.e. no measurements can be taken after the event has occurred such as in the case of a death event, then the remaining patient biomarker data is expected to bias itself to values that correspond to the event being less likely. To capture the interaction and codependency of these processes, a joint model [AAAAA] is used.
+Consider the case where data on one or more patients with a certain condition is available. Two processes are of interest in this example. The longitudinal (time-dependant) biomarker evolution, and when a specific event will or will not occur or Time-To-Event (TTE) survivability. Biomarker examples include insulin levels, tumour sizes, and cholesterol levels. Corresponding events may be a diabetes diagnosis, death, or a heart attack. These two processes are not independent. If the patients biomarkers improve then their survivability is expected to be better than that of a patient whose biomarkers are degrading. Furthermore, if the event is censoring, i.e. no measurements can be taken after the event has occurred such as in the case of a death event, then the remaining patient biomarker data is expected to bias itself to values that correspond to the event being less likely. To capture the interaction and codependency of these processes, a joint model is used \cite{Marion2022}.
 \\
 
 A joint model makes use of a linkage function (denoted $f(t, \ubar{\Psi}_i)$ where $t$ is the time at which patient $i$ is being considered and $\ubar{\Psi}_i$ are the individual parameters of patient $i$) to model the interaction between the longitudinal and TTE processes. For the sake of interpretability and simplicity, linear linkage functions are often used. Common examples include:
@@ -150,7 +149,7 @@ A joint model makes use of a linkage function (denoted $f(t, \ubar{\Psi}_i)$ whe
 \end{itemize}
 
 
-Use of non-linear joint models is limited and generally uncommon. Notable examples of non-linear models do exist. Namely (Desmee) where the Prostate-Specific Antigens (PSA), a biomarker often associated with prostate cancer, were modelled jointly with the risk of death [AAA]. The link function $f(t, \ubar{\Psi}_i) = \mathrm{log}(\mathrm{PSA}(t, \ubar{\Psi}_i) + 1)$ was used where one is added to the biomarker value to ensure the log function argument is greater than or equal to one. Additionally, splines make for highly flexible and unpredictable non-linear links functions.
+Use of non-linear joint models is limited and generally uncommon. Notable examples of non-linear models do exist. Namely Desm\'ee \emph{et al} where the Prostate-Specific Antigens (PSA), a biomarker often associated with prostate cancer, were modelled jointly with the risk of death \cite{desmee2020}. The link function $f(t, \ubar{\Psi}_i) = \mathrm{log}(\mathrm{PSA}(t, \ubar{\Psi}_i) + 1)$ was used where one is added to the biomarker value to ensure the log function argument is greater than or equal to one. Additionally, splines make for highly flexible and unpredictable non-linear links functions.
 \\
 
 Currently, multiple R packages are capable of fitting joint models. Examples include joineR, JM, JMbayes, rstanarm, and INLAjoint. However, the majority of these packages do not have options for non-linear link functions and do not allow custom link functions, limiting them to linear linkage cases. This creates a challenge in the testing and investigation of non-linear joint models, as such models must be created by the researcher themself.
@@ -195,7 +194,7 @@ where:
 	\item $b$ is the multiplicative component of the error term.
 \end{itemize}
 
-Let $\theta_m = \{ \ubar{\mu}, \Omega, a, b \}$ be the set of population parameters for the mixed-effect model.
+Let $\theta_m = \{ \Omega, a, b \}$ be the set of population parameters for the mixed-effect model.
 
 
 
@@ -226,7 +225,7 @@ Let the hazard function $h_i(t)$ be the instantaneous risk of the event occurrin
 h_i(t) = \lim_{\Delta t \to 0} \frac{\mathrm{P}(t < T_i \le t + \Delta t \mid T_i > t)}{\Delta t}.
 \end{equation}
 
-Generally, a proportional model [AAA] is used to account for the effect of specific covariate(s), say $x_i$. In this case,
+Generally, a proportional model \cite{Marion2022} is used to account for the effect of specific covariate(s), say $x_i$. In this case,
 
 \begin{equation}
 h_i(t) = h_0(t) \cdot e^{\rho x_i},
@@ -276,7 +275,7 @@ By direct application of Bayes theorem, we obtain the full posterior
 Where $\ubar{Y}_i$ is the vector of all biomarker measurements for patient $i$, $Y_{ij}$ is the biomarker value for patient $i$ at their $j$'th measurement, and $n_i$ is the number of biomarker measurements for patient $i$.
 \\
 
-Hence, to estimate the population parameters and the random effects, we need only to infer the posterior distribution. However, in the case of a non-linear joint model, this process becomes more challenging than that of a linear model. One solution is the No-U-Turn Sampler [AAAA] variation of the Hamiltonian-Monte Carlo [AAA] algorithm as implemented in Stan. In this study, INLA is used for its computational efficiency  in fitting complicated, non-linear joint models.
+Hence, to estimate the population parameters and the random effects, we need only to infer the posterior distribution. However, in the case of a non-linear joint model, this process becomes more challenging than that of a linear model. Solutions include the No-U-Turn Sampler variation of the Hamiltonian-Monte Carlo algorithm as implemented in Stan \cite{Marion2022}, the Markov Chain Monte Carlo (MCMC) method \cite{Marion2022}, and Variational Bayes (VB) \cite{VB}. In this study, INLA \cite{INLA2020} is used for its computational efficiency  in fitting complicated, non-linear joint models.
 %AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa
 
 \begin{comment}
@@ -365,17 +364,17 @@ vnitunrivuptnriuwvtnoiutnreuvnt
 
 \section{Application}
 
-The Primary Biliary Cirrhosis (PBC) dataset as gathered by the Mayo Clinic between 1974 and 1984, measuring 19 variables across 312 randomised patients, will be analysed [FLEMINGAAAAAAAA]. The version of this dataset found in the R package JMbayes2 under the name pbc2 will be used.[BBBBBBB]. 
+The Primary Biliary Cirrhosis (PBC) dataset as gathered by the Mayo Clinic between 1974 and 1984, measuring 19 variables across 312 randomised patients, will be analysed \cite{fleming2020}. The version of this dataset found in the R package JMbayes2 under the name pbc2 will be used \cite{jmbayes2020}.  All analysis is done in R version 4.6.1 \cite{R2020} and a link to the code used is available in the appendix.
 Within the original dataset, the edema variable is a trinary variable. For this study, this variable has been reduced to a binary variable indicating whether or not an edema was present at measurement.
 \\
 
-Linear and non-linear joint models are to be fitted using INLAjoint [AAAA] in R.  The eight variables to be considered are  serum bilirubin concentration, SGOT concentration, albumin concentration, edema presence, platelet count, alkaline phosphatase concentration, ascites, and presence of spider-like patterns on the skin.
+Linear and non-linear joint models are to be fitted using INLAjoint \cite{joint2020} in R.  The eight variables to be considered are  serum bilirubin concentration, SGOT concentration, albumin concentration, edema presence, platelet count, alkaline phosphatase concentration, ascites, and presence of spider-like patterns on the skin.
 \\
 
 For each variable, four joint models will be fitted. A linear joint model and a non-linear joint model will be fitted treating death as the event of interest. A similar pair of joint models will be fitted treating liver transplant as the event of interest.
 \\
 
-For each joint model pair, the estimated effect and corresponding 95\% confidence interval are plotted together and interpreted. Specific attention will be given to the analysis of the models of the ascites variable where liver transplantation is the event of interest. The Deviance Information Criterion (DIC) [AAA] and Widely Applicable Bayesian Information Criterion (WAIC) [AAA] are calculated for each model and compared.
+For each joint model pair, the estimated effect and corresponding 95\% confidence interval are plotted together and interpreted. Specific attention will be given to the analysis of the models of the ascites variable where liver transplantation is the event of interest. The Deviance Information Criterion (DIC) \cite{rich2020} and Widely Applicable Bayesian Information Criterion (WAIC) \cite{rich2020} are calculated for each model and compared.
 
 \section{Results}
 
@@ -508,12 +507,134 @@ However, this study focused largely on the overall models. Further studies shoul
 
 \newpage
 
-\bibliographystyle{plain}
-\bibliography{BibliographyDatabase}
+\begin{thebibliography}{9}
+
+
+\bibitem{Marion2022}  M. Kerioui, J. Bertrand, R. Bruno, F. Mercier, J. Guedj, and S. Desm\'ee, "Modelling the association between biomarkers and clinical outcome: An introduction to nonlinear joint models," \emph{Brit. J. of Clin. Pharmacology}, vol. 88, no. 4, pp. 1452-1463, Jan. 2022, doi: https://doi.org/10.1111/bcp.15200.
+
+\bibitem{desmee2020} S. Desm\'ee, F. Mentr\'e, C. Veyrat-Follet, B. S\'ebastien, and J. Guedj, "Nonlinear joint models for individual dynamic prediction of risk of death using Hamiltonian Monte Carlo: application to metastatic prostate cancer," \emph{BMC Med. Res. Methodology}, vol.17, no. 105, doi: https://doi.org/10.1186/s12874-017-0382-9.
+
+\bibitem{VB} D. M. Blei, A. Kucukelbir, and J. D. McAuliffe, "Variational Inference: A Review for Statisticians," \emph{Journal of the American Statistical Association}, vol. 112, no. 518, pp. 859-877, Jul. 2017, doi: https://doi.org/10.1080/01621459.2017.1285773.
+
+\bibitem{INLA2020} J. van Niekerk, E. Krainski, D. Rustand, and H. Rue, "A new avenue for Bayesian inference with INLA," \emph{Computational Statistics \& Data Analysis}, vol. 181, no. 107692,  May. 2023, doi: https://doi.org/10.1016/j.csda.2023.107692.
+
+
+\bibitem{fleming2020} T. R. Fleming and D. P. Harrington, \emph{Counting Processes and Survival Analysis}. New York: Wiley, 2011. Accessed: Aug. 16, 2026. [Online]. Available: http://public.eblib.com/choice/publicfullrecord.aspx?p=818803.
+
+\bibitem{jmbayes2020} D. Rizopoulos, P. Miranda-Afonso, and G. Papageorgiou, \emph{JMbayes2: Extended Joint Models for Longitudinal and Time-to-Event Data}, (0.6-0), Jan. 2026, doi: https://doi.org/10.32614/CRAN.package.JMbayes2.
+
+\bibitem{R2020}  \emph{R: A Language and Environment for Statistical Computing}. (4.6.1), R Foundation for Statistical Computing, doi: https://doi.org/10.32614/R.manuals, [Online]. Available: https://www.R-project.org/.
+
+
+\bibitem{joint2020} D.Rustand, E. T. Krainski, H. Rue, and J. van Niekerk, \emph{INLAjoint: Multivariate Joint Modeling for Longitudinal and Time-to-Event Outcomes with 'INLA'}, (26.6.2), Jun. 2026, doi: https://doi.org/10.32614/CRAN.package.INLAjoint.
+
+\bibitem{rich2020} R. McElreath, "OVERFITTING, REGULARIZATION, AND INFORMATION CRITERIA," in \emph{Statistical Rethinking: A Bayesian Course with Examples in R and Stan}, Boca Raton, FL, USA: CRC Press, 2016, ch. 6, sec. 4, pp. 190-192.
+
+
+
+
+
+
+
+
+
+
+\end{thebibliography}
+
 
 \newpage
 
+\section{Acknowledgements}
+
+This research was approved by the Ethics Committee, Faculty of Natural and Agricultural Sciences of the University of Pretoria, Reference Number NAS116/2019.
+
 \section*{Appendix\addcontentsline{toc}{section}{Appendix}}
 
-Include any additional code, output or data here. 
+The code used can be found at https://github.com/Jacobin-Cuckoo/Sable2026Honours.\\
+
+
+\begin{figure}[H]
+\begin{minipage}[c]{0.4\linewidth}
+\includegraphics[width=\linewidth]{AlbuminDeath.png}
+\caption{Albumin with death event}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.4\linewidth}
+\includegraphics[width=\linewidth]{AlbuminTrans.png}
+\caption{Albumin with transplant event}
+\end{minipage}%
+\end{figure}
+
+\begin{figure}[H]
+\begin{minipage}[c]{0.4\linewidth}
+\includegraphics[width=\linewidth]{AlkalineDeath.png}
+\caption{Alkaline with death event}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.4\linewidth}
+\includegraphics[width=\linewidth]{AlkalineTrans.png}
+\caption{Alkaline with transplant event}
+\end{minipage}%
+\end{figure}
+
+\begin{figure}[H]
+\begin{minipage}[c]{0.4\linewidth}
+\includegraphics[width=\linewidth]{AscitesDeath.png}
+\caption{Ascites with death event}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.4\linewidth}
+\includegraphics[width=\linewidth]{EdemaTrans.png}
+\caption{Edema with transplant event}
+\end{minipage}%
+\end{figure}
+
+\begin{figure}[H]
+\begin{minipage}[c]{0.4\linewidth}
+\includegraphics[width=\linewidth]{PlateletsDeath.png}
+\caption{Platelets with death event}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.4\linewidth}
+\includegraphics[width=\linewidth]{PlateletsTrans.png}
+\caption{Platelets with transplant event}
+\end{minipage}%
+\end{figure}
+
+\begin{figure}[H]
+\begin{minipage}[c]{0.4\linewidth}
+\includegraphics[width=\linewidth]{SerumbilirubinDeath.png}
+\caption{Serum bilirubin with death event}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.4\linewidth}
+\includegraphics[width=\linewidth]{SerumbilirubinTrans.png}
+\caption{Serum bilirubin with transplant event}
+\end{minipage}%
+\end{figure}
+
+\begin{figure}[H]
+\begin{minipage}[c]{0.4\linewidth}
+\includegraphics[width=\linewidth]{SGOTDeath.png}
+\caption{SGOT with death event}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.4\linewidth}
+\includegraphics[width=\linewidth]{SGOTTrans.png}
+\caption{SGOT with transplant event}
+\end{minipage}%
+\end{figure}
+
+\begin{figure}[H]
+\begin{minipage}[c]{0.4\linewidth}
+\includegraphics[width=\linewidth]{SpidersDeath.png}
+\caption{Spiders with death event}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.4\linewidth}
+\includegraphics[width=\linewidth]{SpidersTrans.png}
+\caption{Spiders with transplant event}
+\end{minipage}%
+\end{figure}
+
 \end{document}
